@@ -1,13 +1,13 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../shared-services/auth.service';
-import { RestAPIService } from '../shared-services/restAPI.service';
 import { PathConstants } from '../constants/path.constants';
 import { HttpParams, HttpErrorResponse } from '@angular/common/http';
 import { LoginService } from './login.service';
-import { MessageService } from 'primeng/api';
 import { StatusMessage } from '../constants/Messages';
+import { RestAPIService } from '../services/restAPI.service';
+import { AuthService } from '../services/auth.service';
+import { MessageService } from 'primeng/api/primeng-api';
 
 
 @Component({
