@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { User } from '../interfaces/user.interface';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -119,3 +118,10 @@ export class AuthService {
     this.router.navigateByUrl('');
   }
 }
+
+export interface User {
+  username: any;
+  password: any;
+  roleId: number;
+}
+

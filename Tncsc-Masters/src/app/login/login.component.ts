@@ -7,7 +7,7 @@ import { LoginService } from './login.service';
 import { StatusMessage } from '../constants/Messages';
 import { RestAPIService } from '../services/restAPI.service';
 import { AuthService } from '../services/auth.service';
-import { MessageService } from 'primeng/api/primeng-api';
+import { MessageService } from 'primeng/api';
 
 
 @Component({
