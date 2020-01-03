@@ -1,17 +1,16 @@
 
-/* You can add global styles to this file, and also import other style files */
-/* @import '../node_modules/primeng/resources/themes/omega/theme.css'; */
+/* @import '../node_modules/primeng/resources/themes/nova-light/theme.css'; */
+@import '../node_modules/primeng/resources/themes/omega/theme.css';
 @import '../node_modules/primeng/resources/primeng.min.css';
 @import '../node_modules/primeicons/primeicons.css';
 /* @import '../node_modules/primeflex/primeflex.css'; */
 @import url("http://fonts.googleapis.com/css?family=Oswald");
 
-/* @import '../node_modules/bootstrap/dist/css/bootstrap.min.css'; */
-/* @import '../node_modules/font-awesome/css/font-awesome.min.css'; */
-/* @import '../node_modules/bootstrap-select/dist/css/bootstrap-select.min.css'; */
-/* @import '../node_modules/select2/dist/css/select2.min.css'; */
-/* @import '../node_modules/main/main.min.css'; */
-/* @import '../node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css'; */
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+@import '../node_modules/font-awesome/css/font-awesome.min.css';
+@import '../node_modules/bootstrap-select/dist/css/bootstrap-select.min.css';
+@import '../node_modules/select2/dist/css/select2.min.css';
+@import '../node_modules/main/main.min.css';
 
 
 /*--

@@ -2,11 +2,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { MenuComponent } from './menu/menu.component';
+import { RegionMasterComponent } from './region-master/region-master.component';
+import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'menu', component: MenuComponent },
+  { path: 'regions', component: RegionMasterComponent},
   { path: '**', component: LoginComponent }
 
 ];
@@ -19,5 +22,6 @@ const routes: Routes = [
 
 
 export class AppRoutingModule { 
+
   
 }
