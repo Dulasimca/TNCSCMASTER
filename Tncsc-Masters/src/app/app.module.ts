@@ -36,6 +36,7 @@ import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
 import { RegionMasterComponent } from './region-master/region-master.component';
 import { AppRoutingModule } from './app-routing.module';
+import { GunnyTypeMasterComponent } from './gunny-type-master/gunny-type-master.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { AppRoutingModule } from './app-routing.module';
     LoginComponent,
     FooterComponent,
     MenuComponent,
-    RegionMasterComponent
+    RegionMasterComponent,
+    GunnyTypeMasterComponent
   ],
   imports: [
     BrowserModule,

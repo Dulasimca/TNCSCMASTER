@@ -19,4 +19,8 @@ export class RegionMasterComponent implements OnInit {
     this.regionCols = TableConstants.RegionMasterCols;
   }
 
+  onView() { }
+
+  onRowSelect(data, index) { }
+
 }

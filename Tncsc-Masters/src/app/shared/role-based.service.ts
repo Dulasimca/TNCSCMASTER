@@ -23,7 +23,7 @@ export class RoleBasedService {
     getGodowns() {
         this.godownsList = [];
         let godowns;
-        this.restApiService.get(PathConstants.GODOWN_MASTER).subscribe((res: any) => {
+        this.restApiService.get(PathConstants.GODOWN_DATA).subscribe((res: any) => {
             res.forEach(x => {
                 godowns = x.list;
                 godowns.forEach(data => { this.godownsList.push({ 'GName': data.Name, 'GCode': data.GCode, 'RCode': data.Code }) });
@@ -37,7 +37,7 @@ export class RoleBasedService {
     /// All regions
     getRegions() {
         this.regionsData = [];
-        this.restApiService.get(PathConstants.GODOWN_MASTER).subscribe((res: any) => {
+        this.restApiService.get(PathConstants.GODOWN_DATA).subscribe((res: any) => {
             res.forEach(x => {
                 this.regionsData.push({ 'RName': x.Name, 'RCode': x.Code });
             });
@@ -53,7 +53,7 @@ export class RoleBasedService {
         this.rCode = this.authService.getUserAccessible().rCode;
         let godownList = [];
         this.instance = [];
-        this.restApiService.get(PathConstants.GODOWN_MASTER).subscribe((res: any) => {
+        this.restApiService.get(PathConstants.GODOWN_DATA).subscribe((res: any) => {
             res.forEach(x => {
                 if (this.roleId === 1) {
                     godownList = x.list;
@@ -81,22 +81,6 @@ export class RoleBasedService {
 
         });
         return this.instance;
-    }
-    ///End
-
-    /// Scheme Master Data
-    getSchemeData() {
-        if (this.scheme_data === undefined) {
-            this.scheme_data = [];
-            this.restApiService.get(PathConstants.SCHEMES).subscribe((res: any) => {
-                if (res !== undefined) {
-                    res.forEach(value => {
-                        this.scheme_data.push({ 'SName': value.Name, 'SCode': value.SCCode, 'AScheme': value.AllotmentScheme });
-                    })
-                }
-            });
-        }
-        return this.scheme_data;
     }
     ///End
 
