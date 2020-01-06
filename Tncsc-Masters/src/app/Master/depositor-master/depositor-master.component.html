@@ -1,0 +1,55 @@
+<app-header></app-header>
+<div class="ui-g-12 ui-md-12 ui-lg-12 content">
+    <!-- <app-menu *ngIf="canShowMenu"></app-menu> -->
+    <p-panel>
+        <p-header>
+            <div class="ui-g panel-header">
+                <div class="ui-g-4 dashboard">Depositor Master</div>
+            </div>
+        </p-header>
+        <p-toast position="top-center" key="t-err"></p-toast>
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-6 ui-md-2">
+                <label class="ui-g-7 label-fontsize dashboard">Type</label>
+                <p-dropdown #region class="ui-g-12 ui-fluid dashboard" [options]="depositorOptions"
+                    [(ngModel)]="Depositor" [showClear]="true" filter="true" resetFilterOnHide="true"
+                    placeholder="-select-">
+                    <ng-template let-item pTemplate="selectedItem">
+                        <span style="vertical-align:middle">{{item.label}}</span>
+                    </ng-template>
+                </p-dropdown>
+            </div>
+            <div class="ui-g-12 ui-md-1" style="padding-top: 19px;">
+                <button class="ui-g-3 dashboard inline-margin" pButton type="button" label=View (click)="onView()"
+                    [disabled]="(!Depositor)"></button>
+            </div>
+            <div class="ui-g-12 dashboard">
+                <p-table #dt [columns]="DepositorMasterCols" [value]="DepositorMasterData" [rows]="20"
+                    [rowsPerPageOptions]="[10,20,30,40,50,100]" [paginator]="true" [loading]="loading"
+                    [responsive]="true" exportFilename="TRANSACTION_RECEIPT_REPORT" autoLayout="true">
+                    <ng-template pTemplate="header" let-columns>
+                        <tr style="text-align: center;">
+                            <th *ngFor="let col of columns">
+                                {{col.header}}
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-columns="columns">
+                        <tr>
+                            <td *ngFor="let col of columns">
+                                <div *ngIf="col.field === 'Quantity'">
+                                    <div style="text-align: end !important">
+                                        {{rowData[col.field]}}
+                                    </div>
+                                </div>
+                                <div *ngIf="col.field !== 'Quantity'">
+                                    {{rowData[col.field]}}
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </p-panel>
+</div>'
