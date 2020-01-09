@@ -16,7 +16,7 @@ import { TreeTableModule } from 'primeng/treetable';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
+import { MessageService, ConfirmationService } from 'primeng/api';
 import { InputTextModule } from 'primeng/inputtext';
 import { FieldsetModule } from 'primeng/fieldset';
 import { RadioButtonModule } from 'primeng/radiobutton';
@@ -37,6 +37,25 @@ import { MenuComponent } from './menu/menu.component';
 import { RegionMasterComponent } from './region-master/region-master.component';
 import { AppRoutingModule } from './app-routing.module';
 import { GunnyTypeMasterComponent } from './gunny-type-master/gunny-type-master.component';
+import { DepositorMasterComponent } from './MasterNew/depositor-master/depositor-master.component';
+import { TypeMasterComponent } from './MasterNew/type-master/type-master.component';
+import { TransactionMasterComponent } from './MasterNew/transaction-master/transaction-master.component';
+import { CerealNoncerealComponent } from './MasterNew/cereal-noncereal/cereal-noncereal.component';
+import { CommodityMasterComponent } from './MasterNew/commodity-master/commodity-master.component';
+import { MenubarModule } from 'primeng/menubar';
+import {InputMaskModule} from 'primeng/inputmask';
+import { FileUploadModule } from 'primeng/fileupload';
+import { TableConstants } from './constants/table.constants';
+import { StatusMessage } from './constants/Messages';
+import { LoginService } from './login/login.service';
+import { DatePipe } from '@angular/common';
+import { PathConstants } from './constants/path.constants';
+import { RoleBasedService } from './shared/role-based.service';
+import { VehicleMasterComponent } from './MasterNew/vehicle-master/vehicle-master.component';
+import { WeighmentMasterComponent } from './MasterNew/weighment-master/weighment-master.component';
+import { RailYardMasterComponent } from './MasterNew/rail-yard-master/rail-yard-master.component';
+import { SchemeMasterComponent } from './MasterNew/scheme-master/scheme-master.component';
+import { SchemeCommodityMasterComponent } from './MasterNew/scheme-commodity-master/scheme-commodity-master.component';
 
 @NgModule({
   declarations: [
@@ -44,8 +63,18 @@ import { GunnyTypeMasterComponent } from './gunny-type-master/gunny-type-master.
     LoginComponent,
     FooterComponent,
     MenuComponent,
+    DepositorMasterComponent,
+    TypeMasterComponent,
+    TransactionMasterComponent,
+    CerealNoncerealComponent,
+    CommodityMasterComponent,
     RegionMasterComponent,
-    GunnyTypeMasterComponent
+    GunnyTypeMasterComponent,
+    VehicleMasterComponent,
+    WeighmentMasterComponent,
+    RailYardMasterComponent,
+    SchemeMasterComponent,
+    SchemeCommodityMasterComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +86,7 @@ import { GunnyTypeMasterComponent } from './gunny-type-master/gunny-type-master.
     TableModule,
     OverlayPanelModule,
     AppRoutingModule,
+    // MenubarModule,
     BrowserAnimationsModule,
     CheckboxModule,
     RadioButtonModule,
@@ -73,12 +103,14 @@ import { GunnyTypeMasterComponent } from './gunny-type-master/gunny-type-master.
     InputTextModule,
     TabViewModule,
     TooltipModule,
-    TooltipModule,
     BlockUIModule,
-    ListboxModule,
-    ProgressSpinnerModule
+    // ListboxModule,
+    // ProgressSpinnerModule,
+    // InputMaskModule,
+    // FileUploadModule
   ],
-  providers: [MessageService, ExcelService, RestAPIService, AuthService],
+  providers: [AuthService, ConfirmationService, TableConstants, StatusMessage, LoginService,
+    DatePipe, RestAPIService, PathConstants, ExcelService, MessageService, RoleBasedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
