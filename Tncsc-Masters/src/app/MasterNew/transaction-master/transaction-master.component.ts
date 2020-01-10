@@ -26,6 +26,7 @@ export class TransactionMasterComponent implements OnInit {
   DeleteFlag: any;
   TransactionOptions: SelectItem[];
   Transaction: any;
+  NewCode: any;
   TRCode: any;
   RCode: any;
   GCode: any;
@@ -49,6 +50,7 @@ export class TransactionMasterComponent implements OnInit {
     this.loading = true;
     this.restAPIService.get(PathConstants.TRANSACTION_MASTER).subscribe(res => {
       if (res !== undefined) {
+        this.NewCode = 'TR' + '0' + (res.length + 1);
         this.TransactionMasterCols = this.tableConstants.TransactionMaster;
         this.TransactionMasterData = res;
         this.FilteredArray = res;
@@ -115,6 +117,7 @@ export class TransactionMasterComponent implements OnInit {
     this.isEdited = true;
     this.isViewed = false;
     this.TransactionCode = selectedRow.TRCode;
+    this.Transaction = selectedRow.TRCode;
     this.TransactionName = selectedRow.TRName;
     this.TransactionOptions = [{ label: selectedRow.TransactionTY, value: selectedRow.TransType }];
     this.TransactionType = selectedRow.TransType;
@@ -125,14 +128,16 @@ export class TransactionMasterComponent implements OnInit {
 
   onAdd() {
     this.isAdd = true;
-    this.TransactionCode = this.TransactionName = undefined;
+    this.isEdited = false;
+    this.TransactionCode = this.NewCode;
+    this.TransactionName = this.Transaction = this.TransactionType = undefined;
     this.TransactionOptions = undefined;
     this.Active = false;
   }
 
   onSave() {
     const params = {
-      'TRCode': this.TransactionCode || '',
+      'TRCode': this.Transaction || '',
       'TRName': this.TransactionName,
       'TransType': this.TransactionType,
       'DeleteFlag': this.DeleteFlag || 'F',
@@ -171,6 +176,7 @@ export class TransactionMasterComponent implements OnInit {
     this.loading = true;
     this.restAPIService.get(PathConstants.TRANSACTION_MASTER).subscribe(res => {
       if (res !== undefined) {
+        this.NewCode = 'TR' + '0' + (res.length + 1);
         this.TransactionMasterCols = this.tableConstants.TransactionMaster;
         this.TransactionMasterData = res;
         this.FilteredArray = res;

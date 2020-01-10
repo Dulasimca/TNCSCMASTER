@@ -36,7 +36,6 @@ export class CerealNoncerealComponent implements OnInit {
   viewPane: boolean = false;
   isViewed: boolean = false;
   isEdited: boolean = false;
-  // @ViewChild('Type', { static: false }) TypePanel: Dropdown;
   @ViewChild('item', { static: false }) itemPanel: Dropdown;
 
 
@@ -124,6 +123,7 @@ export class CerealNoncerealComponent implements OnInit {
 
   onAdd() {
     this.isAdd = true;
+    this.isEdited = false;
     this.ItemCode = this.ItemName = undefined;
     this.ItemOptions = undefined;
     this.Active = false;
@@ -135,8 +135,6 @@ export class CerealNoncerealComponent implements OnInit {
       'ITCode': this.ItemCode,
       'ITDescription': this.ItemName,
       'ItemType': this.ItemType,
-      // 'DeleteFlag': this.DeleteFlag || 'F',
-      // 'Activeflag': this.Active,
     };
     this.restAPIService.post(PathConstants.CEREAL_MASTER_POST, params).subscribe(res => {
       if (res) {

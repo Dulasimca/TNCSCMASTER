@@ -11,6 +11,7 @@ export class TableConstants {
     RailYardMaster: any;
     SchemeMaster: any;
     SchemeCommodityMaster: any;
+    PackingMaster: any;
 
     constructor() {
         this.RegionMasterCols = [
@@ -112,6 +113,16 @@ export class TableConstants {
             { header: 'Scheme Name', field: 'SchemeName' },
             { header: 'Commodity Name', field: 'CommodityName' },
             { header: 'Active Flag', field: 'ActiveFlag' },
+            { header: 'Delete Flag', field: 'DeleteFlag' }
+        ];
+
+        this.PackingMaster = [
+            { header: 'S.No', field: 'SlNo', width: '40px' },
+            { header: 'Packing Code', field: 'Pcode' },
+            { header: 'Packing Name', field: 'PName' },
+            { header: 'Packing Weight', field: 'PWeight' },
+            { header: 'PBWeight', field: 'PBWeight' },
+            { header: 'Active Flag', field: 'Activeflag' },
             { header: 'Delete Flag', field: 'DeleteFlag' }
         ];
     }

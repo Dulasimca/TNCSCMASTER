@@ -28,6 +28,10 @@
         <button class="ui-g-3 dashboard inline-margin" pButton type="button" label=View (click)="onView()"
           [disabled]="(!Depositor)"></button>
       </div>
+      <div class="ui-g-3 ui-md-1" style="padding-top: 20px;">
+        <button class="ui-g-3 dashboard inline-margin" pButton type="button" label=Add (click)="onAdd()"
+          [disabled]="(!Depositor)"></button>
+      </div>
       <div class="ui-g-12 ui-md-4"></div>
       <div class="ui-g-12 dashboard">
         <p-table #dt [columns]="DepositorMasterCols" [value]="DepositorMasterData" [rows]="20"
@@ -81,7 +85,7 @@
         </div>
         <!-- <div class="ui-g-12 ui-md-1"></div> -->
         <div class="ui-g-3 ui-md-1 ui-fluid">
-          <button pButton type="button" label=Update (click)="onSave()"></button>
+          <button pButton type="button" label=Update (click)="onSave()" [disabled]="(!Active || !DepositorName)" ></button>
         </div>
       </div>
     </form>

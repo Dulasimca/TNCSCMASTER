@@ -27,14 +27,14 @@
                         <div class="ui-g-6 ui-md-2" style="padding-top: 25px;">
                             <span class="ui-float-label">
                                 <input name="SchemeName" pInputText [(ngModel)]="SchemeName" autocomplete="off"
-                                    required>
+                                    [readonly]="(isEdited)" required>
                                 <label for="SchemeName" class="float-input">Scheme Name</label>
                             </span>
                         </div>
                         <div class="ui-g-6 ui-md-2" style="padding-top: 25px;">
                             <span class="ui-float-label">
                                 <input name="SchemeType" pInputText [(ngModel)]="SchemeType" autocomplete="off"
-                                    required>
+                                [readonly]="true" required>
                                 <label for="SchemeType" class="float-input">Scheme Type</label>
                             </span>
                         </div>

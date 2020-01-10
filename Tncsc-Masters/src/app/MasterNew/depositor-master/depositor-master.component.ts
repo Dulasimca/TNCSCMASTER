@@ -110,14 +110,20 @@ export class DepositorMasterComponent implements OnInit {
     this.DeleteFlag = selectedRow.DeleteFlag;
   }
 
+  onAdd() {
+    this.isEdited = true;
+    this.DepositorCode = this.DepositorName = this.DeleteFlag = undefined;
+    this.Active = false;
+  }
+
   onSave() {
     const params = {
       'RCode': this.RCode,
       'GCode': this.GCode,
-      'DepositorCode': this.DepositorCode,
+      'DepositorCode': this.DepositorCode || '',
       'DepositorName': this.DepositorName,
       'DepositorType': this.Depositor,
-      'DeleteFlag': this.DeleteFlag,
+      'DeleteFlag': this.DeleteFlag || 'F',
       'ActiveFlag': this.Active,
     };
     this.restAPIService.post(PathConstants.DEPODITOR_MASTER_TYPE_POST, params).subscribe(res => {

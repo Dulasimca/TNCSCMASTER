@@ -26,6 +26,9 @@ export class PathConstants {
   public static readonly SCHEME_COMMODITY_MASTER = '/api/SchemeCommodity';
   public static readonly SCHEME_COMMODITY_GET = '/api/ManageSchemeCommodity/Get';
   public static readonly SCHEME_COMMODITY_POST = '/api/ManageSchemeCommodity/Post';
+  public static readonly PACKING_AND_WEIGHMENT = '/api/PackingandWeighment';
+  public static readonly PACKING_MASTER_POST = '/api/ManagePackingMaster/Post';
+
 
 
   ///Masters

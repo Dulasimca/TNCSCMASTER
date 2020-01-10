@@ -15,6 +15,7 @@ import { WeighmentMasterComponent } from './MasterNew/weighment-master/weighment
 import { RailYardMasterComponent } from './MasterNew/rail-yard-master/rail-yard-master.component';
 import { SchemeMasterComponent } from './MasterNew/scheme-master/scheme-master.component';
 import { SchemeCommodityMasterComponent } from './MasterNew/scheme-commodity-master/scheme-commodity-master.component';
+import { PackingMasterComponent } from './MasterNew/packing-master/packing-master.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'RailwayYardMaster', component: RailYardMasterComponent },
   { path: 'SchemeMaster', component: SchemeMasterComponent },
   { path: 'SchemeCommodityMaster', component: SchemeCommodityMasterComponent },
+  { path: 'PackingMaster', component: PackingMasterComponent },
   { path: 'regions', component: RegionMasterComponent },
   { path: 'gunnyType', component: GunnyTypeMasterComponent },
   { path: '**', component: LoginComponent }

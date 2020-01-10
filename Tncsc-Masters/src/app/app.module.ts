@@ -56,6 +56,7 @@ import { WeighmentMasterComponent } from './MasterNew/weighment-master/weighment
 import { RailYardMasterComponent } from './MasterNew/rail-yard-master/rail-yard-master.component';
 import { SchemeMasterComponent } from './MasterNew/scheme-master/scheme-master.component';
 import { SchemeCommodityMasterComponent } from './MasterNew/scheme-commodity-master/scheme-commodity-master.component';
+import { PackingMasterComponent } from './MasterNew/packing-master/packing-master.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { SchemeCommodityMasterComponent } from './MasterNew/scheme-commodity-mas
     WeighmentMasterComponent,
     RailYardMasterComponent,
     SchemeMasterComponent,
-    SchemeCommodityMasterComponent
+    SchemeCommodityMasterComponent,
+    PackingMasterComponent
   ],
   imports: [
     BrowserModule,

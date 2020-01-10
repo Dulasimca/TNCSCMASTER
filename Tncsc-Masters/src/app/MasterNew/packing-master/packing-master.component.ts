@@ -1,29 +1,32 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { SelectItem } from 'primeng/api/selectitem';
-import { Dropdown } from 'primeng/dropdown/dropdown';
 import { AuthService } from 'src/app/services/auth.service';
 import { RestAPIService } from 'src/app/services/restAPI.service';
-import { MessageService } from 'primeng/api';
+import { MessageService, SelectItem } from 'primeng/api';
 import { TableConstants } from 'src/app/constants/table.constants';
 import { PathConstants } from 'src/app/constants/path.constants';
 import { StatusMessage } from 'src/app/constants/Messages';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Dropdown } from 'primeng/dropdown/dropdown';
 
 @Component({
-  selector: 'app-vehicle-master',
-  templateUrl: './vehicle-master.component.html',
-  styleUrls: ['./vehicle-master.component.css']
+  selector: 'app-packing-master',
+  templateUrl: './packing-master.component.html',
+  styleUrls: ['./packing-master.component.css']
 })
-export class VehicleMasterComponent implements OnInit {
-  VehicleMasterData: any;
-  VehicleMasterCols: any;
+export class PackingMasterComponent implements OnInit {
+  PackingMasterData: any;
+  PackingMasterCols: any;
   FilteredArray: any = [];
-  VehicleData: any;
-  VehicleCode: any;
-  VehicleType: any;
+  PackingData: any;
+  PackingCode: any;
+  PackingName: any;
+  PackingType: any;
+  PackingWeight: any;
+  MeasurementOptions: SelectItem[];
+  Measurement: any;
   Active: any;
   DeleteFlag: any;
-  Vehicle: any;
+  Packing: any;
   NewCode: any;
   RCode: any;
   searchText: any;
@@ -34,6 +37,8 @@ export class VehicleMasterComponent implements OnInit {
   viewPane: boolean = false;
   isViewed: boolean = false;
   isEdited: boolean = false;
+  @ViewChild('measurement', { static: false }) measurementPanel: Dropdown;
+
 
   constructor(private authService: AuthService, private restAPIService: RestAPIService, private messageService: MessageService, private tableConstants: TableConstants) { }
 
@@ -42,14 +47,14 @@ export class VehicleMasterComponent implements OnInit {
     this.RCode = this.authService.getUserAccessible().rCode;
     this.GCode = this.authService.getUserAccessible().gCode;
     this.loading = true;
-    this.restAPIService.get(PathConstants.VEHICLE_MASTER).subscribe(res => {
-      if (res !== undefined && res !== null && res.length !== 0) {
-        this.VehicleMasterCols = this.tableConstants.VehicleMaster;
-        this.VehicleMasterData = res;
-        this.FilteredArray = res;
-        this.NewCode = 'VH' + '00' + (res.length + 1);
+    this.restAPIService.get(PathConstants.PACKING_AND_WEIGHMENT).subscribe(res => {
+      if (res.Table !== undefined && res.Table !== null && res.Table.length !== 0) {
+        this.NewCode = 'P' + '0' + (res.Table.length + 1);
+        this.PackingMasterCols = this.tableConstants.PackingMaster;
+        this.PackingMasterData = res.Table;
+        this.FilteredArray = res.Table;
         let sno = 0;
-        this.VehicleMasterData.forEach(ss => {
+        this.PackingMasterData.forEach(ss => {
           sno += 1;
           ss.SlNo = sno;
         });
@@ -76,12 +81,30 @@ export class VehicleMasterComponent implements OnInit {
     this.onClear();
   }
 
+  onSelect(item, type) {
+    let MeasurementSelection = [];
+    switch (item) {
+      case 'measurement':
+        if (type === 'enter') {
+          this.measurementPanel.overlayVisible = true;
+        }
+        MeasurementSelection.push({ 'label': 'GRAMS', 'value': 'GRAMS' }, { 'label': 'KGS', 'value': 'KGS' }, { 'label': 'KILOLITRE', 'value': 'KILOLITRE' }, { 'label': 'LTRS', 'value': 'LTRS' }, { 'label': 'M.TONS', 'value': 'M.TONS' }, { 'label': 'NO.s', 'value': 'NO.s' }, { 'label': 'QUINTAL', 'value': 'QUINTAL' });
+        this.MeasurementOptions = MeasurementSelection;
+        this.MeasurementOptions.unshift({ 'label': '-select-', 'value': null, disabled: true });
+        break;
+    }
+  }
+
   onRow(event, selectedRow) {
     this.isEdited = true;
     this.isViewed = false;
-    this.VehicleCode = selectedRow.VHCode;
-    this.Vehicle = selectedRow.VHCode;
-    this.VehicleType = selectedRow.VHType;
+    this.PackingCode = selectedRow.Pcode;
+    this.Packing = selectedRow.Pcode;
+    this.PackingName = selectedRow.PName;
+    this.PackingWeight = selectedRow.PWeight;
+    this.MeasurementOptions = [{ label: selectedRow.PBWeight, value: selectedRow.PBWeight }];
+    this.Measurement = selectedRow.PBWeight;
+    this.PackingType = selectedRow.Measurement;
     this.Active = selectedRow.Activeflag;
     this.DeleteFlag = selectedRow.DeleteFlag;
   }
@@ -89,19 +112,22 @@ export class VehicleMasterComponent implements OnInit {
   onAdd() {
     this.isAdd = true;
     this.isEdited = false;
-    this.VehicleCode = this.NewCode;
-    this.VehicleType = this.Vehicle = undefined;
+    this.MeasurementOptions = undefined;
+    this.PackingCode = this.Packing = this.PackingName = this.PackingWeight = this.PackingType = this.Measurement = undefined;
+    this.PackingCode = this.NewCode;
     this.Active = false;
   }
 
   onSave() {
     const params = {
-      'VHCode': this.Vehicle || '',
-      'VHType': this.VehicleType,
+      'Pcode': this.Packing || '',
+      'PName': this.PackingName,
+      'PWeight': this.PackingWeight,
+      'PBWeight': this.Measurement,
       'DeleteFlag': this.DeleteFlag || 'F',
       'Activeflag': this.Active,
     };
-    this.restAPIService.post(PathConstants.VEHICLE_MASTER_POST, params).subscribe(res => {
+    this.restAPIService.post(PathConstants.PACKING_MASTER_POST, params).subscribe(res => {
       if (res) {
         this.onView();
         this.messageService.clear();
@@ -132,14 +158,14 @@ export class VehicleMasterComponent implements OnInit {
 
   onView() {
     this.loading = true;
-    this.restAPIService.get(PathConstants.VEHICLE_MASTER).subscribe(res => {
-      if (res !== undefined && res !== null && res.length !== 0) {
-        this.VehicleMasterCols = this.tableConstants.VehicleMaster;
-        this.VehicleMasterData = res;
-        this.FilteredArray = res;
-        this.NewCode = 'VH' + '00' + (res.length + 1);
+    this.restAPIService.get(PathConstants.PACKING_AND_WEIGHMENT).subscribe(res => {
+      if (res.Table !== undefined && res.Table !== null && res.Table.length !== 0) {
+        this.NewCode = 'P' + '0' + (res.Table.length + 1);
+        this.PackingMasterCols = this.tableConstants.PackingMaster;
+        this.PackingMasterData = res.Table;
+        this.FilteredArray = res.Table;
         let sno = 0;
-        this.VehicleMasterData.forEach(ss => {
+        this.PackingMasterData.forEach(ss => {
           sno += 1;
           ss.SlNo = sno;
         });
@@ -167,20 +193,21 @@ export class VehicleMasterComponent implements OnInit {
   }
 
   onSearch(value) {
-    this.VehicleMasterData = this.FilteredArray;
+    this.PackingMasterData = this.FilteredArray;
     if (value !== undefined && value !== '') {
       value = value.toString().toUpperCase();
-      this.VehicleMasterData = this.FilteredArray.filter(item => {
-        return item.VHType.toString().toUpperCase().startsWith(value);
+      this.PackingMasterData = this.FilteredArray.filter(item => {
+        return item.PName.toString().toUpperCase().startsWith(value);
       });
     } else {
-      this.VehicleMasterData = this.FilteredArray;
+      this.PackingMasterData = this.FilteredArray;
     }
   }
 
   onClear() {
-    this.VehicleMasterData = this.VehicleMasterCols = undefined;
-    this.VehicleCode = this.Vehicle = this.NewCode = this.VehicleType = this.Active = undefined;
+    this.MeasurementOptions = undefined;
+    this.PackingCode = this.Packing = this.NewCode = this.PackingName = this.PackingWeight = this.PackingType = this.Measurement = undefined;
+    this.Active = false;
     this.isEdited = false;
   }
 }

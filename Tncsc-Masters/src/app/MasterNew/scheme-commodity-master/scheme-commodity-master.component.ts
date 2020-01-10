@@ -18,6 +18,7 @@ export class SchemeCommodityMasterComponent implements OnInit {
   SchemeCommodityMasterData: any;
   SchemeCommodityMasterCols: any;
   SchemeCommodityData: any;
+  AllSchemeData: any;
   CommodityData: any;
   FilteredArray: any;
   SchemeCommodityCode: any;
@@ -27,10 +28,14 @@ export class SchemeCommodityMasterComponent implements OnInit {
   SchemeCommodityOptions: SelectItem[];
   CommodityOptions: SelectItem[];
   SchemeCommodity: any;
+  SchemeCode: any;
   SchemeName: any;
   RCode: any;
   GCode: any;
   RowID: any;
+  NewRow: any;
+  isAdd: boolean = false;
+  Add: boolean = false;
   canShowMenu: boolean;
   searchText: any;
   loading: boolean;
@@ -90,7 +95,7 @@ export class SchemeCommodityMasterComponent implements OnInit {
   onView() {
     this.loading = true;
     const params = {
-      'SCCode': this.SchemeCommodity
+      'SCCode': this.SchemeCommodity.value
     };
     this.restAPIService.getByParameters(PathConstants.SCHEME_COMMODITY_GET, params).subscribe(res => {
       if (res !== undefined && res !== null && res.length !== 0) {
@@ -128,52 +133,60 @@ export class SchemeCommodityMasterComponent implements OnInit {
   onRow(event, selectedRow) {
     this.isEdited = true;
     this.isViewed = false;
-    this.SchemeCommodityCode = selectedRow.SchemeCode;
+    this.SchemeCode = selectedRow.SchemeCode;
     this.SchemeName = selectedRow.SchemeName;
-    this.CommodityOptions = [{ label: selectedRow.CommodityName, value: selectedRow.CommodityName }];
-    this.SchemeCommodityName = selectedRow.CommodityName;
-    this.RowID = selectedRow.RowID;
+    this.CommodityOptions = [{ label: selectedRow.CommodityName, value: selectedRow.ITCode }];
+    this.SchemeCommodityName = selectedRow.ITCode;
+    this.SchemeCommodityCode = selectedRow.CommodityName;
+    this.RowID = selectedRow.RowId;
     this.Active = selectedRow.ActiveFlag;
     this.DeleteFlag = selectedRow.DeleteFlag;
   }
 
-  // onSave() {
-  //   const params = {
-  //     'RCode': this.RCode,
-  //     'GCode': this.GCode,
-  //     'DepositorCode': this.DepositorCode,
-  //     'DepositorName': this.DepositorName,
-  //     'DepositorType': this.Depositor,
-  //     'DeleteFlag': this.DeleteFlag,
-  //     'ActiveFlag': this.Active,
-  //   };
-  //   this.restAPIService.post(PathConstants.DEPODITOR_MASTER_TYPE_POST, params).subscribe(res => {
-  //     if (res) {
-  //       this.onView();
-  //       this.messageService.clear();
-  //       this.messageService.add({
-  //         key: 't-err', severity: StatusMessage.SEVERITY_SUCCESS,
-  //         summary: StatusMessage.SUMMARY_SUCCESS, detail: StatusMessage.SuccessMessage
-  //       });
-  //     } else {
-  //       this.loading = false;
-  //       this.messageService.clear();
-  //       this.messageService.add({
-  //         key: 't-err', severity: StatusMessage.SEVERITY_WARNING,
-  //         summary: StatusMessage.SUMMARY_WARNING, detail: StatusMessage.ValidCredentialsErrorMessage
-  //       });
-  //     }
-  //   }, (err: HttpErrorResponse) => {
-  //     if (err.status === 0 || err.status === 400) {
-  //       this.loading = false;
-  //       this.messageService.clear();
-  //       this.messageService.add({
-  //         key: 't-err', severity: StatusMessage.SEVERITY_ERROR,
-  //         summary: StatusMessage.SUMMARY_ERROR, detail: StatusMessage.ErrorMessage
-  //       });
-  //     }
-  //   });
-  // }
+  onAdd() {
+    this.isAdd = true;
+    this.isEdited = true;
+    this.SchemeName = this.SchemeCommodity.label;
+    this.SchemeCommodityCode = this.SchemeCode = this.RowID = this.DeleteFlag = this.SchemeCommodityName = undefined;
+    this.CommodityOptions = undefined;
+    this.Active = false;
+  }
+
+  onSave() {
+    const params = {
+      'RowId': this.RowID || '',
+      'SCCode': this.SchemeCode || this.SchemeCommodity.value,
+      'CCode': this.SchemeCommodityName,
+      'DeleteFlag': this.DeleteFlag || 'F',
+      'ActiveFlag': this.Active,
+    };
+    this.restAPIService.post(PathConstants.SCHEME_COMMODITY_POST, params).subscribe(res => {
+      if (res) {
+        this.onView();
+        this.messageService.clear();
+        this.messageService.add({
+          key: 't-err', severity: StatusMessage.SEVERITY_SUCCESS,
+          summary: StatusMessage.SUMMARY_SUCCESS, detail: StatusMessage.SuccessMessage
+        });
+      } else {
+        this.loading = false;
+        this.messageService.clear();
+        this.messageService.add({
+          key: 't-err', severity: StatusMessage.SEVERITY_WARNING,
+          summary: StatusMessage.SUMMARY_WARNING, detail: StatusMessage.ValidCredentialsErrorMessage
+        });
+      }
+    }, (err: HttpErrorResponse) => {
+      if (err.status === 0 || err.status === 400) {
+        this.loading = false;
+        this.messageService.clear();
+        this.messageService.add({
+          key: 't-err', severity: StatusMessage.SEVERITY_ERROR,
+          summary: StatusMessage.SUMMARY_ERROR, detail: StatusMessage.ErrorMessage
+        });
+      }
+    });
+  }
 
 
   onSearch(value) {
@@ -181,21 +194,21 @@ export class SchemeCommodityMasterComponent implements OnInit {
     if (value !== undefined && value !== '') {
       value = value.toString().toUpperCase();
       this.SchemeCommodityMasterData = this.FilteredArray.filter(item => {
-        return item.DepositorName.toString().toUpperCase().startsWith(value);
+        return item.CommodityName.toString().toUpperCase().startsWith(value);
       });
     } else {
       this.SchemeCommodityMasterData = this.FilteredArray;
     }
   }
   onReset(item) {
-    if (item === 'depositor') {
+    if (item === 'schemeCommodity') {
       this.onClear();
     }
   }
 
   onClear() {
-    this.SchemeCommodityMasterData = this.SchemeCommodityMasterCols = undefined;
-    this.SchemeCommodityCode = this.SchemeCommodityName = this.Active = null;
+    this.SchemeCommodityMasterData = this.SchemeCommodityMasterCols = this.CommodityOptions = undefined;
+    this.SchemeCommodityName = this.SchemeCode = this.Active = null;
     this.isEdited = false;
   }
 }

@@ -27,6 +27,7 @@ export class WeighmentMasterComponent implements OnInit {
   GCode: any;
   canShowMenu: boolean;
   loading: boolean;
+  NewCode: any;
   isAdd: boolean = false;
   viewPane: boolean = false;
   isViewed: boolean = false;
@@ -44,6 +45,7 @@ export class WeighmentMasterComponent implements OnInit {
         this.WeighmentMasterCols = this.tableConstants.WeighmentMaster;
         this.WeighmentMasterData = res;
         this.FilteredArray = res;
+        this.NewCode = res.length + 1;
         let sno = 0;
         this.WeighmentMasterData.forEach(ss => {
           sno += 1;
@@ -75,6 +77,7 @@ export class WeighmentMasterComponent implements OnInit {
   onRow(event, selectedRow) {
     this.isEdited = true;
     this.isViewed = false;
+    this.Weighment = selectedRow.WECode;
     this.WeighmentCode = selectedRow.WECode;
     this.WeighmentType = selectedRow.WEType;
     this.Active = selectedRow.Activeflag;
@@ -83,13 +86,16 @@ export class WeighmentMasterComponent implements OnInit {
 
   onAdd() {
     this.isAdd = true;
-    this.WeighmentCode = this.WeighmentType = undefined;
+    this.isEdited = false;
+    this.WeighmentCode = this.NewCode;
+    this.WeighmentType = this.Weighment = undefined;
     this.Active = false;
   }
 
   onSave() {
     const params = {
-      'WECode': this.WeighmentCode || '',
+      'Type': (this.Weighment === undefined) ? 'A' : '',
+      'WECode': this.Weighment || '',
       'WEType': this.WeighmentType,
       'DeleteFlag': this.DeleteFlag || 'F',
       'Activeflag': this.Active,
@@ -130,6 +136,7 @@ export class WeighmentMasterComponent implements OnInit {
         this.WeighmentMasterCols = this.tableConstants.WeighmentMaster;
         this.WeighmentMasterData = res;
         this.FilteredArray = res;
+        this.NewCode = res.length + 1;
         let sno = 0;
         this.WeighmentMasterData.forEach(ss => {
           sno += 1;
@@ -172,7 +179,7 @@ export class WeighmentMasterComponent implements OnInit {
 
   onClear() {
     this.WeighmentMasterData = this.WeighmentMasterCols = undefined;
-    this.WeighmentCode = this.WeighmentType = this.Active = undefined;
+    this.WeighmentCode = this.WeighmentType = this.Weighment = this.NewCode = this.Active = undefined;
     this.isEdited = false;
   }
 }

@@ -26,7 +26,7 @@
                         </div>
                         <div class="ui-g-6 ui-md-2" style="padding-top: 25px;">
                             <span class="ui-float-label">
-                                <input name="ItemName" pInputText [(ngModel)]="ItemName" autocomplete="off" required>
+                                <input name="ItemName" pInputText [(ngModel)]="ItemName" autocomplete="off" [readonly]="(isEdited)" required>
                                 <label for="ItemName" class="float-input">Item Name</label>
                             </span>
                         </div>

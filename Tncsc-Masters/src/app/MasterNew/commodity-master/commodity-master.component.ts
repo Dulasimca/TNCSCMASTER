@@ -39,6 +39,7 @@ export class CommodityMasterComponent implements OnInit {
   Unit: any;
   Allotmentgroup: any;
   ITBweighment: any;
+  NewCode: any;
   TRCode: any;
   RCode: any;
   GCode: any;
@@ -64,6 +65,7 @@ export class CommodityMasterComponent implements OnInit {
     this.loading = true;
     this.restAPIService.get(PathConstants.ITEM_MASTER).subscribe(res => {
       if (res !== undefined) {
+        this.NewCode = 'IT' + (res.length + 1);
         this.ItemMasterCols = this.tableConstants.CommodityMasterCols;
         this.ItemMasterData = res;
         this.FilteredArray = res;
@@ -74,6 +76,7 @@ export class CommodityMasterComponent implements OnInit {
             return s.ItemName = 'Non-Cereal';
           }
         });
+        this.NewCode = 'IT' + res.length + 1;
         let sno = 0;
         this.ItemMasterData.forEach(ss => {
           sno += 1;
@@ -156,6 +159,7 @@ export class CommodityMasterComponent implements OnInit {
     this.isEdited = true;
     this.isViewed = false;
     this.ItemCode = selectedRow.ITCode;
+    this.Item = selectedRow.ITCode;
     this.ItemName = selectedRow.ITDescription;
     this.ItemOptions = [{ label: selectedRow.ItemName, value: selectedRow.ItemType }];
     this.MeasurementOptions = [{ label: selectedRow.ITBweighment, value: selectedRow.Measurement }];
@@ -175,14 +179,16 @@ export class CommodityMasterComponent implements OnInit {
 
   onAdd() {
     this.isAdd = true;
-    this.ItemCode = this.ItemName = undefined;
+    this.isEdited = false;
+    this.ItemName = this.ItemCode = this.Item = undefined;
+    // this.ItemCode = this.NewCode;
     this.ItemOptions = this.AllotmentOptions = this.MeasurementOptions = undefined;
     this.Active = false;
   }
 
   onSave() {
     const params = {
-      'ITCode': this.ItemCode || '',
+      'ITCode': this.Item || '',
       'ITDescription': this.ItemName,
       'ITBweighment': this.Measurement,
       'ittax': this.ITTax,
@@ -231,6 +237,7 @@ export class CommodityMasterComponent implements OnInit {
         this.ItemMasterCols = this.tableConstants.CommodityMasterCols;
         this.ItemMasterData = res;
         this.FilteredArray = res;
+        // this.NewCode = 'IT' + (res.length + 1);
         this.ItemMasterData.forEach(s => {
           if (s.ItemType === 'C') {
             return s.ItemName = 'Cereal';
@@ -280,7 +287,7 @@ export class CommodityMasterComponent implements OnInit {
 
   onClear() {
     this.ItemMasterData = this.ItemMasterCols = this.AllotmentOptions = this.MeasurementOptions = this.ItemOptions = undefined;
-    this.ItemName = this.ItemCode = this.ITTax = this.Active = this.ItemType = this.Measurement = this.AllotmentGroup = null;
+    this.ItemName = this.ItemCode = this.ITTax = this.Active = this.ItemType = this.NewCode = this.Item = this.Measurement = this.AllotmentGroup = null;
     this.isEdited = false;
   }
 }

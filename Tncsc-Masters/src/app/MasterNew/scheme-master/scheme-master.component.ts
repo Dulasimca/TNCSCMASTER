@@ -26,6 +26,7 @@ export class SchemeMasterComponent implements OnInit {
   AllotmentScheme: any;
   Scheme: any;
   RCode: any;
+  NewCode: any;
   searchText: any;
   GCode: any;
   canShowMenu: boolean;
@@ -47,6 +48,7 @@ export class SchemeMasterComponent implements OnInit {
         this.SchemeMasterCols = this.tableConstants.SchemeMaster;
         this.SchemeMasterData = res;
         this.FilteredArray = res;
+        this.NewCode = 'SC' + '0' + (res.length + 1);
         let sno = 0;
         this.SchemeMasterData.forEach(ss => {
           sno += 1;
@@ -79,6 +81,7 @@ export class SchemeMasterComponent implements OnInit {
     this.isEdited = true;
     this.isViewed = false;
     this.SchemeCode = selectedRow.SCCode;
+    this.Scheme = selectedRow.SCCode;
     this.SchemeName = selectedRow.Name;
     this.SchemeType = selectedRow.SCType;
     this.Active = selectedRow.Activeflag;
@@ -89,13 +92,16 @@ export class SchemeMasterComponent implements OnInit {
 
   onAdd() {
     this.isAdd = true;
-    this.SchemeCode = this.SchemeName = this.SchemeType = undefined;
+    this.isEdited = false;
+    this.SchemeName = this.Scheme = undefined;
+    this.SchemeType = 'SC';
+    this.SchemeCode = this.NewCode;
     this.Active = false;
   }
 
   onSave() {
     const params = {
-      'SCCode': this.SchemeCode || '',
+      'SCCode': this.Scheme || '',
       'SCName': this.SchemeName,
       'SCType': this.SchemeType,
       'DeleteFlag': this.DeleteFlag || 'F',
@@ -139,6 +145,7 @@ export class SchemeMasterComponent implements OnInit {
         this.SchemeMasterCols = this.tableConstants.SchemeMaster;
         this.SchemeMasterData = res;
         this.FilteredArray = res;
+        this.NewCode = 'SC' + '0' + (res.length + 1);
         let sno = 0;
         this.SchemeMasterData.forEach(ss => {
           sno += 1;
@@ -181,7 +188,7 @@ export class SchemeMasterComponent implements OnInit {
 
   onClear() {
     this.SchemeMasterData = this.SchemeMasterCols = undefined;
-    this.SchemeCode = this.SchemeName = this.SchemeType = this.Active = undefined;
+    this.SchemeCode = this.SchemeName = this.SchemeType = this.Active = this.NewCode = undefined;
     this.isEdited = false;
   }
 }

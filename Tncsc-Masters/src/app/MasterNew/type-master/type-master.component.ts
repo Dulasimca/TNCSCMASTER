@@ -25,6 +25,7 @@ export class TypeMasterComponent implements OnInit {
   DeleteFlag: any;
   TypeOptions: SelectItem[];
   Type: any;
+  NewCode: any;
   TRCode: any;
   RCode: any;
   searchText: any;
@@ -52,6 +53,7 @@ export class TypeMasterComponent implements OnInit {
     };
     this.restAPIService.getByParameters(PathConstants.DEPOSITOR_TYPE_MASTER, params).subscribe(res => {
       if (res !== undefined && res !== null && res.length !== 0) {
+        this.NewCode = 'TY' + '0' + (res.length + 1);
         this.TypeMasterCols = this.tableConstants.TypeMaster;
         this.TypeMasterData = res;
         this.FilteredArray = res;
@@ -120,6 +122,7 @@ export class TypeMasterComponent implements OnInit {
     this.isEdited = true;
     this.isViewed = false;
     this.TypeCode = selectedRow.Tycode;
+    this.Type = selectedRow.Tycode;
     this.TypeName = selectedRow.Tyname;
     this.TypeOptions = [{ label: selectedRow.TypeTran, value: selectedRow.TYTransaction }];
     this.TypeTransaction = selectedRow.TYTransaction;
@@ -130,14 +133,16 @@ export class TypeMasterComponent implements OnInit {
 
   onAdd() {
     this.isAdd = true;
-    this.TypeCode = this.TypeName = undefined;
+    this.isEdited = false;
+    this.TypeCode = this.Type = this.TypeName = undefined;
+    this.TypeCode = this.NewCode;
     this.TypeOptions = undefined;
     this.Active = false;
   }
 
   onSave() {
     const params = {
-      'Tycode': this.TypeCode || '',
+      'Tycode': this.Type || '',
       'Tyname': this.TypeName,
       'TYTransaction': this.TypeTransaction,
       'DeleteFlag': this.DeleteFlag || 'F',
@@ -179,6 +184,7 @@ export class TypeMasterComponent implements OnInit {
     };
     this.restAPIService.getByParameters(PathConstants.DEPOSITOR_TYPE_MASTER, params).subscribe(res => {
       if (res !== undefined && res !== null && res.length !== 0) {
+        this.NewCode = 'TY' + '0' + (res.length + 1);
         this.TypeMasterCols = this.tableConstants.TypeMaster;
         this.TypeMasterData = res;
         this.FilteredArray = res;
@@ -233,7 +239,7 @@ export class TypeMasterComponent implements OnInit {
 
   onClear() {
     this.TypeMasterData = this.TypeMasterCols =  this.TypeOptions = undefined;
-    this.TypeName = this.TypeCode = this.TypeTransaction = this.Active = null;
+    this.TypeName = this.TypeCode = this.TypeTransaction = this.Type = this.NewCode = this.Active = null;
     this.isEdited = false;
   }
 }

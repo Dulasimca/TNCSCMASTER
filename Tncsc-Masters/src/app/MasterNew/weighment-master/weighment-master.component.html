@@ -27,7 +27,7 @@
                             <div class="ui-g-6 ui-md-2" style="padding-top: 25px;">
                                 <span class="ui-float-label">
                                     <input name="WeighmentType" pInputText [(ngModel)]="WeighmentType" autocomplete="off"
-                                        required>
+                                    [readonly]="(isEdited)" required>
                                     <label for="WeighmentType" class="float-input">Weighment Type</label>
                                 </span>
                             </div>

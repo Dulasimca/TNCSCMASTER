@@ -22,6 +22,7 @@ export class RailYardMasterComponent implements OnInit {
   Active: any;
   DeleteFlag: any;
   RailYard: any;
+  NewCode: any;
   RCode: any;
   searchText: any;
   GCode: any;
@@ -44,6 +45,7 @@ export class RailYardMasterComponent implements OnInit {
         this.RailYardMasterCols = this.tableConstants.RailYardMaster;
         this.RailYardMasterData = res;
         this.FilteredArray = res;
+        this.NewCode = 'RY' + '0' + (res.length + 1);
         let sno = 0;
         this.RailYardMasterData.forEach(ss => {
           sno += 1;
@@ -76,6 +78,7 @@ export class RailYardMasterComponent implements OnInit {
     this.isEdited = true;
     this.isViewed = false;
     this.RailYardCode = selectedRow.RYCode;
+    this.RailYard = selectedRow.RYCode;
     this.RailYardName = selectedRow.RYName;
     this.Active = selectedRow.Activeflag;
     this.DeleteFlag = selectedRow.DeleteFlag;
@@ -83,13 +86,15 @@ export class RailYardMasterComponent implements OnInit {
 
   onAdd() {
     this.isAdd = true;
-    this.RailYardCode = this.RailYardName = undefined;
+    this.isEdited = false;
+    this.RailYardCode = this.NewCode;
+    this.RailYardName = this.RailYard = undefined;
     this.Active = false;
   }
 
   onSave() {
     const params = {
-      'RYCode': this.RailYardCode || '',
+      'RYCode': this.RailYard || '',
       'RYName': this.RailYardName,
       'DeleteFlag': this.DeleteFlag || 'F',
       'Activeflag': this.Active,
@@ -130,6 +135,7 @@ export class RailYardMasterComponent implements OnInit {
         this.RailYardMasterCols = this.tableConstants.RailYardMaster;
         this.RailYardMasterData = res;
         this.FilteredArray = res;
+        this.NewCode = 'RY' + '0' + (res.length + 1);
         let sno = 0;
         this.RailYardMasterData.forEach(ss => {
           sno += 1;
@@ -172,7 +178,7 @@ export class RailYardMasterComponent implements OnInit {
 
   onClear() {
     this.RailYardMasterData = this.RailYardMasterCols = undefined;
-    this.RailYardCode = this.RailYardName = this.Active = undefined;
+    this.RailYardCode = this.RailYardName = this.NewCode = this.RailYard = this.Active = undefined;
     this.isEdited = false;
   }
 }
