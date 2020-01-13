@@ -20,14 +20,16 @@ export class GunnyTypeMasterComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.activeOptions = [{ label: 'Active', value: 'A'}, { label: 'InActive', value: 'I' }];
+    this.activeOptions = [{ label: 'Active', value: 'A' }, { label: 'InActive', value: 'I' }];
     this.label = 'Save';
   }
+
+  onSelect(item, type) { }
 
   onRowSelect(data, index) {
     this.isSelected = true;
     this.label = 'Update';
-   }
+  }
 
   onSave() { }
 }

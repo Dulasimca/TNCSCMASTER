@@ -59,11 +59,13 @@ import { SchemeCommodityMasterComponent } from './MasterNew/scheme-commodity-mas
 import { PackingMasterComponent } from './MasterNew/packing-master/packing-master.component';
 import { HeaderComponent } from './header/header.component';
 import { GodownProfileComponent } from './godown-profile/godown-profile.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    HomeComponent,
     HeaderComponent,
     FooterComponent,
     MenuComponent,
@@ -80,7 +82,7 @@ import { GodownProfileComponent } from './godown-profile/godown-profile.componen
     SchemeMasterComponent,
     SchemeCommodityMasterComponent,
     PackingMasterComponent,
-    GodownProfileComponent  
+    GodownProfileComponent
   ],
   imports: [
     BrowserModule,

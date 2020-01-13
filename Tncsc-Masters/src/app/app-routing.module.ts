@@ -17,10 +17,12 @@ import { SchemeMasterComponent } from './MasterNew/scheme-master/scheme-master.c
 import { SchemeCommodityMasterComponent } from './MasterNew/scheme-commodity-master/scheme-commodity-master.component';
 import { PackingMasterComponent } from './MasterNew/packing-master/packing-master.component';
 import { GodownProfileComponent } from './godown-profile/godown-profile.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+  { path: 'Home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'menu', component: MenuComponent },
   { path: 'DepositorMaster', component: DepositorMasterComponent },
   { path: 'TypeMaster', component: TypeMasterComponent },

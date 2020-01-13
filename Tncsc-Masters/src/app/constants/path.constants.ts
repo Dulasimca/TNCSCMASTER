@@ -3,6 +3,9 @@ export class PathConstants {
   ///Common
   public static readonly REGION_DATA = '/api/Region';
   public static readonly GODOWN_DATA = '/api/GodownMaster';
+  public static readonly DASHBOARD = '/api/DashboardMaster';
+  public static readonly NOTIFICATIONS = '/api/notifications';
+  public static readonly TNCSC_SETTINGS = '/api/Settings';
 
   ///MASTER DOCUMENT
   public static readonly DEPOSITOR_TYPE_MASTER = '/api/TypeMaster/Get';
