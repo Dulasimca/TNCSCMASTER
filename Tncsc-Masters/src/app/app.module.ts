@@ -58,6 +58,7 @@ import { SchemeMasterComponent } from './MasterNew/scheme-master/scheme-master.c
 import { SchemeCommodityMasterComponent } from './MasterNew/scheme-commodity-master/scheme-commodity-master.component';
 import { PackingMasterComponent } from './MasterNew/packing-master/packing-master.component';
 import { HeaderComponent } from './header/header.component';
+import { GodownProfileComponent } from './godown-profile/godown-profile.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { HeaderComponent } from './header/header.component';
     RailYardMasterComponent,
     SchemeMasterComponent,
     SchemeCommodityMasterComponent,
-    PackingMasterComponent
+    PackingMasterComponent,
+    GodownProfileComponent  
   ],
   imports: [
     BrowserModule,
