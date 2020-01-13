@@ -12,6 +12,7 @@ export class TableConstants {
     SchemeMaster: any;
     SchemeCommodityMaster: any;
     PackingMaster: any;
+    godownProfile: any;
 
     constructor() {
         this.RegionMasterCols = [
@@ -124,6 +125,18 @@ export class TableConstants {
             { header: 'PBWeight', field: 'PBWeight' },
             { header: 'Active Flag', field: 'Activeflag' },
             { header: 'Delete Flag', field: 'DeleteFlag' }
+        ];
+
+        this.godownProfile = [
+            { field: 'GNAME', header: 'Incharge Name' },
+            { field: 'GodownCode', header: 'Godown Code' },
+            { field: 'DESIG', header: 'Designation' },
+            { field: 'ADD1', header: 'Address1' },
+            { field: 'ADD2', header: 'Address2' },
+            { field: 'ADD3', header: 'Address3' },
+            { field: 'TELNO', header: 'Telephone No' },
+            { field: 'MOBNO', header: 'Mobile No' },
+            { field: 'FAXNO', header: 'Fax No' },
         ];
     }
 }

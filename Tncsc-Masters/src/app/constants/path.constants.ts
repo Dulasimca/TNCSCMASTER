@@ -39,6 +39,8 @@ export class PathConstants {
   public static readonly MENU = '/api/Menu/Get';
   public static readonly LOGIN = '/api/Users/Get';
   public static readonly CHANGE_PASSWORD_POST = '/api/Users/Post';
+  public static readonly GODOWN_PROFILE_POST = '/api/GodownProfiles/Post';
+  public static readonly GODOWN_PROFILE_GET = '/api/GodownProfiles/Get';
 
   ///Settings
   public static readonly SETTINGS_GET = '/api/Settings';
