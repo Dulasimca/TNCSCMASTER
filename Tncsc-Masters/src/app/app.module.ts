@@ -57,11 +57,13 @@ import { RailYardMasterComponent } from './MasterNew/rail-yard-master/rail-yard-
 import { SchemeMasterComponent } from './MasterNew/scheme-master/scheme-master.component';
 import { SchemeCommodityMasterComponent } from './MasterNew/scheme-commodity-master/scheme-commodity-master.component';
 import { PackingMasterComponent } from './MasterNew/packing-master/packing-master.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    HeaderComponent,
     FooterComponent,
     MenuComponent,
     DepositorMasterComponent,
