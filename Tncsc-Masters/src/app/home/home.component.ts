@@ -14,8 +14,6 @@ import { StatusMessage } from '../constants/Messages';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  cbRice: string = 'line';
-  cbDhall: string = 'column';
   date: any;
   canShowMenu: boolean;
   notifications: any;
@@ -29,35 +27,19 @@ export class HomeComponent implements OnInit {
   hullingAgencies: any;
   suppliersCount: any;
   schemeCount: any;
+  gunnyCount: any;
+  typeCount: any;
+  transactionCount: any;
+  vehicleCount: any;
+  railyardCount: any;
+  packingCount: any;
+  weighmentCount: any;
+  cerealCount: any;
+  nonCerealCount: any;
+  depositorCount: any;
+  commodityCount: any;
+  schemeCommodityCount: any;
   options: any;
-  CBRiceData: any;
-  CBDhallAndOilData: any;
-  CBWheatAndSugarData: any;
-  ReceiptRiceData: any;
-  ReceiptDhallAndOilData: any;
-  ReceiptWheatAndSugarData: any;
-  IssueRiceData: any;
-  IssueDhallAndOilData: any;
-  IssueWheatAndSugarData: any;
-  chartLabels: any[];
-  rawRiceCB: any;
-  boiledRiceCB: any;
-  dhallCB: any;
-  pOilCB: any;
-  wheatCB: any;
-  sugarCB: any;
-  rawRicePB: number = 0;
-  boiledRicePB: number = 0;
-  dhallPB: number = 0;
-  pOilPB: number = 0;
-  wheatPB: number = 0;
-  sugarPB: number = 0;
-  selectedCBRiceType: string;
-  receiptQuantity: any;
-  issueQuantity: any;
-  isCBClicked: boolean = true;
-  isReceiptClicked: boolean = false;
-  isIssueClicked: boolean = false;
   display: boolean = false;
   notificationsHeight: any;
   noti: any;
@@ -76,7 +58,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.showDialog();
     this.preventBackButton();
-    // this.calculateHeight();  
     this.canShowMenu = (this.authService.isLoggedIn()) ? this.authService.isLoggedIn() : false;
     this.date = this.datePipe.transform(new Date(), 'MM/dd/yyyy');
     let params = new HttpParams().set('Date', this.date);
@@ -91,7 +72,18 @@ export class HomeComponent implements OnInit {
         this.hullingAgencies = (res[6] !== undefined && res[6] !== '') ? res[6] : 0;
         this.suppliersCount = (res[7] !== undefined && res[7] !== '') ? res[7] : 0;
         this.schemeCount = (res[8] !== undefined && res[8] !== '') ? res[8] : 0;
-        this.notifications = (res[9] !== undefined && res[9] !== '') ? res[9] : 0;
+        this.schemeCommodityCount = (res[9] !== undefined && res[9] !== '') ? res[9] : 0;
+        this.commodityCount = (res[10] !== undefined && res[10] !== '') ? res[10] : 0;
+        this.depositorCount = (res[11] !== undefined && res[11] !== '') ? res[11] : 0;
+        this.typeCount = (res[12] !== undefined && res[12] !== '') ? res[12] : 0;
+        this.transactionCount = (res[13] !== undefined && res[13] !== '') ? res[13] : 0;
+        this.vehicleCount = (res[14] !== undefined && res[14] !== '') ? res[14] : 0;
+        this.railyardCount = (res[15] !== undefined && res[15] !== '') ? res[15] : 0;
+        this.weighmentCount = (res[16] !== undefined && res[16] !== '') ? res[16] : 0;
+        this.packingCount = (res[17] !== undefined && res[17] !== '') ? res[17] : 0;
+        this.gunnyCount = (res[18] !== undefined && res[18] !== '') ? res[18] : 0;
+        this.cerealCount = (res[19] !== undefined && res[19] !== '') ? res[19] : 0;
+        this.nonCerealCount = (res[20] !== undefined && res[20] !== '') ? res[20] : 0;
       } else {
         this.messageService.clear();
         this.messageService.add({ key: 't-err', severity: StatusMessage.SEVERITY_WARNING, summary: StatusMessage.SUMMARY_WARNING, detail: StatusMessage.DashboardNoRecord });
@@ -113,7 +105,7 @@ export class HomeComponent implements OnInit {
         this.router.navigate(['mrmData']);
         break;
       case 'shops':
-        this.router.navigate(['crsData']);
+        this.router.navigate(['Issuer Master Report']);
         break;
       case 'aads':
         this.router.navigate(['aadsData']);
@@ -130,96 +122,44 @@ export class HomeComponent implements OnInit {
       case 'depositors':
         this.router.navigate(['depositors']);
         break;
+      case 'supplier':
+        this.router.navigate(['depositors']);
+        break;
+      case 'gunny':
+        this.router.navigate(['depositors']);
+        break;
       case 'schemes':
-        this.router.navigate(['schemes']);
+        this.router.navigate(['SchemeMaster']);
         break;
-      case 'PB':
-        if (this.isCBClicked) {
-          this.router.navigate(['cbStatement']);
-        } else if (this.isReceiptClicked) {
-          // this.router.navigate(['']);
-        } else {
-          // this.router.navigate(['']);
-        }
-    }
-
-  }
-
-  calculateQuantity(id) {
-    switch (id) {
-      case 'CB':
-        this.isCBClicked = true;
-        this.isReceiptClicked = this.isIssueClicked = false;
-        this.rawRicePB = this.rawRiceCB;
-        this.boiledRicePB = this.boiledRiceCB;
-        this.dhallPB = this.dhallCB;
-        this.wheatPB = this.wheatCB;
-        this.pOilPB = this.pOilCB;
-        this.sugarPB = this.sugarCB;
+      case 'type':
+        this.router.navigate(['TypeMaster']);
         break;
-      case 'R':
-        this.isReceiptClicked = true;
-        this.isCBClicked = this.isIssueClicked = false;
-        this.boiledRicePB = this.rawRicePB = this.dhallPB = this.wheatPB = this.pOilPB = this.sugarPB = 0;
-        this.receiptQuantity[2].forEach(bc => {
-          this.boiledRicePB += (bc * 1);
-        })
-        this.receiptQuantity[3].forEach(bg => {
-          this.boiledRicePB += (bg * 1);
-        })
-        this.receiptQuantity[4].forEach(rc => {
-          this.rawRicePB += (rc * 1);
-        })
-        this.receiptQuantity[5].forEach(rg => {
-          this.rawRicePB += (rg * 1);
-        })
-        this.receiptQuantity[6].forEach(d => {
-          this.dhallPB += (d * 1);
-        })
-        this.receiptQuantity[7].forEach(po => {
-          this.pOilPB += (po * 1);
-        })
-        this.receiptQuantity[8].forEach(pp => {
-          this.pOilPB += (pp * 1);
-        })
-        this.receiptQuantity[9].forEach(w => {
-          this.wheatPB += (w * 1);
-        })
-        this.receiptQuantity[10].forEach(s => {
-          this.sugarPB += (s * 1);
-        })
+      case 'transaction':
+        this.router.navigate(['TransactionMaster']);
         break;
-      case 'I':
-        this.isIssueClicked = true;
-        this.isCBClicked = this.isReceiptClicked = false;
-        this.boiledRicePB = this.rawRicePB = this.dhallPB = this.wheatPB = this.pOilPB = this.sugarPB = 0;
-        this.issueQuantity[2].forEach(bc => {
-          this.boiledRicePB += (bc * 1);
-        })
-        this.issueQuantity[3].forEach(bg => {
-          this.boiledRicePB += (bg * 1);
-        })
-        this.issueQuantity[4].forEach(rc => {
-          this.rawRicePB += (rc * 1);
-        })
-        this.issueQuantity[5].forEach(rg => {
-          this.rawRicePB += (rg * 1);
-        })
-        this.issueQuantity[6].forEach(d => {
-          this.dhallPB += (d * 1);
-        })
-        this.issueQuantity[7].forEach(po => {
-          this.pOilPB += (po * 1);
-        })
-        this.issueQuantity[8].forEach(pp => {
-          this.pOilPB += (pp * 1);
-        })
-        this.issueQuantity[9].forEach(w => {
-          this.wheatPB += (w * 1);
-        })
-        this.issueQuantity[10].forEach(s => {
-          this.sugarPB += (s * 1);
-        })
+      case 'vehicle':
+        this.router.navigate(['VehicleMaster']);
+        break;
+      case 'railyard':
+        this.router.navigate(['RailwayYardMaster']);
+        break;
+      case 'packing':
+        this.router.navigate(['PackingMaster']);
+        break;
+      case 'weighment':
+        this.router.navigate(['WeighmentMaster']);
+        break;
+      case 'cereal':
+        this.router.navigate(['CerealNoncereal']);
+        break;
+      case 'depositor':
+        this.router.navigate(['DepositorMaster']);
+        break;
+      case 'commodity':
+        this.router.navigate(['CommodityMaster']);
+        break;
+      case 'schemeCommodity':
+        this.router.navigate(['SchemeCommodityMaster']);
         break;
     }
   }
@@ -228,12 +168,7 @@ export class HomeComponent implements OnInit {
     history.pushState(null, null, location.href);
     this.locationStrategy.onPopState(() => {
       history.pushState(null, null, location.href);
-    })
-  }
-
-  calculateHeight() {
-    const height = this.divAADS.nativeElement.offsetHeight;
-    this.notificationsHeight = (height * 4);
+    });
   }
 
   showDialog() {
