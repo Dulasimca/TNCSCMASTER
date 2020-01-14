@@ -60,6 +60,7 @@ import { PackingMasterComponent } from './MasterNew/packing-master/packing-maste
 import { HeaderComponent } from './header/header.component';
 import { GodownProfileComponent } from './godown-profile/godown-profile.component';
 import { HomeComponent } from './home/home.component';
+import { IssuerMasterComponent } from './MasterNew/IssuerMaster/Issuer-master.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { HomeComponent } from './home/home.component';
     SchemeMasterComponent,
     SchemeCommodityMasterComponent,
     PackingMasterComponent,
-    GodownProfileComponent
+    GodownProfileComponent,
+    IssuerMasterComponent
   ],
   imports: [
     BrowserModule,

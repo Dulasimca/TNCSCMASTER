@@ -18,6 +18,7 @@ import { SchemeCommodityMasterComponent } from './MasterNew/scheme-commodity-mas
 import { PackingMasterComponent } from './MasterNew/packing-master/packing-master.component';
 import { GodownProfileComponent } from './godown-profile/godown-profile.component';
 import { HomeComponent } from './home/home.component';
+import { IssuerMasterComponent } from './MasterNew/IssuerMaster/Issuer-master.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: 'SchemeCommodityMaster', component: SchemeCommodityMasterComponent },
   { path: 'PackingMaster', component: PackingMasterComponent },
   { path: 'Godown Profile', component: GodownProfileComponent, canActivate: [AuthGuard] },
+  { path: 'Issuer Master Report', component: IssuerMasterComponent, canActivate: [AuthGuard] },
   { path: 'regions', component: RegionMasterComponent },
   { path: 'gunnyType', component: GunnyTypeMasterComponent },
   { path: '**', component: LoginComponent }

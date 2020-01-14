@@ -3,7 +3,7 @@ export class PathConstants {
   ///Common
   public static readonly REGION_DATA = '/api/Region';
   public static readonly GODOWN_DATA = '/api/GodownMaster';
-  public static readonly DASHBOARD = '/api/DashboardMaster';
+  public static readonly DASHBOARD = '/api/MasterDashboard';
   public static readonly NOTIFICATIONS = '/api/notifications';
   public static readonly TNCSC_SETTINGS = '/api/Settings';
 
@@ -31,8 +31,11 @@ export class PathConstants {
   public static readonly SCHEME_COMMODITY_POST = '/api/ManageSchemeCommodity/Post';
   public static readonly PACKING_AND_WEIGHMENT = '/api/PackingandWeighment';
   public static readonly PACKING_MASTER_POST = '/api/ManagePackingMaster/Post';
-
-
+  public static readonly ISSUER_MASTER_GET = '/api/IssuerMaster/Get';
+  public static readonly ISSUER_MASTER_PUT = '/api/IssuerMaster/Put';
+  public static readonly ISSUER_MASTER_POST = '/api/IssuerMaster/Post';
+  public static readonly SOCIETY_MASTER_GET = '/api/SocietyMaster/Get';
+  public static readonly TYPE_CATEGORY_GET = '/api/TypeCategoryMaster/Get';
 
   ///Masters
   public static readonly REGION_POST = '/api/ManageRegionMaster/Post';

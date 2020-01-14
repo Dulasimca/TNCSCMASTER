@@ -13,6 +13,7 @@ export class TableConstants {
     SchemeCommodityMaster: any;
     PackingMaster: any;
     godownProfile: any;
+    IssuerMaster: any;
 
     constructor() {
         this.RegionMasterCols = [
@@ -138,5 +139,19 @@ export class TableConstants {
             { field: 'MOBNO', header: 'Mobile No' },
             { field: 'FAXNO', header: 'Fax No' },
         ];
+
+        this.IssuerMaster = [
+            { header: 'S.No', field: 'SlNo', width: '40px' },
+            { field: 'IssuerNo', header: 'Issuer No' },
+            { field: 'IssuerCode', header: 'Issuer Code' },
+            { field: 'Tyname', header: 'Type Name' },
+            { field: 'SocietyName', header: 'Society Name' },
+            { field: 'Issuername', header: 'Issuer Name' },
+            { field: 'CategoryName', header: 'OWS - Category' },
+            { field: 'Beneficiaries', header: 'No.of Beneficiary' },
+            { field: 'ACSCode', header: 'Acs Code' },
+            { field: 'Activeflag', header: 'Active' },
+            // { header: 'Save'}
+          ];
     }
 }
