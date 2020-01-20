@@ -26,6 +26,8 @@ import { BlockUIModule } from 'primeng/blockui';
 import { ListboxModule } from 'primeng/listbox';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {ButtonModule} from 'primeng/button';
+import {SidebarModule} from 'primeng/sidebar';
+import {ScrollPanelModule} from 'primeng/scrollpanel';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -37,6 +39,7 @@ import { MenuComponent } from './menu/menu.component';
 import { RegionMasterComponent } from './region-master/region-master.component';
 import { AppRoutingModule } from './app-routing.module';
 import { GunnyTypeMasterComponent } from './gunny-type-master/gunny-type-master.component';
+import { TopbarComponent } from './topbar/topbar.component';
 import { DepositorMasterComponent } from './MasterNew/depositor-master/depositor-master.component';
 import { TypeMasterComponent } from './MasterNew/type-master/type-master.component';
 import { TransactionMasterComponent } from './MasterNew/transaction-master/transaction-master.component';
@@ -78,6 +81,7 @@ import { GodownMasterComponent } from './MasterNew/godown-master/godown-master.c
     CommodityMasterComponent,
     RegionMasterComponent,
     GunnyTypeMasterComponent,
+    TopbarComponent,
     VehicleMasterComponent,
     WeighmentMasterComponent,
     RailYardMasterComponent,
@@ -116,6 +120,10 @@ import { GodownMasterComponent } from './MasterNew/godown-master/godown-master.c
     TabViewModule,
     TooltipModule,
     BlockUIModule,
+    ListboxModule,
+    ProgressSpinnerModule,
+    SidebarModule,
+    ScrollPanelModule
     // ListboxModule,
     // ProgressSpinnerModule,
     // InputMaskModule,

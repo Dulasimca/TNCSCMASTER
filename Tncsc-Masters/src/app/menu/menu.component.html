@@ -1,105 +1,47 @@
-<body>
-    <!-- SideNav pushed content -->
-    <a href="#" data-activates="slide-out" class="btn-floating blue-gradient button-collapse btn-lg"><i
-      class="fas fa-bars"></i></a>
-  
-    <!-- Sidebar navigation -->
-    <div id="slide-out" class="side-nav fixed">
-      <ul class="custom-scrollbar">
-        <!-- Logo -->
-        <li>
-          <div class="logo-wrapper waves-light">
-            <a href="#"><img src="https://mdbootstrap.com/img/logo/mdb-transparent.png" class="img-fluid flex-center"></a>
-          </div>
-        </li>
-        <!--/. Logo -->
-        <!--Social-->
-        <li>
-          <ul class="social">
-            <li><a href="#" class="icons-sm fb-ic"><i class="fab fa-facebook-f"> </i></a></li>
-            <li><a href="#" class="icons-sm pin-ic"><i class="fab fa-pinterest"> </i></a></li>
-            <li><a href="#" class="icons-sm gplus-ic"><i class="fab fa-google-plus-g"> </i></a></li>
-            <li><a href="#" class="icons-sm tw-ic"><i class="fab fa-twitter"> </i></a></li>
-          </ul>
-        </li>
-        <!--/Social-->
-        <!--Search Form-->
-        <li>
-          <form class="search-form" role="search">
-            <div class="form-group md-form mt-0 pt-1 waves-light">
-              <input type="text" class="form-control" placeholder="Search">
+ <button pButton type="button" (click)="showSideBar = true" icon="pi pi-bars"></button>
+<!-- <app-topbar></app-topbar> -->
+<p-sidebar [(visible)]="showSideBar" [baseZIndex]="10000" [showCloseIcon]="false" [style]="{background:'#3f4d67', width:'16em'}">
+  <!-- <img src="../../assets/layout/images/login/tncsc-logo.png"/> 212121 -->
+  <div class="ui-g-12">
+    <h1 class="sidenav-header">Masters</h1>
+    <i class="pi pi-times sidenav-layout-close" style="float: right !important;" (click)="showSideBar = false"></i>
+  </div>
+  <div class="ui-g-12 no-pad-top">
+    <ul style="list-style-type:none;">
+      <li>
+        <div class="ui-g-12 no-pad-left">
+          <a class="sidenav-layout-a" href="regions">Region Master</a>
+        </div>
+        <div class="ui-g-12 no-pad-left">
+          <a class="sidenav-layout-a" href="godowns">Godown Master</a>
+        </div>
+        <div class="ui-g-12 no-pad-left">
+          <a class="sidenav-layout-a" (click)="toggleButton()">Sheme Masters</a>
+          <i *ngIf="!showDownArrowScheme" class="pi pi-angle-right sidenav-layout-arrow"></i>
+          <i *ngIf="showDownArrowScheme" class="pi pi-angle-down sidenav-layout-arrow"></i>
+          <div *ngIf="showDownArrowScheme" class="ui-g-12 dashboard">
+            <div class="ui-g-12 no-pad-left">
+              <a class="sidenav-layout-a" href="regions">Region Master</a>
             </div>
-          </form>
-        </li>
-        <!--/.Search Form-->
-        <!-- Side navigation links -->
-        <li>
-          <ul class="collapsible collapsible-accordion">
-            <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-chevron-right"></i> Submit
-                blog<i class="fas fa-angle-down rotate-icon"></i></a>
-              <div class="collapsible-body">
-                <ul>
-                  <li><a href="#" class="waves-effect">Submit listing</a>
-                  </li>
-                  <li><a href="#" class="waves-effect">Registration form</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li><a class="collapsible-header waves-effect arrow-r"><i class="far fa-hand-pointer"></i>
-                Instruction<i class="fas fa-angle-down rotate-icon"></i></a>
-              <div class="collapsible-body">
-                <ul>
-                  <li><a href="#" class="waves-effect">For bloggers</a>
-                  </li>
-                  <li><a href="#" class="waves-effect">For authors</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-eye"></i> About<i
-                  class="fas fa-angle-down rotate-icon"></i></a>
-              <div class="collapsible-body">
-                <ul>
-                  <li><a href="#" class="waves-effect">Introduction</a>
-                  </li>
-                  <li><a href="#" class="waves-effect">Monthly meetings</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li><a class="collapsible-header waves-effect arrow-r"><i class="far fa-envelope"></i> Contact me<i
-                  class="fas fa-angle-down rotate-icon"></i></a>
-              <div class="collapsible-body">
-                <ul>
-                  <li><a href="#" class="waves-effect">FAQ</a>
-                  </li>
-                  <li><a href="#" class="waves-effect">Write a message</a>
-                  </li>
-                  <li><a href="#" class="waves-effect">FAQ</a>
-                  </li>
-                  <li><a href="#" class="waves-effect">Write a message</a>
-                  </li>
-                  <li><a href="#" class="waves-effect">FAQ</a>
-                  </li>
-                  <li><a href="#" class="waves-effect">Write a message</a>
-                  </li>
-                  <li><a href="#" class="waves-effect">FAQ</a>
-                  </li>
-                  <li><a href="#" class="waves-effect">Write a message</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-          </ul>
-        </li>
-        <!--/. Side navigation links -->
-      </ul>
-      <div class="sidenav-bg rgba-blue-strong"></div>
-    </div>
-    <!--/. Sidebar navigation -->
-    <div id="content" class="sunny-morning-gradient color-block content">
-  
-  
-    </div>
-  </body>
+            <div class="ui-g-12 no-pad-left">
+              <a class="sidenav-layout-a" href="godowns">Godown Master</a>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</p-sidebar>
+
+<!-- <app-topbar></app-topbar>
+<div class="layout-menu-container">
+  <div class="layout-menu-logo">
+    <a href="#">
+      <img id="layout-menu-logo" src="../../assets/layout/images/login/tncsc-logo-icon.ico">
+    </a>
+  </div>
+  <div class="layout-menu-wrapper">
+    <p-scrollPanel >
+    </p-scrollPanel>
+  </div>
+</div> -->

@@ -20,6 +20,168 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 --*/
 /*-- reset --*/
+
+.layout-wrapper .layout-topbar {
+  position: fixed;
+  height: 60px;
+  top: 0;
+  left: 250px;
+  right: 0;
+  z-index: 997;
+  padding: 8px 25px;
+  background-color: #2196F3;
+  -webkit-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+}
+
+.layout-wrapper .layout-topbar .layout-topbar-logo {
+  display: none;
+}
+
+/* @media screen and (min-width: 897px){ */
+.layout-wrapper.layout-static .layout-menu-container {
+    width: 250px;
+    left: 0;
+    -moz-transition: left 0.3s;
+    -o-transition: left 0.3s;
+    -webkit-transition: left 0.3s;
+    transition: left 0.3s;
+}
+
+.layout-wrapper.layout-menu-dark .layout-menu-container {
+    background-color: #212121;
+}
+.layout-wrapper .layout-menu-container {
+    position: fixed;
+    height: 100%;
+    z-index: 999;
+}
+/* } */
+
+.layout-wrapper .layout-menu-container .layout-menu-logo {
+  background-color: #42A5F5;
+}
+
+.layout-wrapper .layout-menu-container .layout-menu-logo a img {
+  margin-top: 15px;
+  height: 30px;
+}
+
+.layout-wrapper.layout-menu-dark .layout-menu-container .layout-menu-wrapper {
+  border-right: 1px solid #212121;
+}
+.layout-wrapper .layout-menu-container .layout-menu-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.layout-wrapper .layout-menu-container .ui-scrollpanel {
+  background-color: transparent;
+  border-radius: 0;
+  border: none;
+}
+
+.ui-scrollpanel-wrapper {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+  float: left;
+}
+
+.scroll-wrapper-div {
+  width: 93.2836%;
+    left: 0%;
+    bottom: -657px;
+}
+
+.layout-wrapper .layout-menu-container .ui-scrollpanel .ui-scrollpanel-bar-x {
+  display: none;
+}
+.layout-wrapper .layout-menu-container .ui-scrollpanel .ui-scrollpanel-bar {
+  background-color: #aaaaaa;
+  opacity: 0.3;
+  filter: alpha(opacity=30);
+}
+.ui-scrollpanel-bar-x {
+  height: 9px;
+  bottom: 0;
+}
+.ui-scrollpanel-bar {
+  position: relative;
+  background: #c1c1c1;
+  border-radius: 3px;
+  z-index: 2;
+  cursor: pointer;
+  opacity: 0;
+  -webkit-transition: opacity .25s linear;
+  transition: opacity .25s linear;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sidenav-header{
+  font-weight:normal;
+  color: #2196f3;
+  font-size: 20px;
+  float: left;
+}
+
+.sidenav-layout-a {
+  color: #BDBDBD !important;
+}
+
+.sidenav-layout-a:hover {
+  color: #18c5a9 !important;
+}
+.sidenav-layout-arrow{
+  vertical-align: bottom !important;
+  background: transparent !important;
+  color: #BDBDBD !important;
+}
+
+.sidenav-layout-close {
+  vertical-align: bottom !important;
+  background: transparent !important;
+  color: #BDBDBD !important;
+}
+
+.sidenav-layout-close:hover {
+  vertical-align: bottom !important;
+  background: #BDBDBD !important;
+  color: black !important;
+}
+
+.layout-menu-dark {
+  background-color: #212121;
+}
+
+ul{
+  list-style-type: none;
+}
+
+/* .pi {
+ background: lightgray !important;
+} */
+
+
+
+
+
+
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
 article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;   position: relative;
 }

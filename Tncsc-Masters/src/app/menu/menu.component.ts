@@ -6,11 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-
+  showSideBar: boolean;
+  showDownArrowScheme: boolean = false;
   constructor() { }
 
   ngOnInit() {
+     
     
+  }
+
+  toggleButton() {
+    this.showDownArrowScheme = !this.showDownArrowScheme;
   }
 
 }
