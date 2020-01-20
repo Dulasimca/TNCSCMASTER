@@ -45,7 +45,7 @@ export class DepositorsComponent implements OnInit {
           S.SlNo = sno;
         });
         this.loading = false;
-        this.filterArray = response;
+        this.filterArray = this.data;
       } else {
         this.loading = false;
         this.messageService.clear();
@@ -72,10 +72,10 @@ export class DepositorsComponent implements OnInit {
   }
 
   onSearch(value) {
-    this.data = this.filterArray;
+    this.SuppliersData = this.filterArray;
     if (value !== undefined && value !== '') {
       value = value.toString().toUpperCase();
-      this.data = this.data.filter(item => {
+      this.SuppliersData = this.SuppliersData.filter(item => {
         return item.DepositorName.toString().startsWith(value);
       });
     }
