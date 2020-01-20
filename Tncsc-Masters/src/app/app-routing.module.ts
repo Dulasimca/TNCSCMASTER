@@ -40,8 +40,8 @@ const routes: Routes = [
   { path: 'PackingMaster', component: PackingMasterComponent },
   { path: 'Godown Profile', component: GodownProfileComponent, canActivate: [AuthGuard] },
   { path: 'Issuer Master Report', component: IssuerMasterComponent, canActivate: [AuthGuard] },
-  { path: 'regions', component: RegionMasterComponent },
-  { path: 'gunnyType', component: GunnyTypeMasterComponent },
+  { path: 'RegionMaster', component: RegionMasterComponent },
+  { path: 'GunnyType', component: GunnyTypeMasterComponent },
   { path: '**', component: LoginComponent }
 
 ];

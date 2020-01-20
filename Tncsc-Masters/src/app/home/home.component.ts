@@ -114,7 +114,7 @@ export class HomeComponent implements OnInit {
         this.router.navigate(['fciData']);
         break;
       case 'regions':
-        this.router.navigate(['regions']);
+        this.router.navigate(['RegionMaster']);
         break;
       case 'hullingAgencies':
         this.router.navigate(['hullingAgencies']);
