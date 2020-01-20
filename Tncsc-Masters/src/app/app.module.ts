@@ -26,6 +26,8 @@ import { BlockUIModule } from 'primeng/blockui';
 import { ListboxModule } from 'primeng/listbox';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {ButtonModule} from 'primeng/button';
+import {SidebarModule} from 'primeng/sidebar';
+import {ScrollPanelModule} from 'primeng/scrollpanel';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -37,6 +39,7 @@ import { MenuComponent } from './menu/menu.component';
 import { RegionMasterComponent } from './region-master/region-master.component';
 import { AppRoutingModule } from './app-routing.module';
 import { GunnyTypeMasterComponent } from './gunny-type-master/gunny-type-master.component';
+import { TopbarComponent } from './topbar/topbar.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +48,8 @@ import { GunnyTypeMasterComponent } from './gunny-type-master/gunny-type-master.
     FooterComponent,
     MenuComponent,
     RegionMasterComponent,
-    GunnyTypeMasterComponent
+    GunnyTypeMasterComponent,
+    TopbarComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +80,9 @@ import { GunnyTypeMasterComponent } from './gunny-type-master/gunny-type-master.
     TooltipModule,
     BlockUIModule,
     ListboxModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    SidebarModule,
+    ScrollPanelModule
   ],
   providers: [MessageService, ExcelService, RestAPIService, AuthService],
   bootstrap: [AppComponent]
