@@ -13,10 +13,10 @@ export class RegionMasterComponent implements OnInit {
   RName: string;
   RCode: string;
 
-  constructor() { }
+  constructor(private TableConstants: TableConstants) { }
 
   ngOnInit() {
-    this.regionCols = TableConstants.RegionMasterCols;
+    this.regionCols = this.TableConstants.RegionMasterCols;
   }
 
   onView() { }
