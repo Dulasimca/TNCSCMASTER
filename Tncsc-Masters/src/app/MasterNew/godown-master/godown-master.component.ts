@@ -20,6 +20,7 @@ export class GodownMasterComponent implements OnInit {
   FilteredArray: any;
   GodownCode: any;
   GodownName: any;
+  Region: any;
   Active: any;
   DeleteFlag: any;
   godownOptions: SelectItem[];
@@ -34,7 +35,11 @@ export class GodownMasterComponent implements OnInit {
   Carpet: any;
   Shops: any;
   OperationalType: any;
+  OperationalCode: any;
+  OwnerCode: any;
   OwnerType: any;
+  SessionFlag: boolean;
+  ExportFlag: boolean;
   loading: boolean;
   viewPane: boolean = false;
   isViewed: boolean = false;
@@ -78,8 +83,8 @@ export class GodownMasterComponent implements OnInit {
         if (type === 'enter') {
           this.operationalTypePanel.overlayVisible = true;
         }
-        operationalTypeSelection.push({ 'label': '-select-', 'value': null, disabled: true }, { 'label': 'Operational Godown', 'value': 'O' }, { 'label': 'Buffer Godown', 'value': 'B' },
-          { 'label': 'Gunny Godown', 'value': 'G' }, { 'label': 'Cap', 'value': 'C' });
+        operationalTypeSelection.push({ 'label': '-select-', 'value': null, disabled: true }, { 'label': 'Operational Godown', 'value': 'O ' }, { 'label': 'Buffer Godown', 'value': 'B ' },
+          { 'label': 'Gunny Godown', 'value': 'G ' }, { 'label': 'Cap', 'value': 'C ' });
         this.operationalTypeOptions = operationalTypeSelection;
         break;
       case 'ownerType':
@@ -87,7 +92,7 @@ export class GodownMasterComponent implements OnInit {
           this.ownerTypePanel.overlayVisible = true;
         }
         ownerTypeSelection.push({ 'label': '-select-', 'value': null, disabled: true }, { 'label': 'OWNED', 'value': 'O' }, { 'label': 'HIRED', 'value': 'H' },
-          { 'label': 'CWC', 'value': 'CWC' }, { 'label': 'TNWC', 'value': 'TNWC' });
+          { 'label': 'CWC', 'value': 'CW' }, { 'label': 'TNWC', 'value': 'TW' });
         this.ownerTypeOptions = ownerTypeSelection;
         break;
     }
@@ -96,7 +101,8 @@ export class GodownMasterComponent implements OnInit {
   onView() {
     this.loading = true;
     const params = {
-      'RCode': this.Godown
+      'RCode': this.Region,
+      // 'GCode': this.GCode
     };
     this.restAPIService.getByParameters(PathConstants.GODOWN_MASTER_GET, params).subscribe(res => {
       if (res !== undefined && res !== null && res.length !== 0) {
@@ -134,15 +140,20 @@ export class GodownMasterComponent implements OnInit {
   onRow(event, selectedRow) {
     this.isEdited = true;
     this.isViewed = false;
-    this.operationalTypeOptions = [{ label: selectedRow.OPERATIONTYPE, value: selectedRow.operationalType }];
-    this.ownerTypeOptions = [{ label: selectedRow.TNCSType, value: selectedRow.ownerType }];
+    this.operationalTypeOptions = [{ label: selectedRow.OPERATIONTYPE, value: selectedRow.OPERATIONTYPE }];
+    this.ownerTypeOptions = [{ label: selectedRow.TNCSType, value: selectedRow.TNCSType }];
     this.GodownCode = selectedRow.TNCSCode;
     this.GodownName = selectedRow.TNCSName;
+    this.Godown = selectedRow.TNCSRegn;
     this.Capacity = selectedRow.TNCSCapacity;
     this.Carpet = selectedRow.TNCSCarpet;
     this.Shops = selectedRow.NOOFSHOPCRS;
-    this.OperationalType = selectedRow.OPERATIONALTYPE;
+    this.OperationalType = selectedRow.OPERATIONTYPE;
+    this.OperationalCode = selectedRow.OperationalType;
+    this.OwnerCode = selectedRow.OwnerType;
     this.OwnerType = selectedRow.TNCSType;
+    this.SessionFlag = selectedRow.SessionFlag;
+    this.ExportFlag = selectedRow.ExportFlag;
     this.Active = selectedRow.ActiveFlag;
     this.DeleteFlag = selectedRow.DeleteFlag;
   }
@@ -150,28 +161,28 @@ export class GodownMasterComponent implements OnInit {
   onAdd() {
     this.isEdited = true;
     this.operationalTypeOptions = this.ownerTypeOptions = undefined;
-    this.GodownCode = this.GodownName = this.Capacity = this.Carpet = this.Shops = this.OperationalType = this.OwnerType = null;
+    this.GodownCode = this.GodownName = this.Capacity = this.Carpet = this.Shops = this.SessionFlag = this.ExportFlag = this.DeleteFlag = this.OperationalType = this.OwnerType = null;
     this.Active = false;
   }
 
   onSave() {
     const params = {
-      'TNCSCode': this.RCode,
-      'TNCSName': this.GCode,
-      'TNCSRegn': this.GCode,
-      'TNCSType': this.GCode,
-      'TNCSCarpet': this.GCode,
-      'TNCSCapacity': this.GCode,
-      'SessionFlag': this.GCode,
-      'ExportFlag': this.GCode,
-      'OPERATIONTYPE': this.GCode,
-      'NOOFSHOPCRS': this.GCode,
-      'DocStatus': this.GodownCode || '',
-      'CBStatement': this.GodownName,
+      'TNCSCode': this.GodownCode || '',
+      'TNCSName': this.GodownName,
+      'TNCSRegn': this.Godown,
+      'TNCSType': this.OwnerType,
+      'TNCSCarpet': this.Carpet,
+      'TNCSCapacity': this.Capacity,
+      'SessionFlag': this.SessionFlag || '',
+      'ExportFlag': this.ExportFlag || '',
+      'OPERATIONTYPE': this.OperationalType,
+      'NOOFSHOPCRS': this.Shops || '0',
+      'DocStatus': (this.Active === 'A') ? true : false,
+      'CBStatement': (this.Active === 'A') ? true : false,
       'DeleteFlag': this.DeleteFlag || 'F',
       'ActiveFlag': this.Active,
     };
-    this.restAPIService.post(PathConstants.DEPODITOR_MASTER_TYPE_POST, params).subscribe(res => {
+    this.restAPIService.post(PathConstants.GODOWN_MASTER_POST, params).subscribe(res => {
       if (res) {
         this.onView();
         this.messageService.clear();
@@ -212,8 +223,17 @@ export class GodownMasterComponent implements OnInit {
     }
   }
   onReset(item) {
-    if (item === 'Godown') {
+    if (item === 'godown') {
+      this.GodownMasterData = this.GodownMasterCols = undefined;
       this.onClear();
+    }
+    if (item === 'operational') {
+      this.operationalTypeOptions = undefined;
+      this.OperationalType = null;
+    }
+    if (item === 'owner') {
+      this.ownerTypeOptions = undefined;
+      this.OwnerType = null;
     }
   }
 
