@@ -14,8 +14,21 @@ export class TableConstants {
     PackingMaster: any;
     godownProfile: any;
     IssuerMaster: any;
+    GodownMaster: any;
 
     constructor() {
+        this.GodownMaster = [
+            { header: 'S.No', field: 'SlNo', width: '40px' },
+            { header: 'REGION NAME', field: 'RGNAME' },
+            { header: 'TNCS Code', field: 'TNCSCode' },
+            { header: 'TNCS Name', field: 'TNCSName' },
+            { header: 'TNCS Capacity', field: 'TNCSCapacity' },
+            { header: 'TNCS Carpet', field: 'TNCSCarpet' },
+            { header: 'OPERATION TYPE', field: 'OPERATIONTYPE' },
+            { header: 'TNCS Type', field: 'TNCSType' },
+            { header: 'Active Flag', field: 'ActiveFlag' }
+        ];
+
         this.RegionMasterCols = [
             { header: 'S.No.', field: 'SlNo' },
             { header: 'Region Code', field: 'RegionCode' },
@@ -152,6 +165,6 @@ export class TableConstants {
             { field: 'ACSCode', header: 'Acs Code' },
             { field: 'Activeflag', header: 'Active' },
             // { header: 'Save'}
-          ];
+        ];
     }
 }

@@ -99,7 +99,7 @@ export class HomeComponent implements OnInit {
   onGridClicked(param) {
     switch (param) {
       case 'godown':
-        this.router.navigate(['godownData']);
+        this.router.navigate(['GodownMaster']);
         break;
       case 'mrm':
         this.router.navigate(['mrmData']);

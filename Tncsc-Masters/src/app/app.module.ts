@@ -61,6 +61,7 @@ import { HeaderComponent } from './header/header.component';
 import { GodownProfileComponent } from './godown-profile/godown-profile.component';
 import { HomeComponent } from './home/home.component';
 import { IssuerMasterComponent } from './MasterNew/IssuerMaster/Issuer-master.component';
+import { GodownMasterComponent } from './MasterNew/godown-master/godown-master.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { IssuerMasterComponent } from './MasterNew/IssuerMaster/Issuer-master.co
     SchemeCommodityMasterComponent,
     PackingMasterComponent,
     GodownProfileComponent,
-    IssuerMasterComponent
+    IssuerMasterComponent,
+    GodownMasterComponent
   ],
   imports: [
     BrowserModule,

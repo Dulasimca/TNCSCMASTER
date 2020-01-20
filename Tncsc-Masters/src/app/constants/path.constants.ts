@@ -8,6 +8,8 @@ export class PathConstants {
   public static readonly TNCSC_SETTINGS = '/api/Settings';
 
   ///MASTER DOCUMENT
+  public static readonly GODOWN_MASTER_GET = '/api/ManageGodownMaster/Get';
+  public static readonly GODOWN_MASTER_POST = '/api/ManageGodownMaster/Post';
   public static readonly DEPOSITOR_TYPE_MASTER = '/api/TypeMaster/Get';
   public static readonly DEPOSITOR_MASTER_TYPE_GET = '/api/ManageDepositorsMaster/Get';
   public static readonly DEPODITOR_MASTER_TYPE_POST = '/api/ManageDepositorsMaster/Post';

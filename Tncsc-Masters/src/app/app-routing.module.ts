@@ -19,12 +19,14 @@ import { PackingMasterComponent } from './MasterNew/packing-master/packing-maste
 import { GodownProfileComponent } from './godown-profile/godown-profile.component';
 import { HomeComponent } from './home/home.component';
 import { IssuerMasterComponent } from './MasterNew/IssuerMaster/Issuer-master.component';
+import { GodownMasterComponent } from './MasterNew/godown-master/godown-master.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'Home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'menu', component: MenuComponent },
+  { path: 'GodownMaster', component: GodownMasterComponent },
   { path: 'DepositorMaster', component: DepositorMasterComponent },
   { path: 'TypeMaster', component: TypeMasterComponent },
   { path: 'TransactionMaster', component: TransactionMasterComponent },
