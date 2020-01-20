@@ -15,6 +15,11 @@ export class TableConstants {
     godownProfile: any;
     IssuerMaster: any;
     GodownMaster: any;
+    AadsData: any;
+    FciData: any;
+    HullingAgenciesData: any;
+    MrmData: any;
+    SupplierData: any;
 
     constructor() {
         this.GodownMaster = [
@@ -166,5 +171,34 @@ export class TableConstants {
             { field: 'Activeflag', header: 'Active' },
             // { header: 'Save'}
         ];
+
+        this.MrmData = [
+            { field: 'SlNo', header: 'S.No' },
+            { field: 'DepositorName', header: 'Depositor Name' }
+        ];
+
+        this.HullingAgenciesData = [
+            { field: 'SlNo', header: 'S.No' },
+            { field: 'DepositorName', header: 'Depositor Name' }
+        ];
+
+        this.FciData = [
+            { field: 'SlNo', header: 'S.No' },
+            { field: 'DepositorName', header: 'Depositor Name' }
+        ];
+
+        this.AadsData = [
+            { field: 'SlNo', header: 'S.No' },
+            { field: 'RegionName', header: 'Region' },
+            { field: 'AADSType', header: 'AADS Code' },
+            { field: 'Name', header: 'AADS Name' },
+        ];
+
+        this.SupplierData = [
+            { field: 'SlNo', header: 'S.No' },
+            { field: 'DepositorCode', header: 'Depositor Code' },
+            { field: 'Tyname', header: 'Depositor Type' },
+            { field: 'DepositorName', header: 'Depositor Name' }
+        ]
     }
 }

@@ -20,6 +20,11 @@ import { GodownProfileComponent } from './godown-profile/godown-profile.componen
 import { HomeComponent } from './home/home.component';
 import { IssuerMasterComponent } from './MasterNew/IssuerMaster/Issuer-master.component';
 import { GodownMasterComponent } from './MasterNew/godown-master/godown-master.component';
+import { MRMDataComponent } from './MasterNew/mrmdata/mrmdata.component';
+import { FCIDataComponent } from './MasterNew/fcidata/fcidata.component';
+import { AADSDataComponent } from './MasterNew/aadsdata/aadsdata.component';
+import { HullingAgenciesComponent } from './MasterNew/hulling-agencies/hulling-agencies.component';
+import { DepositorsComponent } from './MasterNew/supplierdata/depositors.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -42,6 +47,11 @@ const routes: Routes = [
   { path: 'Issuer Master Report', component: IssuerMasterComponent, canActivate: [AuthGuard] },
   { path: 'RegionMaster', component: RegionMasterComponent },
   { path: 'GunnyType', component: GunnyTypeMasterComponent },
+  { path: 'MrmData', component: MRMDataComponent },
+  { path: 'FciData', component: FCIDataComponent },
+  { path: 'AADS', component: AADSDataComponent },
+  { path: 'HullingAgencies', component: HullingAgenciesComponent },
+  { path: 'SuppliersData', component: DepositorsComponent },
   { path: '**', component: LoginComponent }
 
 ];

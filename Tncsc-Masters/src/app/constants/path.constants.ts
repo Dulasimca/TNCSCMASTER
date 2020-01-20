@@ -38,6 +38,11 @@ export class PathConstants {
   public static readonly ISSUER_MASTER_POST = '/api/IssuerMaster/Post';
   public static readonly SOCIETY_MASTER_GET = '/api/SocietyMaster/Get';
   public static readonly TYPE_CATEGORY_GET = '/api/TypeCategoryMaster/Get';
+  public static readonly AADS = '/api/AADS';
+  public static readonly MRN = '/api/MRN';
+  public static readonly HULLING_AGENCIES = '/api/HullingAgencies';
+  public static readonly FCI = '/api/FCI';
+  public static readonly DEPOSITOR = '/api/Suppliers';
 
   ///Masters
   public static readonly REGION_POST = '/api/ManageRegionMaster/Post';

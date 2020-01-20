@@ -65,6 +65,11 @@ import { GodownProfileComponent } from './godown-profile/godown-profile.componen
 import { HomeComponent } from './home/home.component';
 import { IssuerMasterComponent } from './MasterNew/IssuerMaster/Issuer-master.component';
 import { GodownMasterComponent } from './MasterNew/godown-master/godown-master.component';
+import { FCIDataComponent } from './MasterNew/fcidata/fcidata.component';
+import { AADSDataComponent } from './MasterNew/aadsdata/aadsdata.component';
+import { HullingAgenciesComponent } from './MasterNew/hulling-agencies/hulling-agencies.component';
+import { MRMDataComponent } from './MasterNew/mrmdata/mrmdata.component';
+import { DepositorsComponent } from './MasterNew/supplierdata/depositors.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +95,12 @@ import { GodownMasterComponent } from './MasterNew/godown-master/godown-master.c
     PackingMasterComponent,
     GodownProfileComponent,
     IssuerMasterComponent,
-    GodownMasterComponent
+    GodownMasterComponent,
+    FCIDataComponent,
+    AADSDataComponent,
+    HullingAgenciesComponent,
+    MRMDataComponent,
+    DepositorsComponent
   ],
   imports: [
     BrowserModule,
@@ -123,7 +133,7 @@ import { GodownMasterComponent } from './MasterNew/godown-master/godown-master.c
     ListboxModule,
     ProgressSpinnerModule,
     SidebarModule,
-    ScrollPanelModule
+    ScrollPanelModule,
     // ListboxModule,
     // ProgressSpinnerModule,
     // InputMaskModule,
