@@ -24,7 +24,7 @@ export class FCIDataComponent implements OnInit {
   filterArray: any;
   filteredItem: any;
   loading: boolean;
-  // @ViewChild('dt') table: DataTable;
+  @ViewChild('dt', {static: false}) table: any;
 
   constructor(private restApiService: RestAPIService, private authService: AuthService,
     private tableConstants: TableConstants, private messageService: MessageService) { }
@@ -43,17 +43,17 @@ export class FCIDataComponent implements OnInit {
         this.messageService.clear();
         this.messageService.add({ key: 't-err', severity: StatusMessage.SEVERITY_WARNING, summary: StatusMessage.SUMMARY_WARNING, detail: StatusMessage.NoRecForCombination });
       }
-      // this.items = [
-      //   {
-      //     label: 'Excel', icon: 'fa fa-table', command: () => {
-      //       this.table.exportCSV();
-      //     }
+      this.items = [
+        {
+          label: 'Excel', icon: 'fa fa-table', command: () => {
+            this.table.exportCSV();
+          }
       //   },
       //     {
       //     label: 'PDF', icon: "fa fa-file-pdf-o", command: () => {
       //       this.exportAsPDF();
       //     }
-      //   }];
+        }];
     }, (err: HttpErrorResponse) => {
       if (err.status === 0 || err.status === 400) {
         this.loading = false;
