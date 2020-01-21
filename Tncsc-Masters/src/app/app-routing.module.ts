@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { MenuComponent } from './menu/menu.component';
 import { RegionMasterComponent } from './region-master/region-master.component';
 import { AuthGuard } from './services/auth.guard';
 import { GunnyTypeMasterComponent } from './gunny-type-master/gunny-type-master.component';
@@ -29,30 +28,29 @@ import { DepositorsComponent } from './MasterNew/supplierdata/depositors.compone
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'Home', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'menu', component: MenuComponent },
-  { path: 'GodownMaster', component: GodownMasterComponent },
-  { path: 'DepositorMaster', component: DepositorMasterComponent },
-  { path: 'TypeMaster', component: TypeMasterComponent },
-  { path: 'TransactionMaster', component: TransactionMasterComponent },
-  { path: 'CerealNoncereal', component: CerealNoncerealComponent },
-  { path: 'CommodityMaster', component: CommodityMasterComponent },
-  { path: 'VehicleMaster', component: VehicleMasterComponent },
-  { path: 'WeighmentMaster', component: WeighmentMasterComponent },
-  { path: 'RailwayYardMaster', component: RailYardMasterComponent },
-  { path: 'SchemeMaster', component: SchemeMasterComponent },
-  { path: 'SchemeCommodityMaster', component: SchemeCommodityMasterComponent },
-  { path: 'PackingMaster', component: PackingMasterComponent },
-  { path: 'Godown Profile', component: GodownProfileComponent, canActivate: [AuthGuard] },
-  { path: 'Issuer Master Report', component: IssuerMasterComponent, canActivate: [AuthGuard] },
-  { path: 'RegionMaster', component: RegionMasterComponent },
-  { path: 'GunnyType', component: GunnyTypeMasterComponent },
-  { path: 'MrmData', component: MRMDataComponent },
-  { path: 'FciData', component: FCIDataComponent },
-  { path: 'AADS', component: AADSDataComponent },
-  { path: 'HullingAgencies', component: HullingAgenciesComponent },
-  { path: 'SuppliersData', component: DepositorsComponent },
-  { path: '**', component: LoginComponent }
+  { path: 'Home', component: HomeComponent},
+  { path: 'GodownMaster', component: GodownMasterComponent, canActivate: [AuthGuard] },
+  { path: 'DepositorMaster', component: DepositorMasterComponent, canActivate: [AuthGuard] },
+  { path: 'TypeMaster', component: TypeMasterComponent, canActivate: [AuthGuard] },
+  { path: 'TransactionMaster', component: TransactionMasterComponent, canActivate: [AuthGuard] },
+  { path: 'CerealNoncereal', component: CerealNoncerealComponent, canActivate: [AuthGuard] },
+  { path: 'CommodityMaster', component: CommodityMasterComponent, canActivate: [AuthGuard] },
+  { path: 'VehicleMaster', component: VehicleMasterComponent, canActivate: [AuthGuard] },
+  { path: 'WeighmentMaster', component: WeighmentMasterComponent, canActivate: [AuthGuard] },
+  { path: 'RailwayYardMaster', component: RailYardMasterComponent, canActivate: [AuthGuard] },
+  { path: 'SchemeMaster', component: SchemeMasterComponent, canActivate: [AuthGuard] },
+  { path: 'SchemeCommodityMaster', component: SchemeCommodityMasterComponent, canActivate: [AuthGuard] },
+  { path: 'PackingMaster', component: PackingMasterComponent, canActivate: [AuthGuard] },
+  { path: 'GodownMaster', component: GodownProfileComponent, canActivate: [AuthGuard] },
+  { path: 'IssuerMaster', component: IssuerMasterComponent, canActivate: [AuthGuard] },
+  { path: 'RegionMaster', component: RegionMasterComponent, canActivate: [AuthGuard] },
+  { path: 'GunnyType', component: GunnyTypeMasterComponent, canActivate: [AuthGuard] },
+  { path: 'MrmData', component: MRMDataComponent, canActivate: [AuthGuard] },
+  { path: 'FciData', component: FCIDataComponent, canActivate: [AuthGuard] },
+  { path: 'AADS', component: AADSDataComponent, canActivate: [AuthGuard] },
+  { path: 'HullingAgencies', component: HullingAgenciesComponent, canActivate: [AuthGuard] },
+  { path: 'SuppliersData', component: DepositorsComponent, canActivate: [AuthGuard] },
+  { path: '**', component: LoginComponent, canActivate: [AuthGuard] }
 
 ];
 
