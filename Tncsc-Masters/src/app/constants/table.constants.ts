@@ -20,6 +20,7 @@ export class TableConstants {
     HullingAgenciesData: any;
     MrmData: any;
     SupplierData: any;
+    GunnyType: any;
 
     constructor() {
         this.GodownMaster = [
@@ -199,6 +200,14 @@ export class TableConstants {
             { field: 'DepositorCode', header: 'Depositor Code' },
             { field: 'Tyname', header: 'Depositor Type' },
             { field: 'DepositorName', header: 'Depositor Name' }
-        ]
+        ];
+
+        this.GunnyType = [
+            { field: 'SlNo', header: 'S.No' },
+            { field: 'GTCODE', header: 'Gunny Type Code' },
+            { field: 'GTType', header: 'Gunny Type Name' },
+            { header: 'Active Flag', field: 'Activeflag' },
+            { header: 'Delete Flag', field: 'DeleteFlag' }
+        ];
     }
 }

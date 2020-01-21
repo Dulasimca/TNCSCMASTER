@@ -43,6 +43,8 @@ export class PathConstants {
   public static readonly HULLING_AGENCIES = '/api/HullingAgencies';
   public static readonly FCI = '/api/FCI';
   public static readonly DEPOSITOR = '/api/Suppliers';
+  public static readonly GUNNY_TYPE_GET = '/api/ManageGunnyTypeMaster';
+  public static readonly GUNNY_TYPE_POST = '/api/ManageGunnyTypeMaster/Post';
 
   ///Masters
   public static readonly REGION_POST = '/api/ManageRegionMaster/Post';
