@@ -39,7 +39,6 @@ export class CerealNoncerealComponent implements OnInit {
   @ViewChild('item', { static: false }) itemPanel: Dropdown;
 
 
-
   constructor(private authService: AuthService, private restAPIService: RestAPIService, private messageService: MessageService, private tableConstants: TableConstants) { }
 
   ngOnInit() {

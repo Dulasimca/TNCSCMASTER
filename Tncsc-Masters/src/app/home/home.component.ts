@@ -99,34 +99,31 @@ export class HomeComponent implements OnInit {
   onGridClicked(param) {
     switch (param) {
       case 'godown':
-        this.router.navigate(['godownData']);
+        this.router.navigate(['GodownMaster']);
         break;
       case 'mrm':
-        this.router.navigate(['mrmData']);
+        this.router.navigate(['MrmData']);
         break;
       case 'shops':
         this.router.navigate(['Issuer Master Report']);
         break;
       case 'aads':
-        this.router.navigate(['aadsData']);
+        this.router.navigate(['AADS']);
         break;
       case 'fci':
-        this.router.navigate(['fciData']);
+        this.router.navigate(['FciData']);
         break;
       case 'regions':
-        this.router.navigate(['regions']);
+        this.router.navigate(['RegionMaster']);
         break;
       case 'hullingAgencies':
-        this.router.navigate(['hullingAgencies']);
-        break;
-      case 'depositors':
-        this.router.navigate(['depositors']);
+        this.router.navigate(['HullingAgencies']);
         break;
       case 'supplier':
-        this.router.navigate(['depositors']);
+        this.router.navigate(['SuppliersData']);
         break;
       case 'gunny':
-        this.router.navigate(['depositors']);
+        this.router.navigate(['GunnyType']);
         break;
       case 'schemes':
         this.router.navigate(['SchemeMaster']);

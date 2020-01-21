@@ -19,12 +19,19 @@ import { PackingMasterComponent } from './MasterNew/packing-master/packing-maste
 import { GodownProfileComponent } from './godown-profile/godown-profile.component';
 import { HomeComponent } from './home/home.component';
 import { IssuerMasterComponent } from './MasterNew/IssuerMaster/Issuer-master.component';
+import { GodownMasterComponent } from './MasterNew/godown-master/godown-master.component';
+import { MRMDataComponent } from './MasterNew/mrmdata/mrmdata.component';
+import { FCIDataComponent } from './MasterNew/fcidata/fcidata.component';
+import { AADSDataComponent } from './MasterNew/aadsdata/aadsdata.component';
+import { HullingAgenciesComponent } from './MasterNew/hulling-agencies/hulling-agencies.component';
+import { DepositorsComponent } from './MasterNew/supplierdata/depositors.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'Home', component: HomeComponent},
   { path: 'menu', component: MenuComponent },
+  { path: 'GodownMaster', component: GodownMasterComponent },
   { path: 'DepositorMaster', component: DepositorMasterComponent },
   { path: 'TypeMaster', component: TypeMasterComponent },
   { path: 'TransactionMaster', component: TransactionMasterComponent },
@@ -38,8 +45,13 @@ const routes: Routes = [
   { path: 'PackingMaster', component: PackingMasterComponent },
   { path: 'Godown Profile', component: GodownProfileComponent, canActivate: [AuthGuard] },
   { path: 'Issuer Master Report', component: IssuerMasterComponent, canActivate: [AuthGuard] },
-  { path: 'regions', component: RegionMasterComponent },
-  { path: 'gunnyType', component: GunnyTypeMasterComponent },
+  { path: 'RegionMaster', component: RegionMasterComponent },
+  { path: 'GunnyType', component: GunnyTypeMasterComponent },
+  { path: 'MrmData', component: MRMDataComponent },
+  { path: 'FciData', component: FCIDataComponent },
+  { path: 'AADS', component: AADSDataComponent },
+  { path: 'HullingAgencies', component: HullingAgenciesComponent },
+  { path: 'SuppliersData', component: DepositorsComponent },
   { path: '**', component: LoginComponent }
 
 ];

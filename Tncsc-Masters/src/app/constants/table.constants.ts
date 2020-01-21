@@ -14,12 +14,31 @@ export class TableConstants {
     PackingMaster: any;
     godownProfile: any;
     IssuerMaster: any;
+    GodownMaster: any;
+    AadsData: any;
+    FciData: any;
+    HullingAgenciesData: any;
+    MrmData: any;
+    SupplierData: any;
+    GunnyType: any;
 
     constructor() {
+        this.GodownMaster = [
+            { header: 'S.No', field: 'SlNo', width: '40px' },
+            { header: 'REGION NAME', field: 'RGNAME' },
+            { header: 'TNCS Code', field: 'TNCSCode' },
+            { header: 'TNCS Name', field: 'TNCSName' },
+            { header: 'TNCS Capacity', field: 'TNCSCapacity' },
+            { header: 'TNCS Carpet', field: 'TNCSCarpet' },
+            { header: 'OPERATION TYPE', field: 'OPERATIONTYPE' },
+            { header: 'TNCS Type', field: 'TNCSType' },
+            { header: 'Active Flag', field: 'ActiveFlag' }
+        ];
+
         this.RegionMasterCols = [
             { header: 'S.No.', field: 'SlNo' },
-            { header: 'Region Code', field: 'RegionCode' },
-            { header: 'Region Name', field: 'RegionName' }
+            { header: 'Region Code', field: 'RGCODE' },
+            { header: 'Region Name', field: 'RGNAME' }
         ];
 
         this.DepositorMasterType = [
@@ -152,6 +171,43 @@ export class TableConstants {
             { field: 'ACSCode', header: 'Acs Code' },
             { field: 'Activeflag', header: 'Active' },
             // { header: 'Save'}
-          ];
+        ];
+
+        this.MrmData = [
+            { field: 'SlNo', header: 'S.No' },
+            { field: 'DepositorName', header: 'Depositor Name' }
+        ];
+
+        this.HullingAgenciesData = [
+            { field: 'SlNo', header: 'S.No' },
+            { field: 'DepositorName', header: 'Depositor Name' }
+        ];
+
+        this.FciData = [
+            { field: 'SlNo', header: 'S.No' },
+            { field: 'DepositorName', header: 'Depositor Name' }
+        ];
+
+        this.AadsData = [
+            { field: 'SlNo', header: 'S.No' },
+            { field: 'RegionName', header: 'Region' },
+            { field: 'AADSType', header: 'AADS Code' },
+            { field: 'Name', header: 'AADS Name' },
+        ];
+
+        this.SupplierData = [
+            { field: 'SlNo', header: 'S.No' },
+            { field: 'DepositorCode', header: 'Depositor Code' },
+            { field: 'Tyname', header: 'Depositor Type' },
+            { field: 'DepositorName', header: 'Depositor Name' }
+        ];
+
+        this.GunnyType = [
+            { field: 'SlNo', header: 'S.No' },
+            { field: 'GTCODE', header: 'Gunny Type Code' },
+            { field: 'GTType', header: 'Gunny Type Name' },
+            { header: 'Active Flag', field: 'Activeflag' },
+            { header: 'Delete Flag', field: 'DeleteFlag' }
+        ];
     }
 }
