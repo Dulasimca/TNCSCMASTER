@@ -8,7 +8,6 @@ import { AuthService } from 'src/app/services/auth.service';
 import { MessageService } from 'primeng/api';
 import { StatusMessage } from 'src/app/constants/Messages';
 import { HttpErrorResponse } from '@angular/common/http';
-// import { DataTable } from 'primeng/primeng';
 
 @Component({
   selector: 'app-depositors',
@@ -25,7 +24,7 @@ export class DepositorsComponent implements OnInit {
   filterArray: any;
   searchText: any;
   loading: boolean;
-  // @ViewChild('dt') table: DataTable;
+  @ViewChild('dt', {static: false}) table: any;
 
   constructor(private restApiService: RestAPIService, private authService: AuthService,
     private tableConstants: TableConstants, private messageService: MessageService) { }
@@ -51,17 +50,17 @@ export class DepositorsComponent implements OnInit {
         this.messageService.clear();
         this.messageService.add({ key: 't-err', severity: StatusMessage.SEVERITY_WARNING, summary: StatusMessage.SUMMARY_WARNING, detail: StatusMessage.NoRecordMessage });
       }
-      // this.items = [
-      //   {
-      //     label: 'Excel', icon: 'fa fa-table', command: () => {
-      //       this.table.exportCSV();
-      //     }
-      //   },
-      //    {
-      //     label: 'PDF', icon: "fa fa-file-pdf-o", command: () => {
-      //       this.exportAsPDF();
-      //     }
-      //   }];
+      this.items = [
+        {
+          label: 'Excel', icon: 'fa fa-table', command: () => {
+            this.table.exportCSV();
+          }
+        // },
+        //  {
+        //   label: 'PDF', icon: "fa fa-file-pdf-o", command: () => {
+        //     this.exportAsPDF();
+        //   }
+        }];
     }, (err: HttpErrorResponse) => {
       if (err.status === 0 || err.status === 400) {
         this.loading = false;
