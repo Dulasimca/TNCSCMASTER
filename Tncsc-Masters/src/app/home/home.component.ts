@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit {
     private router: Router, private locationStrategy: LocationStrategy, private messageService: MessageService) { }
 
   ngOnInit() {
-    // this.showDialog();
+    this.showDialog();
     this.preventBackButton();
     this.canShowMenu = (this.authService.isLoggedIn()) ? this.authService.isLoggedIn() : false;
     this.date = this.datePipe.transform(new Date(), 'MM/dd/yyyy');
