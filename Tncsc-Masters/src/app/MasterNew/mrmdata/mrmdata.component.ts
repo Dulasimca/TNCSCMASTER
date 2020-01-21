@@ -21,7 +21,7 @@ export class MRMDataComponent implements OnInit {
   filterArray: any;
   searchText: any;
   loading: boolean;
-  // @ViewChild('dt', {static: false}) table: DataTable;
+  @ViewChild('dt', {static: false}) table: any;
 
   constructor(private restApiService: RestAPIService, private authService: AuthService,
     private tableConstants: TableConstants, private messageService: MessageService) { }
@@ -40,17 +40,17 @@ export class MRMDataComponent implements OnInit {
         this.messageService.clear();
         this.messageService.add({ key: 't-err', severity: StatusMessage.SEVERITY_WARNING, summary: StatusMessage.SUMMARY_WARNING, detail: StatusMessage.NoRecForCombination });
       }
-      // this.items = [
-      //   {
-      //     label: 'Excel', icon: 'fa fa-table', command: () => {
-      //       this.exportCSV();
-      //     }
+      this.items = [
+        {
+          label: 'Excel', icon: 'fa fa-table', command: () => {
+            this.table.exportCSV();
+          }
       //   },
       //   {
       //     label: 'PDF', icon: "fa fa-file-pdf-o", command: () => {
       //       this.exportAsPDF();
       //     }
-      //   }]
+        }]
     }, (err: HttpErrorResponse) => {
       if (err.status === 0 || err.status === 400) {
         this.loading = false;
