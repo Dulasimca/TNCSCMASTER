@@ -137,7 +137,7 @@ export class RegionMasterComponent implements OnInit {
   }
 
   onClear() {
-    // this.isSelected = false;
+    this.isSelected = false;
     this.RCode = this.RName = this.SessionFlag = undefined;
 
   }

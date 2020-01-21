@@ -17,7 +17,7 @@
         </div>
         <div class="ui-g-12 ui-md-2">
           <label for="regName" class="label-fontsize">Region Name</label>
-          <input name="regName" type="text" size="15" pInputText [(ngModel)]="RName" autocomplete="off">
+          <input name="regName" type="text" size="15" pInputText [(ngModel)]="RName" [readOnly]="isSelected" autocomplete="off">
         </div>
         <div class="ui-g-4 ui-md-1">
           <button class="ui-g-3 dashboard inline-margin" style="margin-top: 18px;" pButton type="button" label={{label}}
