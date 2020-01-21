@@ -1,33 +1,49 @@
+<app-header></app-header>
 <div class="ui-g-12 ui-md-12 ui-lg-12 content">
-    <p-panel>
-      <p-header>
-        <div class="ui-g panel-header">
-          <div class="ui-g-12 ui-md-4 dashboard">Gunny type Master</div>
+  <app-menu *ngIf="canShowMenu"></app-menu>
+  <p-panel>
+    <p-header>
+      <div class="ui-g panel-header">
+        <div class="ui-g-12 ui-md-5 dashboard">Gunny Type Master</div>
+        <div class="ui-g-12 ui-md-7 dashboard" style="padding-left: 45%">
+          <input class="search-masters" type="text" [(ngModel)]="searchText" pInputText
+            placeholder="Search by Gunny Name" (ngModelChange)="onSearch($event)">
         </div>
-      </p-header>
+      </div>
+    </p-header>
     <div class="ui-g">
       <p-toast position="top-center" key="t-err"></p-toast>
       <div class="ui-g ui-md-12 ui-fluid  dashboard">
-        <div class="ui-g-12 ui-md-2">
-          <label for="regName" class="ui-g-7 label-fontsize dashboard">Gunny Type Name</label>
-          <input name="regName" type="text" size="15" pInputText [(ngModel)]="GunnyName" autocomplete="off">
-        </div>
+        <div class="ui-g-12 ui-md-2"></div>
         <div class="ui-g-12 ui-md-2">
           <label for="regCode" class="ui-g-7 label-fontsize dashboard">Gunny Type Code</label>
           <input name="regCode" type="text" size="15" pInputText [(ngModel)]="GunnyCode" [readOnly]="true">
         </div>
         <div class="ui-g-12 ui-md-2">
-            <label class="ui-g-7 label-fontsize dashboard">Active</label>
-            <p-dropdown #active class="ui-g-12 ui-fluid dashboard" [options]="activeOptions" 
-            [(ngModel)]="Flag" (keydown.enter)="onSelect('f', 'enter')" [showClear]="true" placeholder="-select-">
-              <ng-template let-item pTemplate="selectedItem">
-                <span style="vertical-align:middle">{{item.label}}</span>
-              </ng-template>
-            </p-dropdown>
+          <label for="regName" class="ui-g-7 label-fontsize dashboard">Gunny Type Name</label>
+          <input name="regName" type="text" size="15" pInputText [(ngModel)]="GunnyName" [readonly]="isSelected"
+            autocomplete="off">
+        </div>
+        <!-- <div class="ui-g-12 ui-md-2">
+          <label class="ui-g-7 label-fontsize dashboard">Active</label>
+          <p-dropdown #active class="ui-g-12 ui-fluid dashboard" [options]="activeOptions" [(ngModel)]="Flag"
+            (keydown.enter)="onSelect('f', 'enter')" [showClear]="true" placeholder="-select-">
+            <ng-template let-item pTemplate="selectedItem">
+              <span style="vertical-align:middle">{{item.label}}</span>
+            </ng-template>
+          </p-dropdown>
+        </div> -->
+        <div class="ui-g-12 ui-md-3" style="padding-top: 16px;">
+          <div class="ui-g border-lightgrey">
+            <p-radioButton class="ui-g-6" name="Flag" label="Active" value="A" [(ngModel)]="Active" required>
+            </p-radioButton>
+            <p-radioButton class="ui-g-6" name="Flag" label="InActive" value="I" [(ngModel)]="Active" required>
+            </p-radioButton>
           </div>
+        </div>
         <div class="ui-g-4 ui-md-1">
-          <button class="ui-g-3 dashboard inline-margin" style="margin-top: 15px;"
-          [disabled]="(!GunnyCode || !GunnyName || !Flag)" pButton type="button" label={{label}} (click)="onSave()"></button>
+          <button class="ui-g-3 dashboard inline-margin" style="margin-top: 15px;" [disabled]="(!GunnyName || !Active)"
+            pButton type="button" label={{label}} (click)="onSave()"></button>
         </div>
       </div>
       <div class="ui-g-12 ui-fluid">
@@ -41,7 +57,7 @@
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-rowData let-columns="columns" let-rowIndex="rowIndex">
-            <tr [pSelectableRow]="rowData" (dblclick)="onRowSelect(rowData, rowIndex)">
+            <tr [pSelectableRow]="rowData" (dblclick)="onRowSelect($event, rowData)">
               <td *ngFor="let col of columns">
                 {{rowData[col.field]}}
               </td>
@@ -51,4 +67,4 @@
       </div>
     </div>
   </p-panel>
-  </div>
+</div>
