@@ -23,7 +23,7 @@ import { IssuerMasterComponent } from './MasterNew/IssuerMaster/Issuer-master.co
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'Home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'Home', component: HomeComponent},
   { path: 'menu', component: MenuComponent },
   { path: 'DepositorMaster', component: DepositorMasterComponent },
   { path: 'TypeMaster', component: TypeMasterComponent },

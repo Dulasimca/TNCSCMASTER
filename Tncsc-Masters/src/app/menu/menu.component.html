@@ -1,10 +1,23 @@
- <button pButton type="button" (click)="showSideBar = true" icon="pi pi-bars"></button>
-<!-- <app-topbar></app-topbar> -->
-<p-sidebar [(visible)]="showSideBar" [baseZIndex]="10000" [showCloseIcon]="false" [style]="{background:'#3f4d67', width:'16em'}">
+ <!-- <button pButton type="button" (click)="showSideBar = true" icon="pi pi-bars"></button> -->
+<app-topbar (menuClick)="onClickMenuBar($event)"></app-topbar> 
+<p-sidebar [(visible)]="showSideBar" [baseZIndex]="10000" [showCloseIcon]="false" [style]="{background:'#3f4d67', width:'16em', border: '0.10em solid rgb(56, 149, 147)'}">
   <!-- <img src="../../assets/layout/images/login/tncsc-logo.png"/> 212121 -->
   <div class="ui-g-12">
-    <h1 class="sidenav-header">Masters</h1>
-    <i class="pi pi-times sidenav-layout-close" style="float: right !important;" (click)="showSideBar = false"></i>
+    <h3 class="sidenav-header"> Home Page </h3>
+    <i class="fa fa-times-circle-o sidenav-layout-close" aria-hidden="true" style="float: right !important;" (click)="showSideBar = false"></i>
+  </div>
+  <div class="ui-g-12 no-pad-top">
+    <ul style="list-style-type:none;">
+      <li>
+        <div class="ui-g-12 no-pad-left sidenav-layout-a">
+          <i class="pi pi-home pad-right"></i>
+          <a class="sidenav-layout-a" href="Home">Dashboard</a>
+        </div>
+        </li>
+        </ul>
+  </div>
+  <div class="ui-g-12">
+    <h3 class="sidenav-header">Masters</h3>
   </div>
   <div class="ui-g-12 no-pad-top">
     <ul style="list-style-type:none;">
@@ -15,10 +28,10 @@
         <div class="ui-g-12 no-pad-left">
           <a class="sidenav-layout-a" href="godowns">Godown Master</a>
         </div>
-        <div class="ui-g-12 no-pad-left">
-          <a class="sidenav-layout-a" (click)="toggleButton()">Sheme Masters</a>
-          <i *ngIf="!showDownArrowScheme" class="pi pi-angle-right sidenav-layout-arrow"></i>
-          <i *ngIf="showDownArrowScheme" class="pi pi-angle-down sidenav-layout-arrow"></i>
+        <div class="ui-g-12 no-pad-left sidenav-layout-a">
+          <a class="sidenav-layout-a pad-right" (click)="toggleButton()">Sheme Masters</a>
+          <i *ngIf="!showDownArrowScheme" aria-hidden="true" class="fa fa-angle-down sidenav-layout-arrow"></i>
+          <i *ngIf="showDownArrowScheme" aria-hidden="true" class="fa fa-angle-up sidenav-layout-arrow"></i>
           <div *ngIf="showDownArrowScheme" class="ui-g-12 dashboard">
             <div class="ui-g-12 no-pad-left">
               <a class="sidenav-layout-a" href="regions">Region Master</a>

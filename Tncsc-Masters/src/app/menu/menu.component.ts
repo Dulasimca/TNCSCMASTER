@@ -19,5 +19,9 @@ export class MenuComponent implements OnInit {
     this.showDownArrowScheme = !this.showDownArrowScheme;
   }
 
+  onClickMenuBar(event) {
+    this.showSideBar = event;
+  }
+
 }
 

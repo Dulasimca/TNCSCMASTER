@@ -29,14 +29,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   right: 0;
   z-index: 997;
   padding: 8px 25px;
-  background-color: #2196F3;
-  -webkit-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  /* background-color: #44a3ec ; */
+  background-color: #0ff0b3;
+  background-image: linear-gradient(to right, #0ff0b3, #036ed9);
+  -webkit-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.  16);
   -moz-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
 }
 
 .layout-wrapper .layout-topbar .layout-topbar-logo {
   display: none;
+  background: transparent !important;
 }
 
 /* @media screen and (min-width: 897px){ */
@@ -157,13 +160,29 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   vertical-align: bottom !important;
   background: transparent !important;
   color: #BDBDBD !important;
+  font-size: 1.5em !important;
 }
 
 .sidenav-layout-close:hover {
   vertical-align: bottom !important;
-  background: #BDBDBD !important;
-  color: black !important;
+  background: transparent !important;
+  color: #18c5a9 !important;
+  font-size: 1.62em !important;
 }
+
+/* :hover {
+  transform: scale(1.2);
+    box-shadow:  20px 15px rgba(0,0,0,0.15);
+  .icon-hover {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  .icon-default {
+    transform: rotate(180deg) scale(.5);
+    opacity: 0;
+  }
+} */
+
 
 .layout-menu-dark {
   background-color: #212121;
@@ -177,6 +196,9 @@ ul{
  background: lightgray !important;
 } */
 
+.pad-right{
+  padding-right: 5px !important;
+}
 
 
 
