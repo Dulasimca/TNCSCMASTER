@@ -48,7 +48,6 @@ export class PathConstants {
 
   ///Masters
   public static readonly REGION_POST = '/api/ManageRegionMaster/Post';
-  public static readonly REGION_GET = '/api/ManageRegionMaster/Get';
 
   ///Menu&Login
   public static readonly MENU = '/api/Menu/Get';

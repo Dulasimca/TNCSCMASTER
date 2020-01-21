@@ -37,8 +37,8 @@ export class TableConstants {
 
         this.RegionMasterCols = [
             { header: 'S.No.', field: 'SlNo' },
-            { header: 'Region Code', field: 'RegionCode' },
-            { header: 'Region Name', field: 'RegionName' }
+            { header: 'Region Code', field: 'RGCODE' },
+            { header: 'Region Name', field: 'RGNAME' }
         ];
 
         this.DepositorMasterType = [
