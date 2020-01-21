@@ -22,22 +22,79 @@
   <div class="ui-g-12 no-pad-top">
     <ul style="list-style-type:none;">
       <li>
-        <div class="ui-g-12 no-pad-left">
-          <a class="sidenav-layout-a" href="regions">Region Master</a>
-        </div>
-        <div class="ui-g-12 no-pad-left">
-          <a class="sidenav-layout-a" href="godowns">Godown Master</a>
-        </div>
+        <!-- <div class="ui-g-12 no-pad-left">
+          <a class="sidenav-layout-a" href="RegionMaster">Region Master</a>
+        </div> -->
         <div class="ui-g-12 no-pad-left sidenav-layout-a">
-          <a class="sidenav-layout-a pad-right" (click)="toggleButton()">Sheme Masters</a>
-          <i *ngIf="!showDownArrowScheme" aria-hidden="true" class="fa fa-angle-down sidenav-layout-arrow"></i>
-          <i *ngIf="showDownArrowScheme" aria-hidden="true" class="fa fa-angle-up sidenav-layout-arrow"></i>
-          <div *ngIf="showDownArrowScheme" class="ui-g-12 dashboard">
+          <a class="sidenav-layout-a pad-right" (click)="toggleButton('fp')">Field Point</a>
+          <i *ngIf="!showDownArrow_FP" aria-hidden="true" class="fa fa-angle-down sidenav-layout-arrow"></i>
+          <i *ngIf="showDownArrow_FP" aria-hidden="true" class="fa fa-angle-up sidenav-layout-arrow"></i>
+          <div *ngIf="showDownArrow_FP" class="ui-g-12 dashboard">
             <div class="ui-g-12 no-pad-left">
-              <a class="sidenav-layout-a" href="regions">Region Master</a>
+              <a class="sidenav-layout-a" href="DepositorMaster">Depositor Master</a>
             </div>
             <div class="ui-g-12 no-pad-left">
-              <a class="sidenav-layout-a" href="godowns">Godown Master</a>
+              <a class="sidenav-layout-a" href="RailwayYardMaster">RailYard Master</a>
+            </div>
+            <div class="ui-g-12 no-pad-left">
+              <a class="sidenav-layout-a" href="RegionMaster">Region Master</a>
+            </div>
+            <div class="ui-g-12 no-pad-left">
+              <a class="sidenav-layout-a" href="GodownMaster">Godown Master</a>
+            </div>
+            <div class="ui-g-12 no-pad-left">
+              <a class="sidenav-layout-a" href="IssuerMaster">Issuer Master</a>
+            </div>
+          </div>
+        </div>
+        <div class="ui-g-12 no-pad-left sidenav-layout-a">
+          <a class="sidenav-layout-a pad-right" (click)="toggleButton('cm')">Commodity</a>
+          <i *ngIf="!showDownArrow_CM" aria-hidden="true" class="fa fa-angle-down sidenav-layout-arrow"></i>
+          <i *ngIf="showDownArrow_CM" aria-hidden="true" class="fa fa-angle-up sidenav-layout-arrow"></i>
+          <div *ngIf="showDownArrow_CM" class="ui-g-12 dashboard">
+            <div class="ui-g-12 no-pad-left">
+              <a class="sidenav-layout-a" href="CommodityMaster">Commodity Master</a>
+            </div>
+            <div class="ui-g-12 no-pad-left">
+              <a class="sidenav-layout-a" href="GunnyType">Gunny Type Master</a>
+            </div>
+            <div class="ui-g-12 no-pad-left">
+              <a class="sidenav-layout-a" href="CerealNoncereal">Cereal/Non-Cereal Master</a>
+            </div>
+          </div>
+        </div>
+        <div class="ui-g-12 no-pad-left sidenav-layout-a">
+          <a class="sidenav-layout-a pad-right" (click)="toggleButton('sc')">Sheme Masters</a>
+          <i *ngIf="!showDownArrow_SM" aria-hidden="true" class="fa fa-angle-down sidenav-layout-arrow"></i>
+          <i *ngIf="showDownArrow_SM" aria-hidden="true" class="fa fa-angle-up sidenav-layout-arrow"></i>
+          <div *ngIf="showDownArrow_SM" class="ui-g-12 dashboard">
+            <div class="ui-g-12 no-pad-left">
+              <a class="sidenav-layout-a" href="SchemeMaster">Scheme Master</a>
+            </div>
+            <div class="ui-g-12 no-pad-left">
+              <a class="sidenav-layout-a" href="SchemeCommodityMaster">Scheme-Commodity Master</a>
+            </div>
+          </div>
+        </div>
+        <div class="ui-g-12 no-pad-left sidenav-layout-a">
+          <a class="sidenav-layout-a pad-right" (click)="toggleButton('ot')">Others</a>
+          <i *ngIf="!showDownArrow_OM" aria-hidden="true" class="fa fa-angle-down sidenav-layout-arrow"></i>
+          <i *ngIf="showDownArrow_OM" aria-hidden="true" class="fa fa-angle-up sidenav-layout-arrow"></i>
+          <div *ngIf="showDownArrow_OM" class="ui-g-12 dashboard">
+            <div class="ui-g-12 no-pad-left">
+              <a class="sidenav-layout-a" href="WeighmentMaster">Weighment Master</a>
+            </div>
+            <div class="ui-g-12 no-pad-left">
+              <a class="sidenav-layout-a" href="PackingMaster">Packing Master</a>
+            </div>
+            <div class="ui-g-12 no-pad-left">
+              <a class="sidenav-layout-a" href="VehicleMaster">Vehicle Master</a>
+            </div>
+            <div class="ui-g-12 no-pad-left">
+              <a class="sidenav-layout-a" href="TypeMaster">Type Master</a>
+            </div>
+            <div class="ui-g-12 no-pad-left">
+              <a class="sidenav-layout-a" href="TransactionMaster">Transaction Master</a>
             </div>
           </div>
         </div>
