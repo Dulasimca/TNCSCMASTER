@@ -40,6 +40,7 @@ export class CommodityMasterComponent implements OnInit {
   Allotmentgroup: any;
   ITBweighment: any;
   NewCode: any;
+  Hsncode: any;
   TRCode: any;
   RCode: any;
   GCode: any;
@@ -141,11 +142,11 @@ export class CommodityMasterComponent implements OnInit {
           this.allotmentPanel.overlayVisible = true;
         }
         // if (this.AllotmentOptions === undefined) {
-        this.restAPIService.get(PathConstants.ALLOTMENT_GROUP_MASTER).subscribe(res => {
+        this.restAPIService.get(PathConstants.MAJOR_ITEM_MASTER).subscribe(res => {
           if (res !== undefined && res !== null && res.length !== 0) {
             this.AllotmentGroupData = res;
             this.AllotmentGroupData.forEach(S => {
-              AllotmentSelection.push({ 'label': S.AllotmentGroup, 'value': S.AllotmentID });
+              AllotmentSelection.push({ 'label': S.Majorname, 'value': S.Majorcode });
             });
             this.AllotmentOptions = AllotmentSelection;
             this.AllotmentOptions.unshift({ 'label': '-select-', 'value': null, disabled: true });
@@ -163,8 +164,9 @@ export class CommodityMasterComponent implements OnInit {
     this.ItemName = selectedRow.ITDescription;
     this.ItemOptions = [{ label: selectedRow.ItemName, value: selectedRow.ItemType }];
     this.MeasurementOptions = [{ label: selectedRow.ITBweighment, value: selectedRow.Measurement }];
-    this.AllotmentOptions = [{ label: selectedRow.Allotmentgroup, value: selectedRow.AllotmentID }];
+    this.AllotmentOptions = [{ label: selectedRow.Allotmentgroup, value: selectedRow.GRName }];
     this.ItemType = selectedRow.ItemType;
+    this.Hsncode = selectedRow.Hsncode;
     this.TRCode = selectedRow.ItemName;
     this.Measurement = selectedRow.ITBweighment;
     this.Active = selectedRow.Activeflag;
@@ -180,7 +182,7 @@ export class CommodityMasterComponent implements OnInit {
   onAdd() {
     this.isAdd = true;
     this.isEdited = false;
-    this.ItemName = this.ItemCode = this.Item = undefined;
+    this.ItemName = this.ItemCode = this.Item = this.ITTax = this.DeleteFlag = this.SFlag = this.CBFlag = this.Unit = this.Measurement = this.AllotmentGroup = this.ItemType = this.Hsncode = undefined;
     // this.ItemCode = this.NewCode;
     this.ItemOptions = this.AllotmentOptions = this.MeasurementOptions = undefined;
     this.Active = false;
@@ -192,11 +194,12 @@ export class CommodityMasterComponent implements OnInit {
       'ITDescription': this.ItemName,
       'ITBweighment': this.Measurement,
       'ittax': this.ITTax,
-      'GRName': this.GRName,
+      'GRName': this.AllotmentGroup.value || this.GRName,
       'ItemType': this.ItemType,
+      'Hsncode': this.Hsncode,
       'DeleteFlag': this.DeleteFlag || 'F',
       'ActiveFlag': this.Active,
-      'Allotmentgroup': this.AllotmentGroup.label || '',
+      'Allotmentgroup': this.AllotmentGroup.label || this.AllotmentGroup,
       'SFlag': this.SFlag || true,
       'CBFlag': this.CBFlag || true,
       'Unit': this.Unit || this.Measurement
@@ -287,7 +290,7 @@ export class CommodityMasterComponent implements OnInit {
 
   onClear() {
     this.ItemMasterData = this.ItemMasterCols = this.AllotmentOptions = this.MeasurementOptions = this.ItemOptions = undefined;
-    this.ItemName = this.ItemCode = this.ITTax = this.Active = this.ItemType = this.NewCode = this.Item = this.Measurement = this.AllotmentGroup = null;
+    this.ItemName = this.ItemCode = this.ITTax = this.DeleteFlag = this.SFlag = this.CBFlag = this.Unit = this.Active = this.ItemType = this.NewCode = this.Item = this.Hsncode = this.Measurement = this.AllotmentGroup = null;
     this.isEdited = false;
   }
 }

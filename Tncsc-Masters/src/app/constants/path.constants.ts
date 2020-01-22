@@ -18,7 +18,7 @@ export class PathConstants {
   public static readonly TRANSACTION_MASTER_POST = '/api/ManageTransactionMaster/Post';
   public static readonly ITEM_MASTER = '/api/ItemMaster';
   public static readonly CEREAL_MASTER_POST = '/api/ManageItemMaster/Post';
-  public static readonly ALLOTMENT_GROUP_MASTER = '/api/AllotmentGroupMaster';
+  public static readonly MAJOR_ITEM_MASTER = '/api/MajorItemMaster';
   public static readonly COMMODITY_MASTER_POST = '/api/ManageItemMaster/Post';
   public static readonly VEHICLE_MASTER = '/api/VehicleMaster';
   public static readonly VEHICLE_MASTER_POST = '/api/ManageVehicleMaster/Post';

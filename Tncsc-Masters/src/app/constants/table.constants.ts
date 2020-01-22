@@ -80,6 +80,7 @@ export class TableConstants {
             { header: 'S.No', field: 'SlNo', width: '40px' },
             { header: 'Item Code', field: 'ITCode' },
             { header: 'Item Name', field: 'ITDescription' },
+            { header: 'Hsncode', field: 'Hsncode' },
             { header: 'Item Weighment', field: 'ITBweighment' },
             { header: 'IT Tax', field: 'ittax' },
             { header: 'GR Name', field: 'GRName' },

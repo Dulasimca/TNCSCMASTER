@@ -26,10 +26,27 @@
                         </div>
                         <div class="ui-g-6 ui-md-2" style="padding-top: 25px;">
                             <span class="ui-float-label">
-                                <input name="ItemName" pInputText [(ngModel)]="ItemName" autocomplete="off" [readonly]="(isEdited)" required>
+                                <input name="ItemName" pInputText [(ngModel)]="ItemName" autocomplete="off"
+                                    [readonly]="(isEdited)" required>
                                 <label for="ItemName" class="float-input">Item Name</label>
                             </span>
                         </div>
+                        <div class="ui-g-6 ui-md-2" style="padding-top: 25px;">
+                            <span class="ui-float-label">
+                                <input name="Hsncode" pInputText [(ngModel)]="Hsncode" autocomplete="off" required>
+                                <label for="Hsncode" class="float-input">Hsncode</label>
+                            </span>
+                        </div>
+                        <div class="ui-g-6 ui-md-2" style="padding-top: 25px;">
+                            <span class="ui-float-label">
+                                <input name="ITTax" pInputText [(ngModel)]="ITTax" autocomplete="off" required>
+                                <label for="ITTax" class="float-input">IT TAX</label>
+                            </span>
+                        </div>
+                        <div class="ui-g-12 ui-md-2"></div>
+                    </div>
+                    <div class="ui-g-12 ui-fluid">
+                        <div class="ui-g-12 ui-md-2"></div>
                         <div class="ui-g-12 ui-md-2">
                             <label class="ui-g-10 label-fontsize dashboard" for="Measurement_Type">Weightment
                                 Type</label>
@@ -43,16 +60,6 @@
                                 </ng-template>
                             </p-dropdown>
                         </div>
-                        <div class="ui-g-6 ui-md-2" style="padding-top: 25px;">
-                            <span class="ui-float-label">
-                                <input name="ITTax" pInputText [(ngModel)]="ITTax" autocomplete="off" required>
-                                <label for="ITTax" class="float-input">IT TAX</label>
-                            </span>
-                        </div>
-                        <div class="ui-g-12 ui-md-2"></div>
-                    </div>
-                    <div class="ui-g-12 ui-fluid">
-                        <div class="ui-g-12 ui-md-2"></div>
                         <div class="ui-g-9 ui-md-2">
                             <label for="Allotment_Group" class="ui-g-7 label-fontsize dashboard">Select Group
                                 Name</label>
@@ -77,7 +84,7 @@
                                 </ng-template>
                             </p-dropdown>
                         </div>
-                        <div class="ui-g-12 ui-md-3" style="padding-top: 16px;">
+                        <div class="ui-g-12 ui-md-2" style="padding-top: 16px;">
                             <div class="ui-g border-lightgrey">
                                 <p-radioButton class="ui-g-6" name="Flag" label="Active" value="A" [(ngModel)]="Active"
                                     required>
@@ -89,7 +96,7 @@
                         </div>
                         <div class="ui-g-3 ui-md-1 ui-fluid" style="padding-top: 21px;">
                             <button pButton type="button" label=Save (click)="onSave()"
-                                [disabled]="(!ItemName || !ItemType || !Measurement || !Active)"></button>
+                                [disabled]="(!ItemName || !ItemType || !Measurement || !Hsncode || !ITTax || !Active)"></button>
                         </div>
                         <div class="ui-g-3 ui-md-1 ui-fluid" style="padding-top: 21px;">
                             <button pButton type="button" label=Add (click)="onAdd()"></button>
