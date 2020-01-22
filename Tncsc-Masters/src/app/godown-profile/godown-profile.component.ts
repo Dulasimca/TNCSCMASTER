@@ -39,7 +39,7 @@ export class GodownProfileComponent implements OnInit {
   constructor(private authService: AuthService, private fb: FormBuilder, private excelService: ExcelService, private tableConstants: TableConstants, private messageService: MessageService, private restAPIService: RestAPIService) { }
 
   ngOnInit() {
-    // this.canShowMenu = (this.authService.isLoggedIn()) ? this.authService.isLoggedIn() : false;
+    this.canShowMenu = (this.authService.isLoggedIn()) ? this.authService.isLoggedIn() : false;
     this.roleId = JSON.parse(this.authService.getUserAccessible().roleId);
     this.gCode = this.authService.getUserAccessible().gCode;
     this.userdata = this.fb.group({

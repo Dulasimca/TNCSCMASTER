@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-topbar',
@@ -6,8 +7,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./topbar.component.css']
 })
 export class TopbarComponent implements OnInit {
-@Output() menuClick = new EventEmitter<boolean>();
-  constructor() { }
+  @Output() menuClick = new EventEmitter<boolean>();
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
   }
@@ -15,5 +16,4 @@ export class TopbarComponent implements OnInit {
   onMenuClick() {
     this.menuClick.emit(true);
   }
-
 }

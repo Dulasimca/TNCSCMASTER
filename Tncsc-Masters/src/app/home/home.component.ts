@@ -105,7 +105,7 @@ export class HomeComponent implements OnInit {
         this.router.navigate(['MrmData']);
         break;
       case 'shops':
-        this.router.navigate(['Issuer Master Report']);
+        this.router.navigate(['IssuerMaster']);
         break;
       case 'aads':
         this.router.navigate(['AADS']);

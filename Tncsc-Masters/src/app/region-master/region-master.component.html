@@ -1,10 +1,10 @@
 <app-header></app-header>
+<app-menu *ngIf="canShowMenu"></app-menu>
 <div class="ui-g-12 ui-md-12 ui-lg-12 content">
-  <app-menu *ngIf="canShowMenu"></app-menu>
   <p-panel>
     <p-header>
       <div class="ui-g panel-header">
-        <div class="ui-g-12 ui-md-4 dashboard">Region Master</div>
+        <div class="ui-g-12 ui-md- dashboard">Region Master</div>
       </div>
     </p-header>
     <div class="ui-g">
@@ -17,7 +17,8 @@
         </div>
         <div class="ui-g-12 ui-md-2">
           <label for="regName" class="label-fontsize">Region Name</label>
-          <input name="regName" type="text" size="15" pInputText [(ngModel)]="RName" [readOnly]="isSelected" autocomplete="off">
+          <input name="regName" type="text" size="15" pInputText [(ngModel)]="RName" [readOnly]="isSelected"
+            autocomplete="off">
         </div>
         <div class="ui-g-4 ui-md-1">
           <button class="ui-g-3 dashboard inline-margin" style="margin-top: 18px;" pButton type="button" label={{label}}
