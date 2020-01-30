@@ -21,6 +21,8 @@ export class TableConstants {
     MrmData: any;
     SupplierData: any;
     GunnyType: any;
+    AllotmentIssueQuantity: any;
+    StackCardMaster: any;
 
     constructor() {
         this.GodownMaster = [
@@ -209,6 +211,35 @@ export class TableConstants {
             { field: 'GTType', header: 'Gunny Type Name' },
             { header: 'Active Flag', field: 'Activeflag' },
             { header: 'Delete Flag', field: 'DeleteFlag' }
+        ];
+
+        this.AllotmentIssueQuantity = [
+            { header: 'S.No', field: 'SlNo' },
+            { field: 'AllotmentMonth', header: 'Month' },
+            // { field: 'SIDate', header: 'Date' },
+            { field: 'SocietyCode', header: 'Society Name' },
+            { field: 'SocietyName', header: 'Society Name' },
+            // { field: 'Acscode', header: 'Shop Code' },
+            // { field: 'IssuerName', header: 'Issuer Name' },
+            { field: 'Commodity', header: 'Commodity' },
+            { field: 'Scheme', header: 'Scheme' },
+            { field: 'AllotmentQty', header: 'Allotment Quantity' },
+            { field: 'IssueQty', header: 'Issue Quantity' },
+            { field: 'Balance', header: 'Balance Quantity' }
+        ];
+
+        this.StackCardMaster = [
+            { header: 'S.No', field: 'SlNo' },
+            { field: 'RowId', header: 'Row Id' },
+            { field: 'GodownCode', header: 'Godown Code' },
+            { field: 'RegionCode', header: 'Region Code' },
+            { field: 'CommodityCode', header: 'Commodity Code' },
+            { field: 'StackNo', header: 'Stack No' },
+            { field: 'StackBalanceBags', header: 'StackBalanceBags' },
+            { field: 'ObStackDate', header: 'ObStackDate' },
+            { field: 'CurYear', header: 'CurYear' },
+            { field: 'Flag1', header: 'Flag1' },
+            { field: 'clstackdate', header: 'clstackdate' },
         ];
     }
 }

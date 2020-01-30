@@ -70,6 +70,9 @@ import { AADSDataComponent } from './MasterNew/aadsdata/aadsdata.component';
 import { HullingAgenciesComponent } from './MasterNew/hulling-agencies/hulling-agencies.component';
 import { MRMDataComponent } from './MasterNew/mrmdata/mrmdata.component';
 import { DepositorsComponent } from './MasterNew/supplierdata/depositors.component';
+import { AllotmentIssueQuantityComponent } from './QuotaWatchRegister/allotment-issue-quantity.component';
+import { StackCardMasterComponent } from './MasterNew/stack-card-master/stack-card-master.component';
+// import { FullCalendar } from 'primeng/fullcalendar';
 
 @NgModule({
   declarations: [
@@ -100,7 +103,9 @@ import { DepositorsComponent } from './MasterNew/supplierdata/depositors.compone
     AADSDataComponent,
     HullingAgenciesComponent,
     MRMDataComponent,
-    DepositorsComponent
+    DepositorsComponent,
+    AllotmentIssueQuantityComponent,
+    StackCardMasterComponent
   ],
   imports: [
     BrowserModule,
@@ -134,6 +139,7 @@ import { DepositorsComponent } from './MasterNew/supplierdata/depositors.compone
     ProgressSpinnerModule,
     SidebarModule,
     ScrollPanelModule,
+    // FullCalendar
     // ListboxModule,
     // ProgressSpinnerModule,
     // InputMaskModule,

@@ -46,6 +46,14 @@ export class PathConstants {
   public static readonly GUNNY_TYPE_GET = '/api/ManageGunnyTypeMaster';
   public static readonly GUNNY_TYPE_POST = '/api/ManageGunnyTypeMaster/Post';
 
+  public static readonly ALLOTMENT_QUANTITY_GET = '/api/AllotmentQuantity/Get';
+  public static readonly ALLOTMENT_QUANTITY_POST = '/api/AllotmentQuantity/Post';
+
+  //StackCard
+  public static readonly STACK_CARD_GET = '/api/ManageStackCardMaster/Get';
+  public static readonly STACK_CARD_UPDATE_POST = '/api/ManageStackCardMaster/Post';
+  public static readonly STACK_YEAR = '/api/Accounting';
+  
   ///Masters
   public static readonly REGION_POST = '/api/ManageRegionMaster/Post';
 

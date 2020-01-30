@@ -24,6 +24,8 @@ import { FCIDataComponent } from './MasterNew/fcidata/fcidata.component';
 import { AADSDataComponent } from './MasterNew/aadsdata/aadsdata.component';
 import { HullingAgenciesComponent } from './MasterNew/hulling-agencies/hulling-agencies.component';
 import { DepositorsComponent } from './MasterNew/supplierdata/depositors.component';
+import { AllotmentIssueQuantityComponent } from './QuotaWatchRegister/allotment-issue-quantity.component';
+import { StackCardMasterComponent } from './MasterNew/stack-card-master/stack-card-master.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -50,6 +52,8 @@ const routes: Routes = [
   { path: 'AADS', component: AADSDataComponent, canActivate: [AuthGuard] },
   { path: 'HullingAgencies', component: HullingAgenciesComponent, canActivate: [AuthGuard] },
   { path: 'SuppliersData', component: DepositorsComponent, canActivate: [AuthGuard] },
+  { path: 'StackCardUpdate', component: StackCardMasterComponent, canActivate: [AuthGuard] },
+  { path: 'AllotmentAbstract', component: AllotmentIssueQuantityComponent, canActivate: [AuthGuard] },
   { path: '**', component: LoginComponent, canActivate: [AuthGuard] }
 
 ];
