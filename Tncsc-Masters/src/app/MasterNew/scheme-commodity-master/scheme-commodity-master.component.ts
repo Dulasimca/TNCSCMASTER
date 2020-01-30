@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { SelectItem } from 'primeng/api/selectitem';
-import { Dropdown } from 'primeng/dropdown/dropdown';
+import { SelectItem } from 'primeng/api';
+import { Dropdown } from 'primeng/dropdown';
 import { AuthService } from 'src/app/services/auth.service';
 import { RestAPIService } from 'src/app/services/restAPI.service';
 import { MessageService } from 'primeng/api';

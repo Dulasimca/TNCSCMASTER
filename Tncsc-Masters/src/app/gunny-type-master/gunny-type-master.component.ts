@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SelectItem } from 'primeng/api/selectitem';
+import { SelectItem } from 'primeng/api';
 import { RestAPIService } from '../services/restAPI.service';
 import { PathConstants } from '../constants/path.constants';
 import { TableConstants } from '../constants/table.constants';

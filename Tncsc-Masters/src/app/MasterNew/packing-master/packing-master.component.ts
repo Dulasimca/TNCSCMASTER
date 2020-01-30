@@ -6,7 +6,7 @@ import { TableConstants } from 'src/app/constants/table.constants';
 import { PathConstants } from 'src/app/constants/path.constants';
 import { StatusMessage } from 'src/app/constants/Messages';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Dropdown } from 'primeng/dropdown/dropdown';
+import { Dropdown } from 'primeng/dropdown';
 
 @Component({
   selector: 'app-packing-master',
