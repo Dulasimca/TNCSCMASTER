@@ -158,6 +158,9 @@ export class HomeComponent implements OnInit {
       case 'schemeCommodity':
         this.router.navigate(['SchemeCommodityMaster']);
         break;
+      case 'stackCard':
+        this.router.navigate(['StackCardUpdate']);
+        break;
     }
   }
 

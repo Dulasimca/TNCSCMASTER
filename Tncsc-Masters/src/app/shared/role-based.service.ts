@@ -41,7 +41,7 @@ export class RoleBasedService {
             res.forEach(x => {
                 this.regionsData.push({ 'RName': x.Name, 'RCode': x.Code });
             });
-        })
+        });
         return this.regionsData;
     }
     ///End
