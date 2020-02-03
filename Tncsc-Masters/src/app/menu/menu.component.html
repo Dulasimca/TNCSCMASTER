@@ -1,10 +1,12 @@
- <!-- <button pButton type="button" (click)="showSideBar = true" icon="pi pi-bars"></button> -->
-<app-topbar (menuClick)="onClickMenuBar($event)"></app-topbar> 
-<p-sidebar [(visible)]="showSideBar" [baseZIndex]="10000" [showCloseIcon]="false" [style]="{background:'#3f4d67', width:'16em', border: '0.10em solid rgb(56, 149, 147)'}">
+<!-- <button pButton type="button" (click)="showSideBar = true" icon="pi pi-bars"></button> -->
+<app-topbar (menuClick)="onClickMenuBar($event)"></app-topbar>
+<p-sidebar [(visible)]="showSideBar" [baseZIndex]="10000" [showCloseIcon]="false"
+  [style]="{background:'#3f4d67', width:'16em', border: '0.10em solid rgb(56, 149, 147)'}">
   <!-- <img src="../../assets/layout/images/login/tncsc-logo.png"/> 212121 -->
   <div class="ui-g-12">
     <h3 class="sidenav-header"> Home Page </h3>
-    <i class="fa fa-times-circle-o sidenav-layout-close" aria-hidden="true" style="float: right !important;" (click)="showSideBar = false"></i>
+    <i class="fa fa-times-circle-o sidenav-layout-close" aria-hidden="true" style="float: right !important;"
+      (click)="showSideBar = false"></i>
   </div>
   <div class="ui-g-12 no-pad-top">
     <ul style="list-style-type:none;">
@@ -13,8 +15,8 @@
           <i class="pi pi-home pad-right"></i>
           <a class="sidenav-layout-a" href="Home">Dashboard</a>
         </div>
-        </li>
-        </ul>
+      </li>
+    </ul>
   </div>
   <div class="ui-g-12">
     <h3 class="sidenav-header">Masters</h3>
@@ -25,6 +27,28 @@
         <!-- <div class="ui-g-12 no-pad-left">
           <a class="sidenav-layout-a" href="RegionMaster">Region Master</a>
         </div> -->
+        <div class="ui-g-12 no-pad-left sidenav-layout-a">
+          <a class="sidenav-layout-a pad-right" (click)="toggleButton('md')">Master Data</a>
+          <i *ngIf="!showDownArrow_MD" aria-hidden="true" class="fa fa-angle-down sidenav-layout-arrow"></i>
+          <i *ngIf="showDownArrow_MD" aria-hidden="true" class="fa fa-angle-up sidenav-layout-arrow"></i>
+          <div *ngIf="showDownArrow_MD" class="ui-g-12 dashboard">
+            <div class="ui-g-12 no-pad-left">
+              <a class="sidenav-layout-a" href="MrmData">MRM</a>
+            </div>
+            <div class="ui-g-12 no-pad-left">
+              <a class="sidenav-layout-a" href="AADS">AADS</a>
+            </div>
+            <div class="ui-g-12 no-pad-left">
+              <a class="sidenav-layout-a" href="FciData">FCI</a>
+            </div>
+            <div class="ui-g-12 no-pad-left">
+              <a class="sidenav-layout-a" href="HullingAgencies">Hulling Agencies</a>
+            </div>
+            <div class="ui-g-12 no-pad-left">
+              <a class="sidenav-layout-a" href="SuppliersData">Suppliers</a>
+            </div>
+          </div>
+        </div>
         <div class="ui-g-12 no-pad-left sidenav-layout-a">
           <a class="sidenav-layout-a pad-right" (click)="toggleButton('fp')">Field Point</a>
           <i *ngIf="!showDownArrow_FP" aria-hidden="true" class="fa fa-angle-down sidenav-layout-arrow"></i>
@@ -73,6 +97,16 @@
             </div>
             <div class="ui-g-12 no-pad-left">
               <a class="sidenav-layout-a" href="SchemeCommodityMaster">Scheme-Commodity Master</a>
+            </div>
+          </div>
+        </div>
+        <div class="ui-g-12 no-pad-left sidenav-layout-a">
+          <a class="sidenav-layout-a pad-right" (click)="toggleButton('scu')">Stack Card</a>
+          <i *ngIf="!showDownArrow_SCU" aria-hidden="true" class="fa fa-angle-down sidenav-layout-arrow"></i>
+          <i *ngIf="showDownArrow_SCU" aria-hidden="true" class="fa fa-angle-up sidenav-layout-arrow"></i>
+          <div *ngIf="showDownArrow_SCU" class="ui-g-12 dashboard">
+            <div class="ui-g-12 no-pad-left">
+              <a class="sidenav-layout-a" href="StackCardUpdate">Stack Card Update</a>
             </div>
           </div>
         </div>
