@@ -13,7 +13,7 @@
       <li>
         <div class="ui-g-12 no-pad-left sidenav-layout-a">
           <i class="pi pi-home pad-right"></i>
-          <a class="sidenav-layout-a" href="Home">Dashboard</a>
+          <a class="sidenav-layout-a" [routerLink]="['/Home']">Dashboard</a>
         </div>
       </li>
     </ul>
@@ -25,7 +25,7 @@
     <ul style="list-style-type:none;">
       <li>
         <!-- <div class="ui-g-12 no-pad-left">
-          <a class="sidenav-layout-a" href="RegionMaster">Region Master</a>
+          <a class="sidenav-layout-a" [routerLink]="RegionMaster">Region Master</a>
         </div> -->
         <div class="ui-g-12 no-pad-left sidenav-layout-a">
           <a class="sidenav-layout-a pad-right" (click)="toggleButton('md')">Master Data</a>
@@ -33,19 +33,19 @@
           <i *ngIf="showDownArrow_MD" aria-hidden="true" class="fa fa-angle-up sidenav-layout-arrow"></i>
           <div *ngIf="showDownArrow_MD" class="ui-g-12 dashboard">
             <div class="ui-g-12 no-pad-left">
-              <a class="sidenav-layout-a" href="MrmData">MRM</a>
+              <a class="sidenav-layout-a" [routerLink]="['/MrmData']" routerLinkActive="active">MRM</a>
             </div>
             <div class="ui-g-12 no-pad-left">
-              <a class="sidenav-layout-a" href="AADS">AADS</a>
+              <a class="sidenav-layout-a" [routerLink]="['/AADS']" routerLinkActive="active">AADS</a>
             </div>
             <div class="ui-g-12 no-pad-left">
-              <a class="sidenav-layout-a" href="FciData">FCI</a>
+              <a class="sidenav-layout-a" [routerLink]="['/FciData']" routerLinkActive="active">FCI</a>
             </div>
             <div class="ui-g-12 no-pad-left">
-              <a class="sidenav-layout-a" href="HullingAgencies">Hulling Agencies</a>
+              <a class="sidenav-layout-a" [routerLink]="['/HullingAgencies']" routerLinkActive="active">Hulling Agencies</a>
             </div>
             <div class="ui-g-12 no-pad-left">
-              <a class="sidenav-layout-a" href="SuppliersData">Suppliers</a>
+              <a class="sidenav-layout-a" [routerLink]="['/SuppliersData']" routerLinkActive="active">Suppliers</a>
             </div>
           </div>
         </div>
@@ -55,19 +55,19 @@
           <i *ngIf="showDownArrow_FP" aria-hidden="true" class="fa fa-angle-up sidenav-layout-arrow"></i>
           <div *ngIf="showDownArrow_FP" class="ui-g-12 dashboard">
             <div class="ui-g-12 no-pad-left">
-              <a class="sidenav-layout-a" href="DepositorMaster">Depositor Master</a>
+              <a class="sidenav-layout-a" [routerLink]="['/DepositorMaster']" routerLinkActive="active">Depositor Master</a>
             </div>
             <div class="ui-g-12 no-pad-left">
-              <a class="sidenav-layout-a" href="RailwayYardMaster">RailYard Master</a>
+              <a class="sidenav-layout-a" [routerLink]="['/RailwayYardMaster']" routerLinkActive="active">RailYard Master</a>
             </div>
             <div class="ui-g-12 no-pad-left">
-              <a class="sidenav-layout-a" href="RegionMaster">Region Master</a>
+              <a class="sidenav-layout-a" [routerLink]="['/RegionMaster']" routerLinkActive="active">Region Master</a>
             </div>
             <div class="ui-g-12 no-pad-left">
-              <a class="sidenav-layout-a" href="GodownMaster">Godown Master</a>
+              <a class="sidenav-layout-a" [routerLink]="['/GodownMaster']" routerLinkActive="active">Godown Master</a>
             </div>
             <div class="ui-g-12 no-pad-left">
-              <a class="sidenav-layout-a" href="IssuerMaster">Issuer Master</a>
+              <a class="sidenav-layout-a" [routerLink]="['/IssuerMaster']" routerLinkActive="active">Issuer Master</a>
             </div>
           </div>
         </div>
@@ -77,13 +77,13 @@
           <i *ngIf="showDownArrow_CM" aria-hidden="true" class="fa fa-angle-up sidenav-layout-arrow"></i>
           <div *ngIf="showDownArrow_CM" class="ui-g-12 dashboard">
             <div class="ui-g-12 no-pad-left">
-              <a class="sidenav-layout-a" href="CommodityMaster">Commodity Master</a>
+              <a class="sidenav-layout-a" [routerLink]="['/CommodityMaster']" routerLinkActive="active">Commodity Master</a>
             </div>
             <div class="ui-g-12 no-pad-left">
-              <a class="sidenav-layout-a" href="GunnyType">Gunny Type Master</a>
+              <a class="sidenav-layout-a" [routerLink]="['/GunnyType']" routerLinkActive="active">Gunny Type Master</a>
             </div>
             <div class="ui-g-12 no-pad-left">
-              <a class="sidenav-layout-a" href="CerealNoncereal">Cereal/Non-Cereal Master</a>
+              <a class="sidenav-layout-a" [routerLink]="['/CerealNoncereal']" routerLinkActive="active">Cereal/Non-Cereal Master</a>
             </div>
           </div>
         </div>
@@ -93,10 +93,10 @@
           <i *ngIf="showDownArrow_SM" aria-hidden="true" class="fa fa-angle-up sidenav-layout-arrow"></i>
           <div *ngIf="showDownArrow_SM" class="ui-g-12 dashboard">
             <div class="ui-g-12 no-pad-left">
-              <a class="sidenav-layout-a" href="SchemeMaster">Scheme Master</a>
+              <a class="sidenav-layout-a" [routerLink]="['/SchemeMaster']" routerLinkActive="active">Scheme Master</a>
             </div>
             <div class="ui-g-12 no-pad-left">
-              <a class="sidenav-layout-a" href="SchemeCommodityMaster">Scheme-Commodity Master</a>
+              <a class="sidenav-layout-a" [routerLink]="['/SchemeCommodityMaster']" routerLinkActive="active">Scheme-Commodity Master</a>
             </div>
           </div>
         </div>
@@ -106,7 +106,7 @@
           <i *ngIf="showDownArrow_SCU" aria-hidden="true" class="fa fa-angle-up sidenav-layout-arrow"></i>
           <div *ngIf="showDownArrow_SCU" class="ui-g-12 dashboard">
             <div class="ui-g-12 no-pad-left">
-              <a class="sidenav-layout-a" href="StackCardUpdate">Stack Card Update</a>
+              <a class="sidenav-layout-a" [routerLink]="['/StackCardUpdate']" routerLinkActive="active">Stack Card Update</a>
             </div>
           </div>
         </div>
@@ -116,19 +116,19 @@
           <i *ngIf="showDownArrow_OM" aria-hidden="true" class="fa fa-angle-up sidenav-layout-arrow"></i>
           <div *ngIf="showDownArrow_OM" class="ui-g-12 dashboard">
             <div class="ui-g-12 no-pad-left">
-              <a class="sidenav-layout-a" href="WeighmentMaster">Weighment Master</a>
+              <a class="sidenav-layout-a" [routerLink]="['/WeighmentMaster']" routerLinkActive="active">Weighment Master</a>
             </div>
             <div class="ui-g-12 no-pad-left">
-              <a class="sidenav-layout-a" href="PackingMaster">Packing Master</a>
+              <a class="sidenav-layout-a" [routerLink]="['/PackingMaster']" routerLinkActive="active">Packing Master</a>
             </div>
             <div class="ui-g-12 no-pad-left">
-              <a class="sidenav-layout-a" href="VehicleMaster">Vehicle Master</a>
+              <a class="sidenav-layout-a" [routerLink]="['/VehicleMaster']" routerLinkActive="active">Vehicle Master</a>
             </div>
             <div class="ui-g-12 no-pad-left">
-              <a class="sidenav-layout-a" href="TypeMaster">Type Master</a>
+              <a class="sidenav-layout-a" [routerLink]="['/TypeMaster']" routerLinkActive="active">Type Master</a>
             </div>
             <div class="ui-g-12 no-pad-left">
-              <a class="sidenav-layout-a" href="TransactionMaster">Transaction Master</a>
+              <a class="sidenav-layout-a" [routerLink]="['/TransactionMaster']" routerLinkActive="active">Transaction Master</a>
             </div>
           </div>
         </div>
@@ -140,7 +140,7 @@
 <!-- <app-topbar></app-topbar>
 <div class="layout-menu-container">
   <div class="layout-menu-logo">
-    <a href="#">
+    <a [routerLink]="#">
       <img id="layout-menu-logo" src="../../assets/layout/images/login/tncsc-logo-icon.ico">
     </a>
   </div>

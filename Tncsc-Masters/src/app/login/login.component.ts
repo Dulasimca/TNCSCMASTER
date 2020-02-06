@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PathConstants } from '../constants/path.constants';
@@ -29,7 +29,9 @@ export class LoginComponent implements OnInit {
   form: any = [];
   mappingId: any;
   mappingName: any;
+  showPswd: boolean = false;
   @Output() loggingIn = new EventEmitter<boolean>();
+  @ViewChild('pswd', {static: false}) pInput: ElementRef;
 
   constructor(private router: Router, private fb: FormBuilder, private authService: AuthService,
     private restApiService: RestAPIService, private loginService: LoginService,
@@ -46,6 +48,17 @@ export class LoginComponent implements OnInit {
     // if (this.isChecked) {
     //   this.userName =  (this.authService.getCredentials() !== null) ? this.authService.getCredentials() : this.userName;
     //  }
+  }
+
+  onShowPswd() {
+    var inputValue = (<HTMLInputElement>document.getElementById('pswd'));
+    if(inputValue.type === 'password') {
+      inputValue.type = 'text';
+      this.showPswd = !this.showPswd;
+    } else {
+      this.showPswd = !this.showPswd;
+      inputValue.type = 'password';
+    }
   }
 
   get formControls() {
