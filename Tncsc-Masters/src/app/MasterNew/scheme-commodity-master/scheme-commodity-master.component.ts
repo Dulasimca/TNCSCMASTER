@@ -146,8 +146,9 @@ export class SchemeCommodityMasterComponent implements OnInit {
   onAdd() {
     this.isAdd = true;
     this.isEdited = true;
+    this.SchemeCode = this.SchemeCommodity.value;
     this.SchemeName = this.SchemeCommodity.label;
-    this.SchemeCommodityCode = this.SchemeCode = this.RowID = this.DeleteFlag = this.SchemeCommodityName = undefined;
+    this.SchemeCommodityCode = this.RowID = this.DeleteFlag = this.SchemeCommodityName = undefined;
     this.CommodityOptions = undefined;
     this.Active = false;
   }
