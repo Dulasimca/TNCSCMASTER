@@ -28,6 +28,7 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {ButtonModule} from 'primeng/button';
 import {SidebarModule} from 'primeng/sidebar';
 import {ScrollPanelModule} from 'primeng/scrollpanel';
+import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -144,6 +145,7 @@ import { StackCardMasterComponent } from './MasterNew/stack-card-master/stack-ca
     // ProgressSpinnerModule,
     // InputMaskModule,
     // FileUploadModule
+    SlimLoadingBarModule
   ],
   providers: [AuthService, ConfirmationService, TableConstants, StatusMessage, LoginService,
     DatePipe, RestAPIService, PathConstants, ExcelService, MessageService, RoleBasedService],

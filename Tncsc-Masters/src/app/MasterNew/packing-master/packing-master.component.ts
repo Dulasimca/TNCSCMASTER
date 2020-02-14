@@ -47,12 +47,15 @@ export class PackingMasterComponent implements OnInit {
     this.RCode = this.authService.getUserAccessible().rCode;
     this.GCode = this.authService.getUserAccessible().gCode;
     this.loading = true;
-    this.restAPIService.get(PathConstants.PACKING_AND_WEIGHMENT).subscribe(res => {
-      if (res.Table !== undefined && res.Table !== null && res.Table.length !== 0) {
-        this.NewCode = 'P' + '0' + (res.Table.length + 1);
+    const params = {
+      'Type': '1'
+    };
+    this.restAPIService.getByParameters(PathConstants.PACKING_MASTER_GET, params).subscribe(res => {
+      if (res !== undefined && res !== null && res.length !== 0) {
+        this.NewCode = 'P' + '0' + (res.length + 1);
         this.PackingMasterCols = this.tableConstants.PackingMaster;
-        this.PackingMasterData = res.Table;
-        this.FilteredArray = res.Table;
+        this.PackingMasterData = res;
+        this.FilteredArray = res;
         let sno = 0;
         this.PackingMasterData.forEach(ss => {
           sno += 1;
@@ -158,12 +161,15 @@ export class PackingMasterComponent implements OnInit {
 
   onView() {
     this.loading = true;
-    this.restAPIService.get(PathConstants.PACKING_AND_WEIGHMENT).subscribe(res => {
-      if (res.Table !== undefined && res.Table !== null && res.Table.length !== 0) {
-        this.NewCode = 'P' + '0' + (res.Table.length + 1);
+    const params = {
+      'Type': '1'
+    };
+    this.restAPIService.getByParameters(PathConstants.PACKING_MASTER_GET, params).subscribe(res => {
+      if (res !== undefined && res !== null && res.length !== 0) {
+        this.NewCode = 'P' + '0' + (res.length + 1);
         this.PackingMasterCols = this.tableConstants.PackingMaster;
-        this.PackingMasterData = res.Table;
-        this.FilteredArray = res.Table;
+        this.PackingMasterData = res;
+        this.FilteredArray = res;
         let sno = 0;
         this.PackingMasterData.forEach(ss => {
           sno += 1;

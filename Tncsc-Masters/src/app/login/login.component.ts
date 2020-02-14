@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.fb.group({
       user: ['', Validators.required],
       pswd: ['', Validators.required]
-    })
+    });
     this.isChecked = JSON.parse(this.authService.getKeepMeLoggedInStatus());
     // if (this.isChecked) {
     //   this.userName =  (this.authService.getCredentials() !== null) ? this.authService.getCredentials() : this.userName;
@@ -55,13 +55,16 @@ export class LoginComponent implements OnInit {
   onSignIn() {
     if (this.loginForm.invalid) {
       this.messageService.clear();
-      this.messageService.add({ key: 't-err', severity: StatusMessage.SEVERITY_ERROR, summary: StatusMessage.SUMMARY_ERROR, detail: StatusMessage.ValidCredentialsErrorMessage });
+      this.messageService.add({
+        key: 't-err', severity: StatusMessage.SEVERITY_ERROR,
+        summary: StatusMessage.SUMMARY_ERROR, detail: StatusMessage.ValidCredentialsErrorMessage
+      });
       return;
     } else {
       let username = new HttpParams().append('userName', this.userName);
       this.restApiService.getByParameters(PathConstants.LOGIN, username).subscribe(credentials => {
         if (credentials !== undefined && credentials !== null && credentials.length !== 0) {
-          if (this.userName.toLowerCase() === credentials[0].UserName.toLowerCase() && this.password === credentials[0].Pwd) {
+          if (this.userName.toLowerCase() === credentials[0].UserName.toLowerCase() && this.password === credentials[0].Pwd && credentials[0].RoleId === 1) {
             this.router.navigate(['Home']);
             this.roleId = credentials[0].RoleId;
             this.mappingId = credentials[0].MappingId;
@@ -81,22 +84,31 @@ export class LoginComponent implements OnInit {
               RName: this.regionName,
               MappingId: this.mappingId,
               MappingName: this.mappingName
-            }
+            };
             this.authService.login(this.loginForm.value, params);
           } else {
             this.clearFields();
             this.messageService.clear();
-            this.messageService.add({ key: 't-err', severity: StatusMessage.SEVERITY_ERROR, summary: StatusMessage.SUMMARY_ERROR, detail: StatusMessage.ValidCredentialsErrorMessage });
+            this.messageService.add({
+              key: 't-err', severity: StatusMessage.SEVERITY_ERROR,
+              summary: StatusMessage.SUMMARY_ERROR, detail: StatusMessage.ValidCredentialsErrorMessage
+            });
           }
         } else {
           // this.clearFields();
           this.messageService.clear();
-          this.messageService.add({ key: 't-err', severity: StatusMessage.SEVERITY_ERROR, summary: StatusMessage.SUMMARY_ERROR, detail: StatusMessage.ValidCredentialsErrorMessage });
+          this.messageService.add({
+            key: 't-err', severity: StatusMessage.SEVERITY_ERROR,
+            summary: StatusMessage.SUMMARY_ERROR, detail: StatusMessage.ValidCredentialsErrorMessage
+          });
         }
       }, (err: HttpErrorResponse) => {
         if (err.status === 0 || err.status === 400) {
           this.messageService.clear();
-          this.messageService.add({ key: 't-err', severity: StatusMessage.SEVERITY_ERROR, summary: StatusMessage.SUMMARY_ERROR, detail: StatusMessage.ErrorMessage });
+          this.messageService.add({
+            key: 't-err', severity: StatusMessage.SEVERITY_ERROR,
+            summary: StatusMessage.SUMMARY_ERROR, detail: StatusMessage.ErrorMessage
+          });
         }
       });
     }

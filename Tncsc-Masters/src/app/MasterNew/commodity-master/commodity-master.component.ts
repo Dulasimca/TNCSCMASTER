@@ -146,7 +146,7 @@ export class CommodityMasterComponent implements OnInit {
           if (res !== undefined && res !== null && res.length !== 0) {
             this.AllotmentGroupData = res;
             this.AllotmentGroupData.forEach(S => {
-              AllotmentSelection.push({ 'label': S.Majorname, 'value': S.Majorcode });
+              AllotmentSelection.push({ 'label': S.MajorName, 'value': S.MajorCode });
             });
             this.AllotmentOptions = AllotmentSelection;
             this.AllotmentOptions.unshift({ 'label': '-select-', 'value': null, disabled: true });

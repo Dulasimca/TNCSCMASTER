@@ -16,6 +16,7 @@ export class PathConstants {
   public static readonly TYPE_MASTER_POST = '/api/ManageTypeMaster/Post';
   public static readonly TRANSACTION_MASTER = '/api/TransactionMaster';
   public static readonly TRANSACTION_MASTER_POST = '/api/ManageTransactionMaster/Post';
+  public static readonly TRANSACTION_MASTER_GET = '/api/ManageTransactionMaster';
   public static readonly ITEM_MASTER = '/api/ItemMaster';
   public static readonly CEREAL_MASTER_POST = '/api/ManageItemMaster/Post';
   public static readonly MAJOR_ITEM_MASTER = '/api/MajorItemMaster';
@@ -28,11 +29,13 @@ export class PathConstants {
   public static readonly RAILWAY_YARD_MASTER_POST = '/api/ManageRailwayYardMaster/Post';
   public static readonly SCHEME_MASTER = '/api/Scheme';
   public static readonly SCHEME_MASTER_POST = '/api/ManageSchemesMaster/Post';
+  public static readonly SCHEME_MASTER_GET = '/api/ManageSchemesMaster';
   public static readonly SCHEME_COMMODITY_MASTER = '/api/SchemeCommodity';
   public static readonly SCHEME_COMMODITY_GET = '/api/ManageSchemeCommodity/Get';
   public static readonly SCHEME_COMMODITY_POST = '/api/ManageSchemeCommodity/Post';
   public static readonly PACKING_AND_WEIGHMENT = '/api/PackingandWeighment';
   public static readonly PACKING_MASTER_POST = '/api/ManagePackingMaster/Post';
+  public static readonly PACKING_MASTER_GET = '/api/ManagePackingMaster';
   public static readonly ISSUER_MASTER_GET = '/api/IssuerMaster/Get';
   public static readonly ISSUER_MASTER_PUT = '/api/IssuerMaster/Put';
   public static readonly ISSUER_MASTER_POST = '/api/IssuerMaster/Post';

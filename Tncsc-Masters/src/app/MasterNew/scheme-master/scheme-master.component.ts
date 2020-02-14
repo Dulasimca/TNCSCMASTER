@@ -43,7 +43,10 @@ export class SchemeMasterComponent implements OnInit {
     this.RCode = this.authService.getUserAccessible().rCode;
     this.GCode = this.authService.getUserAccessible().gCode;
     this.loading = true;
-    this.restAPIService.get(PathConstants.SCHEME_MASTER).subscribe(res => {
+    const params = {
+      'Type': '1'
+    };
+    this.restAPIService.getByParameters(PathConstants.SCHEME_MASTER_GET, params).subscribe(res => {
       if (res !== undefined && res !== null && res.length !== 0) {
         this.SchemeMasterCols = this.tableConstants.SchemeMaster;
         this.SchemeMasterData = res;
@@ -140,7 +143,10 @@ export class SchemeMasterComponent implements OnInit {
 
   onView() {
     this.loading = true;
-    this.restAPIService.get(PathConstants.SCHEME_MASTER).subscribe(res => {
+    const params = {
+      'Type': '1'
+    };
+    this.restAPIService.getByParameters(PathConstants.SCHEME_MASTER_GET, params).subscribe(res => {
       if (res !== undefined && res !== null && res.length !== 0) {
         this.SchemeMasterCols = this.tableConstants.SchemeMaster;
         this.SchemeMasterData = res;

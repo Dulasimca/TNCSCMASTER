@@ -9,6 +9,7 @@ export class StatusMessage {
     public static readonly SUMMARY_ERROR = 'Error Message';
     public static readonly SUMMARY_INVALID = 'Invalid Date!'
     public static readonly SuccessMessage = 'Saved Successfully!';
+    public static readonly DeleteMessage = 'Deleted Successfully!';
     public static readonly ErrorMessage = 'Please Contact Administrator!';
     public static readonly WarningMessage = 'Please try after sometime!';
     public static readonly NoRecordMessage = 'No Record Found!';
