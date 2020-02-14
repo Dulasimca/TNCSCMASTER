@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { SelectItem, MessageService } from 'primeng/api';
+import { SelectItem, MessageService, Message, ConfirmationService } from 'primeng/api';
 import { Dropdown } from 'primeng/dropdown';
 import { AuthService } from 'src/app/services/auth.service';
 import { RestAPIService } from 'src/app/services/restAPI.service';
@@ -46,12 +46,13 @@ export class StackCardMasterComponent implements OnInit {
   viewPane: boolean = false;
   isViewed: boolean = false;
   isEdited: boolean = false;
+  msgs: Message[] = [];
   @ViewChild('godown', { static: false }) godownPanel: Dropdown;
   @ViewChild('region', { static: false }) regionPanel: Dropdown;
   @ViewChild('year', { static: false }) yearPanel: Dropdown;
 
 
-  constructor(private authService: AuthService, private roleBasedService: RoleBasedService, private restAPIService: RestAPIService, private messageService: MessageService, private tableConstants: TableConstants) { }
+  constructor(private authService: AuthService, private confirmationService: ConfirmationService, private roleBasedService: RoleBasedService, private restAPIService: RestAPIService, private messageService: MessageService, private tableConstants: TableConstants) { }
 
   ngOnInit() {
     this.canShowMenu = (this.authService.isLoggedIn()) ? this.authService.isLoggedIn() : false;
@@ -203,7 +204,25 @@ export class StackCardMasterComponent implements OnInit {
     });
   }
 
-
+  onDelete() {
+    {
+      this.confirmationService.confirm({
+        message: 'Do you want to delete this Stack Card?',
+        header: 'Delete Confirmation',
+        icon: 'pi pi-info-circle',
+        accept: () => {
+          this.messageService.clear();
+          this.messageService.add({
+            key: 't-err', severity: StatusMessage.SEVERITY_SUCCESS,
+            summary: StatusMessage.SUMMARY_SUCCESS, detail: StatusMessage.StackcardDeleted
+          });
+        },
+        reject: () => {
+          this.onClear();
+        }
+      });
+    }
+  }
 
   onSearch(value) {
     this.StackMasterData = this.FilteredArray;

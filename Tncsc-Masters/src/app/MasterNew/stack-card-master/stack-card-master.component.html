@@ -12,6 +12,7 @@
             </div>
         </p-header>
         <p-toast position="top-center" key="t-err"></p-toast>
+        <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
         <div class="ui-g ui-fluid">
             <div class="ui-g-12 ui-fluid border-teal">
                 <form #f="ngForm" name="stackMaster">
@@ -76,9 +77,15 @@
                             <button pButton type="button" label=Save (click)="onSave()"
                                 [disabled]="(!Region || !GCode || !StackNo || !CurYear || !Active)"></button>
                         </div>
+                        <div class="ui-g-3 ui-md-1 ui-fluid" style="padding-top: 21px;">
+                            <button pButton type="button" label=Delete (click)="onDelete()" icon="pi pi-times"></button>
+                        </div>
+                        <!-- <p-messages [value]="msgs"></p-messages> -->
                     </div>
                 </form>
             </div>
+
+
 
             <div class="ui-g-12 dashboard">
                 <p-table #dt [columns]="StackMasterCols" [value]="StackMasterData" [rows]="20"
