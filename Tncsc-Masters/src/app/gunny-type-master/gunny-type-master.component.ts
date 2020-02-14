@@ -20,6 +20,8 @@ export class GunnyTypeMasterComponent implements OnInit {
   activeOptions: SelectItem[];
   GunnyName: string;
   GunnyCode: string;
+  Gunny: any;
+  NewCode: any;
   FilteredArray: any;
   Flag: string;
   label: string = 'Save';
@@ -29,6 +31,7 @@ export class GunnyTypeMasterComponent implements OnInit {
   DeleteFlag: boolean;
   canShowMenu: boolean;
   isAdd: boolean = false;
+  // isEdited: boolean = false;
   searchText: any;
 
   constructor(private authService: AuthService, private restAPI: RestAPIService, private tableconstants: TableConstants, private messageService: MessageService) { }
@@ -40,6 +43,7 @@ export class GunnyTypeMasterComponent implements OnInit {
         this.gunnyCols = this.tableconstants.GunnyType;
         this.gunnyData = res;
         this.FilteredArray = res;
+        this.NewCode = 'GT' + '00' + (res.length + 1);
         let sno = 0;
         this.gunnyData.forEach(S => {
           sno += 1;
@@ -71,14 +75,23 @@ export class GunnyTypeMasterComponent implements OnInit {
     this.isSelected = true;
     this.label = 'Update';
     this.GunnyCode = selectedRow.GTCODE;
+    this.Gunny = selectedRow.GTCODE;
     this.GunnyName = selectedRow.GTType;
     this.Active = selectedRow.Activeflag;
     this.DeleteFlag = selectedRow.DeleteFlag;
   }
 
+  onAdd() {
+    this.isAdd = true;
+    this.isSelected = false;
+    this.GunnyCode = this.NewCode;
+    this.GunnyName = this.Gunny = undefined;
+    this.Active = false;
+  }
+
   onSave() {
     const params = {
-      'GTCode': this.GunnyCode || '',
+      'GTCode': this.Gunny || '',
       'GTType': this.GunnyName,
       'DeleteFlag': this.DeleteFlag || 'F',
       'Activeflag': this.Active,
@@ -119,6 +132,7 @@ export class GunnyTypeMasterComponent implements OnInit {
         this.gunnyCols = this.tableconstants.GunnyType;
         this.gunnyData = res;
         this.FilteredArray = res;
+        this.NewCode = 'GT' + '00' + (res.length + 1);
         let sno = 0;
         this.gunnyData.forEach(S => {
           sno += 1;
@@ -161,9 +175,10 @@ export class GunnyTypeMasterComponent implements OnInit {
 
   onClear() {
     this.activeOptions = undefined;
-    this.GunnyCode = this.GunnyName = undefined;
+    this.GunnyCode = this.GunnyName = this.NewCode = undefined;
     this.label = 'Save';
     this.Active = false;
+    this.isSelected = false;
     this.isSelected = false;
   }
 }

@@ -64,7 +64,10 @@ export class CommodityMasterComponent implements OnInit {
     this.RCode = this.authService.getUserAccessible().rCode;
     this.GCode = this.authService.getUserAccessible().gCode;
     this.loading = true;
-    this.restAPIService.get(PathConstants.ITEM_MASTER).subscribe(res => {
+    const params = {
+      'ItemType': '1'
+    };
+    this.restAPIService.getByParameters(PathConstants.ITEM_MASTER_GET, params).subscribe(res => {
       if (res !== undefined) {
         this.NewCode = 'IT' + (res.length + 1);
         this.ItemMasterCols = this.tableConstants.CommodityMasterCols;
@@ -235,7 +238,10 @@ export class CommodityMasterComponent implements OnInit {
 
   onView() {
     this.loading = true;
-    this.restAPIService.get(PathConstants.ITEM_MASTER).subscribe(res => {
+    const params = {
+      'ItemType': '1'
+    };
+    this.restAPIService.getByParameters(PathConstants.ITEM_MASTER_GET, params).subscribe(res => {
       if (res !== undefined) {
         this.ItemMasterCols = this.tableConstants.CommodityMasterCols;
         this.ItemMasterData = res;

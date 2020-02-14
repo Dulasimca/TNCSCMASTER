@@ -45,6 +45,9 @@
           <button class="ui-g-3 dashboard inline-margin" style="margin-top: 15px;" [disabled]="(!GunnyName || !Active)"
             pButton type="button" label={{label}} (click)="onSave()"></button>
         </div>
+        <div class="ui-g-3 ui-md-1 ui-fluid" style="padding-top: 21px;">
+          <button pButton type="button" label=Add (click)="onAdd()"></button>
+        </div>
       </div>
       <div class="ui-g-12 ui-fluid">
         <p-table name="item_table" [columns]="gunnyCols" [value]="gunnyData" [responsive]="true" autoLayout="true"
