@@ -34,6 +34,7 @@ export class CommodityMasterComponent implements OnInit {
   Item: any;
   ITTax: any;
   GRName: any;
+  MajorCode: any;
   SFlag: boolean;
   CBFlag: boolean;
   Unit: any;
@@ -137,7 +138,9 @@ export class CommodityMasterComponent implements OnInit {
         if (type === 'enter') {
           this.measurementPanel.overlayVisible = true;
         }
-        MeasurementSelection.push({ 'label': '-select-', 'value': null, disabled: true }, { 'label': 'GRAMS', 'value': 'GRAMS' }, { 'label': 'KGS', 'value': 'KGS' }, { 'label': 'KILOLITRE', 'value': 'KILOLITRE' }, { 'label': 'LTRS', 'value': 'LTRS' }, { 'label': 'M.TONS', 'value': 'M.TONS' }, { 'label': 'NO.s', 'value': 'NO.s' }, { 'label': 'QUINTAL', 'value': 'QUINTAL' });
+        MeasurementSelection.push({ 'label': '-select-', 'value': null, disabled: true }, { 'label': 'GRAMS', 'value': 'GRAMS' },
+          { 'label': 'KGS', 'value': 'KGS' }, { 'label': 'KILOLITRE', 'value': 'KILOLITRE' }, { 'label': 'LTRS', 'value': 'LTRS' },
+          { 'label': 'M.TONS', 'value': 'M.TONS' }, { 'label': 'NO.s', 'value': 'NO.s' }, { 'label': 'QUINTAL', 'value': 'QUINTAL' });
         this.MeasurementOptions = MeasurementSelection;
         break;
       case 'allotment':
@@ -167,7 +170,7 @@ export class CommodityMasterComponent implements OnInit {
     this.ItemName = selectedRow.ITDescription;
     this.ItemOptions = [{ label: selectedRow.ItemName, value: selectedRow.ItemType }];
     this.MeasurementOptions = [{ label: selectedRow.ITBweighment, value: selectedRow.Measurement }];
-    this.AllotmentOptions = [{ label: selectedRow.Allotmentgroup, value: selectedRow.GRName }];
+    this.AllotmentOptions = [{ label: selectedRow.MajorName, value: selectedRow.GRName }];
     this.ItemType = selectedRow.ItemType;
     this.Hsncode = selectedRow.Hsncode;
     this.TRCode = selectedRow.ItemName;
@@ -175,11 +178,12 @@ export class CommodityMasterComponent implements OnInit {
     this.Active = selectedRow.Activeflag;
     this.DeleteFlag = selectedRow.DeleteFlag;
     this.ITTax = selectedRow.ittax;
-    this.GRName = selectedRow.GRName;
+    this.GRName = selectedRow.MajorName;
+    this.MajorCode = selectedRow.GRName;
     this.SFlag = selectedRow.SFlag;
     this.CBFlag = selectedRow.CBFlag;
     this.Unit = selectedRow.Unit;
-    this.AllotmentGroup = selectedRow.Allotmentgroup;
+    this.AllotmentGroup = selectedRow.MajorName;
   }
 
   onAdd() {
@@ -197,7 +201,7 @@ export class CommodityMasterComponent implements OnInit {
       'ITDescription': this.ItemName,
       'ITBweighment': this.Measurement,
       'ittax': this.ITTax,
-      'GRName': this.AllotmentGroup.value || this.GRName,
+      'GRName': this.AllotmentGroup.value || this.MajorCode,
       'ItemType': this.ItemType,
       'Hsncode': this.Hsncode,
       'DeleteFlag': this.DeleteFlag || 'F',
