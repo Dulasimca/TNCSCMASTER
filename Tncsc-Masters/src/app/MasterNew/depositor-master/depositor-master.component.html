@@ -80,7 +80,7 @@
   </p-panel>
 </div>
 
-<p-dialog header="Depositor Master Update" [contentStyle]="{'overflow':'scroll'}" [modal]="true" [maximizable]="true"
+<p-dialog header="Depositor Master Update" [modal]="true" [maximizable]="true"
   [(visible)]="isEdited" [responsive]="true" [style]="{width: '1000px', height: '1500px !important'}">
   <div class="ui-g-12 ui-fluid border-teal">
     <form #f="ngForm" name="depositorMaster">
@@ -108,7 +108,7 @@
         </div>
         <!-- <div class="ui-g-12 ui-md-1"></div> -->
         <div class="ui-g-3 ui-md-1 ui-fluid">
-          <button pButton type="button" label=Save (click)="onSave()" [disabled]="(!Active || !DepositorName)"></button>
+          <button pButton type="button" label=Save (click)="onSave()" [disabled]="(!GCode || !RCode || !Active || !DepositorName)"></button>
         </div>
       </div>
     </form>
