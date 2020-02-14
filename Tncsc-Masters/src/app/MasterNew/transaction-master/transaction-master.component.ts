@@ -37,7 +37,7 @@ export class TransactionMasterComponent implements OnInit {
   isViewed: boolean = false;
   isEdited: boolean = false;
   // @ViewChild('Type', { static: false }) TypePanel: Dropdown;
-  @ViewChild('transaction', {static: false}) transactionPanel: Dropdown;
+  @ViewChild('transaction', { static: false }) transactionPanel: Dropdown;
 
 
 
@@ -48,7 +48,10 @@ export class TransactionMasterComponent implements OnInit {
     this.RCode = this.authService.getUserAccessible().rCode;
     this.GCode = this.authService.getUserAccessible().gCode;
     this.loading = true;
-    this.restAPIService.get(PathConstants.TRANSACTION_MASTER).subscribe(res => {
+    const params = {
+      'Type': '1'
+    };
+    this.restAPIService.getByParameters(PathConstants.TRANSACTION_MASTER_GET, params).subscribe(res => {
       if (res !== undefined) {
         this.NewCode = 'TR' + '0' + (res.length + 1);
         this.TransactionMasterCols = this.tableConstants.TransactionMaster;
@@ -174,7 +177,10 @@ export class TransactionMasterComponent implements OnInit {
 
   onView() {
     this.loading = true;
-    this.restAPIService.get(PathConstants.TRANSACTION_MASTER).subscribe(res => {
+    const params = {
+      'Type': '1'
+    };
+    this.restAPIService.getByParameters(PathConstants.TRANSACTION_MASTER_GET, params).subscribe(res => {
       if (res !== undefined) {
         this.NewCode = 'TR' + '0' + (res.length + 1);
         this.TransactionMasterCols = this.tableConstants.TransactionMaster;
