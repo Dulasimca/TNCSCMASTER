@@ -7,6 +7,7 @@ import { TableConstants } from 'src/app/constants/table.constants';
 import { PathConstants } from 'src/app/constants/path.constants';
 import { StatusMessage } from 'src/app/constants/Messages';
 import { HttpErrorResponse } from '@angular/common/http';
+import { RoleBasedService } from 'src/app/shared/role-based.service';
 
 @Component({
   selector: 'app-depositor-master',
@@ -23,9 +24,15 @@ export class DepositorMasterComponent implements OnInit {
   Active: any;
   DeleteFlag: any;
   depositorOptions: SelectItem[];
+  regionOptions: SelectItem[];
+  godownOptions: SelectItem[];
   Depositor: any;
   RCode: any;
   GCode: any;
+  regions: any;
+  roleId: any;
+  data?: any;
+  loggedInRCode: any;
   canShowMenu: boolean;
   searchText: any;
   loading: boolean;
@@ -33,19 +40,26 @@ export class DepositorMasterComponent implements OnInit {
   isViewed: boolean = false;
   isEdited: boolean = false;
   @ViewChild('depositor', { static: false }) depositorPanel: Dropdown;
+  @ViewChild('godown', { static: false }) godownPanel: Dropdown;
+  @ViewChild('region', { static: false }) regionPanel: Dropdown;
 
 
-
-  constructor(private authService: AuthService, private restAPIService: RestAPIService, private messageService: MessageService, private tableConstants: TableConstants) { }
+  constructor(private authService: AuthService, private roleBasedService: RoleBasedService, private restAPIService: RestAPIService, private messageService: MessageService, private tableConstants: TableConstants) { }
 
   ngOnInit() {
     this.canShowMenu = (this.authService.isLoggedIn()) ? this.authService.isLoggedIn() : false;
-    this.RCode = this.authService.getUserAccessible().rCode;
-    this.GCode = this.authService.getUserAccessible().gCode;
+    // this.RCode = this.authService.getUserAccessible().rCode;
+    // this.GCode = this.authService.getUserAccessible().gCode;
+    this.regions = this.roleBasedService.getRegions();
+    this.roleId = JSON.parse(this.authService.getUserAccessible().roleId);
+    this.data = this.roleBasedService.getInstance();
+    this.loggedInRCode = this.authService.getUserAccessible().rCode;
   }
 
   onSelect(item, type) {
     let depositorSelection = [];
+    let regionSelection = [];
+    let godownSelection = [];
     switch (item) {
       case 'depositor':
         if (type === 'enter') {
@@ -65,6 +79,36 @@ export class DepositorMasterComponent implements OnInit {
             }
           });
         }
+        break;
+      case 'reg':
+        this.regions = this.roleBasedService.regionsData;
+        if (type === 'enter') {
+          this.regionPanel.overlayVisible = true;
+        }
+        if (this.roleId === 1) {
+          if (this.regions !== undefined) {
+            regionSelection.push({ label: 'All', value: null });
+            this.regions.forEach(x => {
+              regionSelection.push({ label: x.RName, value: x.RCode });
+            });
+            this.regionOptions = regionSelection;
+          }
+        }
+        break;
+      case 'gd':
+        if (type === 'enter') {
+          this.godownPanel.overlayVisible = true;
+        }
+        if (this.data !== undefined) {
+          godownSelection.push({ label: 'All', value: null });
+          this.data.forEach(x => {
+            if (x.RCode === this.RCode.value) {
+              godownSelection.push({ label: x.GName, value: x.GCode });
+            }
+          });
+          this.godownOptions = godownSelection;
+        }
+        break;
     }
   }
 
@@ -118,8 +162,9 @@ export class DepositorMasterComponent implements OnInit {
 
   onSave() {
     const params = {
-      'RCode': this.RCode,
-      'GCode': this.GCode,
+      'RCode': this.RCode.value,
+      // 'GCode': (this.RCode.value = 'All') ? '' : this.GCode.value,
+      'GCode': this.GCode.value,
       'DepositorCode': this.DepositorCode || '',
       'DepositorName': this.DepositorName,
       'DepositorType': this.Depositor,
@@ -167,6 +212,7 @@ export class DepositorMasterComponent implements OnInit {
     }
   }
   onReset(item) {
+    if (item === 'reg') { this.GCode = null; }
     if (item === 'depositor') {
       this.onClear();
     }
