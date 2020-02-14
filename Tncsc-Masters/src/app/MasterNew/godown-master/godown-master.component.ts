@@ -45,8 +45,8 @@ export class GodownMasterComponent implements OnInit {
   isViewed: boolean = false;
   isEdited: boolean = false;
   @ViewChild('godown', { static: false }) godownPanel: Dropdown;
-  @ViewChild('operationalType', { static: false }) operationalTypePanel: Dropdown;
-  @ViewChild('ownerType', { static: false }) ownerTypePanel: Dropdown;
+  @ViewChild('operational', { static: false }) operationalTypePanel: Dropdown;
+  @ViewChild('owner', { static: false }) ownerTypePanel: Dropdown;
 
 
 
@@ -83,16 +83,22 @@ export class GodownMasterComponent implements OnInit {
         if (type === 'enter') {
           this.operationalTypePanel.overlayVisible = true;
         }
-        operationalTypeSelection.push({ 'label': '-select-', 'value': null, disabled: true }, { 'label': 'Operational Godown', 'value': 'O ' }, { 'label': 'Buffer Godown', 'value': 'B ' },
-          { 'label': 'Gunny Godown', 'value': 'G ' }, { 'label': 'Cap', 'value': 'C ' });
+        // if (this.operationalTypeOptions === undefined) {
+        operationalTypeSelection.push({ label: 'Operational Godown', value: 'O ' },
+          { label: 'Buffer Godown', value: 'B ' }, { label: 'Gunny Godown', value: 'G ' }, { label: 'Cap', value: 'C ' });
+        operationalTypeSelection.unshift({ label: '-select-', value: null, disabled: true });
+        // }
         this.operationalTypeOptions = operationalTypeSelection;
         break;
       case 'ownerType':
         if (type === 'enter') {
           this.ownerTypePanel.overlayVisible = true;
         }
-        ownerTypeSelection.push({ 'label': '-select-', 'value': null, disabled: true }, { 'label': 'OWNED', 'value': 'O' }, { 'label': 'HIRED', 'value': 'H' },
-          { 'label': 'CWC', 'value': 'CW' }, { 'label': 'TNWC', 'value': 'TW' });
+        // if (this.ownerTypeOptions === undefined) {
+        ownerTypeSelection.push({ label: 'OWNED', value: 'O' },
+          { label: 'HIRED', value: 'H' }, { label: 'CWC', value: 'C' }, { label: 'TNWC', value: 'TW' });
+        ownerTypeSelection.unshift({ label: '-select-', value: null, disabled: true });
+        // }
         this.ownerTypeOptions = ownerTypeSelection;
         break;
     }
@@ -113,6 +119,17 @@ export class GodownMasterComponent implements OnInit {
         this.GodownMasterData.forEach(s => {
           sno += 1;
           s.SlNo = sno;
+          // (s.OPERATIONTYPE === 'O ') ? s.OPERATIONTYPE = 'Operational Godown' : 'O ';
+          // (s.OPERATIONTYPE === 'B ') ? s.OPERATIONTYPE = 'Buffer Godown' : 'B ';
+          // (s.OPERATIONTYPE === 'G ') ? s.OPERATIONTYPE = 'Gunny Godown' : 'G ';
+          // (s.OPERATIONTYPE === 'C ') ? s.OPERATIONTYPE = 'Cap' : 'C ';
+
+          // (s.TNCSType === 'O') ? s.TNCSType = 'OWNED' : 'O';
+          // (s.TNCSType === 'H') ? s.TNCSType = 'HIRED' : 'H';
+          // (s.TNCSType === 'C') ? s.TNCSType = 'CWC' : 'C';
+          // (s.TNCSType === 'TW') ? s.TNCSType = 'TNWC' : 'TW';
+
+
         });
         this.loading = false;
       }
@@ -160,8 +177,9 @@ export class GodownMasterComponent implements OnInit {
 
   onAdd() {
     this.isEdited = true;
+    this.isViewed = false;
     this.operationalTypeOptions = this.ownerTypeOptions = undefined;
-    this.GodownCode = this.GodownName = this.Capacity = this.Carpet = this.Shops = this.SessionFlag = this.ExportFlag = this.DeleteFlag = this.OperationalType = this.OwnerType = null;
+    this.GodownCode = this.GodownName = this.Capacity = this.Carpet = this.Shops = this.SessionFlag = this.ExportFlag = this.DeleteFlag = this.OperationalType = this.OperationalCode = this.OwnerType = this.OwnerCode = null;
     this.Active = false;
   }
 
@@ -169,14 +187,14 @@ export class GodownMasterComponent implements OnInit {
     const params = {
       'TNCSCode': this.GodownCode || '',
       'TNCSName': this.GodownName,
-      'TNCSRegn': this.Godown,
-      'TNCSType': this.OwnerType,
+      'TNCSRegn': this.Godown || this.Region,
+      'TNCSType': this.OwnerType.value || this.OwnerType,
       'TNCSCarpet': this.Carpet,
       'TNCSCapacity': this.Capacity,
       'SessionFlag': this.SessionFlag || '',
       'ExportFlag': this.ExportFlag || '',
-      'OPERATIONTYPE': this.OperationalType,
-      'NOOFSHOPCRS': this.Shops || '0',
+      'OPERATIONTYPE': this.OperationalType.value || this.OperationalType,
+      'NOOFSHOPCRS': this.Shops || 0,
       'DocStatus': (this.Active === 'A') ? true : false,
       'CBStatement': (this.Active === 'A') ? true : false,
       'DeleteFlag': this.DeleteFlag || 'F',
@@ -225,16 +243,16 @@ export class GodownMasterComponent implements OnInit {
   onReset(item) {
     if (item === 'godown') {
       this.GodownMasterData = this.GodownMasterCols = undefined;
-      this.onClear();
+      // this.onClear();
     }
-    if (item === 'operational') {
-      this.operationalTypeOptions = undefined;
-      this.OperationalType = null;
-    }
-    if (item === 'owner') {
-      this.ownerTypeOptions = undefined;
-      this.OwnerType = null;
-    }
+    // if (item === 'operational') {
+    // this.operationalTypeOptions = undefined;
+    // this.OperationalType = null;
+    // }
+    // if (item === 'owner') {
+    // this.ownerTypeOptions = undefined;
+    //   this.OwnerType = null;
+    // }
   }
 
   onClear() {

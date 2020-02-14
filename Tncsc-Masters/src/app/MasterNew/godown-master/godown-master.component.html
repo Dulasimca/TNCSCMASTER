@@ -89,23 +89,23 @@
                     </span>
                 </div>
                 <div class="ui-g-9 ui-md-3">
-                    <label class="ui-g-7 label-fontsize dashboard">Operational Type</label>
+                    <label class="ui-g-7 label-fontsize dashboard" for="OperationalType">Operational Type</label>
                     <p-dropdown #operational class="ui-g-12 ui-fluid dashboard" [options]="operationalTypeOptions"
                         (onClick)="onSelect('operationalType', 'click')"
-                        (keydown.enter)="onSelect('operationalType', 'enter')" [(ngModel)]="OperationalType"
-                        (ngModelChange)="onReset('operational')" name="operational" [showClear]="true" filter="true"
-                        resetFilterOnHide="true" placeholder="-select-">
+                        (keyup.enter)="onSelect('operationalType', 'enter')"
+                        (keyup.tab)="onSelect('operationalType', 'enter')" [(ngModel)]="OperationalType"
+                        (ngModelChange)="onReset('operational')" name="Operational" [showClear]="true" optionLabel='label' filterMatchMode="startsWith" [showClear]="true" required>
                         <ng-template let-item pTemplate="selectedItem">
                             <span style="vertical-align:middle">{{item.label}}</span>
                         </ng-template>
                     </p-dropdown>
                 </div>
                 <div class="ui-g-9 ui-md-3">
-                    <label class="ui-g-7 label-fontsize dashboard">Owner Type</label>
+                    <label class="ui-g-7 label-fontsize dashboard" for="OwnerType">Owner Type</label>
                     <p-dropdown #owner class="ui-g-12 ui-fluid dashboard" [options]="ownerTypeOptions"
-                        (onClick)="onSelect('ownerType', 'click')" (keydown.enter)="onSelect('ownerType', 'enter')"
-                        [(ngModel)]="OwnerType" name="owner" (ngModelChange)="onReset('owner')" [showClear]="true"
-                        filter="true" resetFilterOnHide="true" placeholder="-select-">
+                        (onClick)="onSelect('ownerType', 'click')" (keyup.enter)="onSelect('ownerType', 'enter')"
+                        (keyup.tab)="onSelect('ownerType', 'enter')" [(ngModel)]="OwnerType" optionLabel='label' name="Owner"
+                        (ngModelChange)="onReset('owner')" [showClear]="true" filter="true" resetFilterOnHide="true">
                         <ng-template let-item pTemplate="selectedItem">
                             <span style="vertical-align:middle">{{item.label}}</span>
                         </ng-template>
@@ -130,8 +130,8 @@
                 <div class="ui-g-12 ui-md-5"></div>
                 <!-- <div class="ui-g-12 ui-md-10"></div> -->
                 <div class="ui-g-3 ui-md-2 ui-fluid" style="padding-left: 30px;">
-                    <button pButton type="button" label=Update (click)="onSave()"
-                        [disabled]="(!Carpet || !Capacity || !OperationalType || !OwnerType || !Active || !GodownName)"></button>
+                    <button pButton type="button" label=Save (click)="onSave()"
+                        [disabled]="(!Carpet || !Capacity || !Active || !GodownName)"></button>
                 </div>
                 <div class="ui-g-12 ui-md-5"></div>
             </div>
