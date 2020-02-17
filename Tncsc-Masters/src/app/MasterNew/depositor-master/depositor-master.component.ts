@@ -39,6 +39,7 @@ export class DepositorMasterComponent implements OnInit {
   viewPane: boolean = false;
   isViewed: boolean = false;
   isEdited: boolean = false;
+  excelEnable: boolean = false;
   @ViewChild('depositor', { static: false }) depositorPanel: Dropdown;
   @ViewChild('godown', { static: false }) godownPanel: Dropdown;
   @ViewChild('region', { static: false }) regionPanel: Dropdown;
@@ -123,6 +124,7 @@ export class DepositorMasterComponent implements OnInit {
         this.DepositorMasterData = res;
         this.FilteredArray = res;
         this.loading = false;
+        this.excelEnable = true;
       }
       else {
         this.loading = false;
@@ -215,6 +217,7 @@ export class DepositorMasterComponent implements OnInit {
     if (item === 'reg') { this.GCode = null; }
     if (item === 'depositor') {
       this.onClear();
+      this.excelEnable = false;
     }
   }
 
