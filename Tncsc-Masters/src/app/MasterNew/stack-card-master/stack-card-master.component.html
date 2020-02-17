@@ -47,8 +47,8 @@
                                 <label for="StackNo" class="float-input">Stack No</label>
                             </span>
                         </div>
-                        <div class="ui-g-6 ui-md-1">
-                            <label class="ui-g-12 label-fontsize dashboard">Formation Year</label>
+                        <div class="ui-g-6 ui-md-2">
+                            <label class="ui-g-12 label-fontsize dashboard">Stack Formation Year</label>
                             <p-dropdown #year class="ui-g-12 ui-fluid dashboard" [options]="yearOptions"
                                 [(ngModel)]="CurYear" [showClear]="true" (onClick)="onSelect('y', 'click')"
                                 (keydown.enter)="onSelect('y', 'enter')" name='Year' (ngModelChange)="onResetTable('y')"
@@ -75,11 +75,11 @@
                         </div>
                         <div class="ui-g-3 ui-md-1 ui-fluid" style="padding-top: 21px;">
                             <button pButton type="button" label=Save (click)="onSave()"
-                                [disabled]="(!Region || !GCode || !StackNo || !CurYear || !Active)"></button>
+                                [disabled]="(!SaveEnable)"></button>
                         </div>
-                        <div class="ui-g-3 ui-md-1 ui-fluid" style="padding-top: 21px;">
+                        <!-- <div class="ui-g-3 ui-md-1 ui-fluid" style="padding-top: 21px;">
                             <button pButton type="button" label=Delete (click)="onDelete()" icon="pi pi-times"></button>
-                        </div>
+                        </div> -->
                         <!-- <p-messages [value]="msgs"></p-messages> -->
                     </div>
                 </form>

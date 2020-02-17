@@ -46,6 +46,7 @@ export class StackCardMasterComponent implements OnInit {
   viewPane: boolean = false;
   isViewed: boolean = false;
   isEdited: boolean = false;
+  SaveEnable: boolean = false;
   msgs: Message[] = [];
   @ViewChild('godown', { static: false }) godownPanel: Dropdown;
   @ViewChild('region', { static: false }) regionPanel: Dropdown;
@@ -169,6 +170,7 @@ export class StackCardMasterComponent implements OnInit {
     this.StackNo = selectedRow.StackNo;
     this.RowId = selectedRow.RowId;
     this.Active = selectedRow.Flag1;
+    this.SaveEnable = true;
   }
 
   onSave() {
@@ -202,27 +204,28 @@ export class StackCardMasterComponent implements OnInit {
         });
       }
     });
+    this.SaveEnable = false;
   }
 
-  onDelete() {
-    {
-      this.confirmationService.confirm({
-        message: 'Do you want to delete this Stack Card?',
-        header: 'Delete Confirmation',
-        icon: 'pi pi-info-circle',
-        accept: () => {
-          this.messageService.clear();
-          this.messageService.add({
-            key: 't-err', severity: StatusMessage.SEVERITY_SUCCESS,
-            summary: StatusMessage.SUMMARY_SUCCESS, detail: StatusMessage.StackcardDeleted
-          });
-        },
-        reject: () => {
-          this.onClear();
-        }
-      });
-    }
-  }
+  // onDelete() {
+  //   {
+  //     this.confirmationService.confirm({
+  //       message: 'Do you want to delete this Stack Card?',
+  //       header: 'Delete Confirmation',
+  //       icon: 'pi pi-info-circle',
+  //       accept: () => {
+  //         this.messageService.clear();
+  //         this.messageService.add({
+  //           key: 't-err', severity: StatusMessage.SEVERITY_SUCCESS,
+  //           summary: StatusMessage.SUMMARY_SUCCESS, detail: StatusMessage.StackcardDeleted
+  //         });
+  //       },
+  //       reject: () => {
+  //         this.onClear();
+  //       }
+  //     });
+  //   }
+  // }
 
   onSearch(value) {
     this.StackMasterData = this.FilteredArray;
@@ -246,5 +249,6 @@ export class StackCardMasterComponent implements OnInit {
     this.StackNo = this.RowId = undefined;
     this.Active = false;
     this.isEdited = false;
+    this.SaveEnable = false;
   }
 }
