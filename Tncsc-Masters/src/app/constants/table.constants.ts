@@ -87,13 +87,16 @@ export class TableConstants {
             { header: 'IT Tax', field: 'ittax' },
             { header: 'GR Code', field: 'GRName' },
             { header: 'GR Name', field: 'MajorName' },
-            { header: 'Item Type', field: 'ItemType' },
+            { header: 'Item Type', field: 'ItemName' },
             { header: 'Active Flag', field: 'Activeflag' },
             { header: 'Delete Flag', field: 'DeleteFlag' },
             { header: 'Allotment Group', field: 'Allotmentgroup' },
             { header: 'S Flag', field: 'SFlag' },
             { header: 'CB Flag', field: 'CBFlag' },
-            { header: 'Unit', field: 'Unit' }
+            { header: 'Unit', field: 'Unit' },
+            { header: 'Group Name', field: 'GroupName' }
+            // { header: 'GroupCode', field: 'Grouping' }
+
         ];
 
         this.VehicleMaster = [

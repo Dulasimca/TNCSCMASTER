@@ -29,6 +29,7 @@ export class CommodityMasterComponent implements OnInit {
   ItemOptions: SelectItem[];
   AllotmentOptions: SelectItem[];
   MeasurementOptions: SelectItem[];
+  groupOptions: SelectItem[];
   Measurement: any;
   AllotmentGroup: any;
   Item: any;
@@ -38,6 +39,8 @@ export class CommodityMasterComponent implements OnInit {
   SFlag: boolean;
   CBFlag: boolean;
   Unit: any;
+  Group: any;
+  GroupId: any;
   Allotmentgroup: any;
   ITBweighment: any;
   NewCode: any;
@@ -55,6 +58,7 @@ export class CommodityMasterComponent implements OnInit {
   @ViewChild('measurement', { static: false }) measurementPanel: Dropdown;
   @ViewChild('allotment', { static: false }) allotmentPanel: Dropdown;
   @ViewChild('item', { static: false }) itemPanel: Dropdown;
+  @ViewChild('group', { static: false }) groupPanel: Dropdown;
 
 
 
@@ -75,11 +79,14 @@ export class CommodityMasterComponent implements OnInit {
         this.ItemMasterData = res;
         this.FilteredArray = res;
         this.ItemMasterData.forEach(s => {
-          if (s.ItemType === 'C') {
-            return s.ItemName = 'Cereal';
-          } else if (s.ItemType === 'NC') {
-            return s.ItemName = 'Non-Cereal';
+          if (s.Grouping === 1) {
+            s.GroupName = 'Commodity';
+          } else if (s.Grouping === 2) {
+            s.GroupName = 'Other';
+          } else if (s.Grouping === 3) {
+            s.GroupName = 'Gunny';
           }
+          (s.ItemType === 'C') ? s.ItemName = 'Cereal' : s.ItemName = 'Non-Cereal';
         });
         this.NewCode = 'IT' + res.length + 1;
         let sno = 0;
@@ -114,6 +121,7 @@ export class CommodityMasterComponent implements OnInit {
     let ItemSelection = [];
     let MeasurementSelection = [];
     let AllotmentSelection = [];
+    let GroupingSelection = [];
     let Cereal = [];
     Cereal = this.FilteredArray;
     switch (item) {
@@ -138,10 +146,18 @@ export class CommodityMasterComponent implements OnInit {
         if (type === 'enter') {
           this.measurementPanel.overlayVisible = true;
         }
-        MeasurementSelection.push({ 'label': '-select-', 'value': null, disabled: true }, { 'label': 'GRAMS', 'value': 'GRAMS' },
-          { 'label': 'KGS', 'value': 'KGS' }, { 'label': 'KILOLITRE', 'value': 'KILOLITRE' }, { 'label': 'LTRS', 'value': 'LTRS' },
-          { 'label': 'M.TONS', 'value': 'M.TONS' }, { 'label': 'NO.s', 'value': 'NO.s' }, { 'label': 'QUINTAL', 'value': 'QUINTAL' });
+        MeasurementSelection.push({ label: '-select-', value: null, disabled: true }, { label: 'GRAMS', value: 'GRAMS' },
+          { label: 'KGS', value: 'KGS' }, { label: 'KILOLITRE', value: 'KILOLITRE' }, { label: 'LTRS', value: 'LTRS' },
+          { label: 'M.TONS', value: 'M.TONS' }, { label: 'NO.s', value: 'NO.s' }, { label: 'QUINTAL', value: 'QUINTAL' });
         this.MeasurementOptions = MeasurementSelection;
+        break;
+      case 'group':
+        if (type === 'enter') {
+          this.groupPanel.overlayVisible = true;
+        }
+        GroupingSelection.push({ label: '-select-', value: null, disabled: true }, { label: 'Commodity', value: 1 },
+          { label: 'Gunny', value: 3 }, { label: 'Other', value: 2 });
+        this.groupOptions = GroupingSelection;
         break;
       case 'allotment':
         if (type === 'enter') {
@@ -171,6 +187,7 @@ export class CommodityMasterComponent implements OnInit {
     this.ItemOptions = [{ label: selectedRow.ItemName, value: selectedRow.ItemType }];
     this.MeasurementOptions = [{ label: selectedRow.ITBweighment, value: selectedRow.Measurement }];
     this.AllotmentOptions = [{ label: selectedRow.MajorName, value: selectedRow.GRName }];
+    this.groupOptions = [{ label: selectedRow.GroupName, value: selectedRow.Grouping }];
     this.ItemType = selectedRow.ItemType;
     this.Hsncode = selectedRow.Hsncode;
     this.TRCode = selectedRow.ItemName;
@@ -184,14 +201,16 @@ export class CommodityMasterComponent implements OnInit {
     this.CBFlag = selectedRow.CBFlag;
     this.Unit = selectedRow.Unit;
     this.AllotmentGroup = selectedRow.MajorName;
+    this.Group = selectedRow.GroupName;
+    this.GroupId = selectedRow.Grouping;
   }
 
   onAdd() {
     this.isAdd = true;
     this.isEdited = false;
-    this.ItemName = this.ItemCode = this.Item = this.ITTax = this.DeleteFlag = this.SFlag = this.CBFlag = this.Unit = this.Measurement = this.AllotmentGroup = this.ItemType = this.Hsncode = undefined;
+    this.ItemName = this.ItemCode = this.Item = this.Group = this.ITTax = this.DeleteFlag = this.SFlag = this.CBFlag = this.Unit = this.Measurement = this.AllotmentGroup = this.ItemType = this.Hsncode = undefined;
     // this.ItemCode = this.NewCode;
-    this.ItemOptions = this.AllotmentOptions = this.MeasurementOptions = undefined;
+    this.ItemOptions = this.AllotmentOptions = this.MeasurementOptions = this.groupOptions = undefined;
     this.Active = false;
   }
 
@@ -209,7 +228,7 @@ export class CommodityMasterComponent implements OnInit {
       'Allotmentgroup': this.AllotmentGroup.label || this.AllotmentGroup,
       'SFlag': this.SFlag || true,
       'CBFlag': this.CBFlag || true,
-      'Unit': this.Unit || this.Measurement
+      'Unit': this.Unit || this.Measurement,
     };
     this.restAPIService.post(PathConstants.COMMODITY_MASTER_POST, params).subscribe(res => {
       if (res) {
@@ -250,13 +269,16 @@ export class CommodityMasterComponent implements OnInit {
         this.ItemMasterCols = this.tableConstants.CommodityMasterCols;
         this.ItemMasterData = res;
         this.FilteredArray = res;
-        // this.NewCode = 'IT' + (res.length + 1);
+        this.NewCode = 'IT' + (res.length + 1);
         this.ItemMasterData.forEach(s => {
-          if (s.ItemType === 'C') {
-            return s.ItemName = 'Cereal';
-          } else if (s.ItemType === 'NC') {
-            return s.ItemName = 'Non-Cereal';
+          if (s.Grouping === 1) {
+            s.GroupName = 'Commodity';
+          } else if (s.Grouping === 2) {
+            s.GroupName = 'Other';
+          } else if (s.Grouping === 3) {
+            s.GroupName = 'Gunny';
           }
+          (s.ItemType === 'C') ? s.ItemName = 'Cereal' : s.ItemName = 'Non-Cereal';
         });
         let sno = 0;
         this.ItemMasterData.forEach(ss => {
