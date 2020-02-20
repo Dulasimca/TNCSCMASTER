@@ -74,7 +74,23 @@ export class CommodityMasterComponent implements OnInit {
     };
     this.restAPIService.getByParameters(PathConstants.ITEM_MASTER_GET, params).subscribe(res => {
       if (res !== undefined) {
-        this.NewCode = 'IT' + (res.length + 1);
+        // this.NewCode = 'IT' + (res.length + 1);
+        // this.NewCode = res.filter(x => { return x.ITCode });
+        let New = [];
+        this.NewCode = res;
+        this.NewCode.forEach(s => {
+          New.push(s.ITCode);
+          New.sort();
+        });
+        New = res.sort(res.ITCode);
+        this.NewCode = New;
+        // this.NewCode = this.NewCode.split(/(\d+)/).filter(Boolean);
+        // this.FilteredArray = Math.max(this.NewCode);
+
+        // this.NewCode = New;
+        // this.NewCode = res.sort(res.ITCode);
+        // this.NewCode = Math.max(this.NewCode);
+        // this.NewCode = this.NewCode.split(/(\d+)/).filter(Boolean);
         this.ItemMasterCols = this.tableConstants.CommodityMasterCols;
         this.ItemMasterData = res;
         this.FilteredArray = res;
@@ -88,15 +104,14 @@ export class CommodityMasterComponent implements OnInit {
           }
           (s.ItemType === 'C') ? s.ItemName = 'Cereal' : s.ItemName = 'Non-Cereal';
         });
-        this.NewCode = 'IT' + res.length + 1;
+        // this.NewCode = 'IT' + res.length + 1;
         let sno = 0;
         this.ItemMasterData.forEach(ss => {
           sno += 1;
           ss.SlNo = sno;
         });
         this.loading = false;
-      }
-      else {
+      } else {
         this.loading = false;
         this.messageService.clear();
         this.messageService.add({
@@ -163,7 +178,6 @@ export class CommodityMasterComponent implements OnInit {
         if (type === 'enter') {
           this.allotmentPanel.overlayVisible = true;
         }
-        // if (this.AllotmentOptions === undefined) {
         this.restAPIService.get(PathConstants.MAJOR_ITEM_MASTER).subscribe(res => {
           if (res !== undefined && res !== null && res.length !== 0) {
             this.AllotmentGroupData = res;
@@ -174,7 +188,6 @@ export class CommodityMasterComponent implements OnInit {
             this.AllotmentOptions.unshift({ 'label': '-select-', 'value': null, disabled: true });
           }
         });
-      // }
     }
   }
 
@@ -210,6 +223,10 @@ export class CommodityMasterComponent implements OnInit {
     this.isEdited = false;
     this.ItemName = this.ItemCode = this.Item = this.Group = this.ITTax = this.DeleteFlag = this.SFlag = this.CBFlag = this.Unit = this.Measurement = this.AllotmentGroup = this.ItemType = this.Hsncode = undefined;
     // this.ItemCode = this.NewCode;
+    // for (var i = 0; i < this.NewCode.length; i++) {
+    //   Math.max(this.NewCode);
+    // }
+    // this.ItemCode = i;
     this.ItemOptions = this.AllotmentOptions = this.MeasurementOptions = this.groupOptions = undefined;
     this.Active = false;
   }
@@ -229,6 +246,7 @@ export class CommodityMasterComponent implements OnInit {
       'SFlag': this.SFlag || true,
       'CBFlag': this.CBFlag || true,
       'Unit': this.Unit || this.Measurement,
+      'Group': this.Group.value || this.GroupId
     };
     this.restAPIService.post(PathConstants.COMMODITY_MASTER_POST, params).subscribe(res => {
       if (res) {
@@ -321,8 +339,8 @@ export class CommodityMasterComponent implements OnInit {
   }
 
   onClear() {
-    this.ItemMasterData = this.ItemMasterCols = this.AllotmentOptions = this.MeasurementOptions = this.ItemOptions = undefined;
-    this.ItemName = this.ItemCode = this.ITTax = this.DeleteFlag = this.SFlag = this.CBFlag = this.Unit = this.Active = this.ItemType = this.NewCode = this.Item = this.Hsncode = this.Measurement = this.AllotmentGroup = null;
+    this.ItemMasterData = this.ItemMasterCols = this.groupOptions = this.AllotmentOptions = this.MeasurementOptions = this.ItemOptions = undefined;
+    this.ItemName = this.ItemCode = this.Group = this.ITTax = this.DeleteFlag = this.SFlag = this.CBFlag = this.Unit = this.Active = this.ItemType = this.NewCode = this.Item = this.Hsncode = this.Measurement = this.AllotmentGroup = null;
     this.isEdited = false;
   }
 }
