@@ -34,6 +34,10 @@ export class TableConstants {
             { header: 'TNCS Carpet', field: 'TNCSCarpet' },
             { header: 'OPERATION TYPE', field: 'OPERATIONTYPE' },
             { header: 'TNCS Type', field: 'TNCSType' },
+            // { header: 'CB Statment', field: 'CBStatement' },
+            { header: 'CB Statment', field: 'CBS' },
+            { header: 'Allotment', field: 'ALT' },
+            // { header: 'Allotment', field: 'Allotment' },
             { header: 'Active Flag', field: 'ActiveFlag' }
         ];
 

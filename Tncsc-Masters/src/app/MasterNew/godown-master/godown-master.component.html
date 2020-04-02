@@ -115,13 +115,39 @@
                         <label for="Capacity" class="float-input">Capacity</label>
                     </span>
                 </div>
-                <div class="ui-g-6 ui-md-3 padtop">
+                <div class="ui-g-6 ui-md-2 padtop">
                     <span class="ui-float-label">
                         <input name="Shops" pInputText [(ngModel)]="Shops" autocomplete="off" required>
                         <label for="Shops" class="float-input">No of Shops</label>
                     </span>
                 </div>
-                <div class="ui-g-12 ui-md-3" style="padding-top: 16px;">
+                <div class="ui-g-9 ui-md-2">
+                    <label class="ui-g-7 label-fontsize dashboard" for="cb">CB Statment</label>
+                    <p-dropdown #cb class="ui-g-12 ui-fluid dashboard" [options]="cbOptions"
+                        (onClick)="onSelect('cb', 'click')" (keyup.enter)="onSelect('cb', 'enter')"
+                        (keyup.tab)="onSelect('cb', 'enter')" [(ngModel)]="CB" name="Owner"
+                        (ngModelChange)="onReset('cb')" [showClear]="true" filter="true" resetFilterOnHide="true">
+                        <ng-template let-item pTemplate="selectedItem">
+                            <span style="vertical-align:middle">{{item.label}}</span>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+                <div class="ui-g-9 ui-md-2">
+                    <label class="ui-g-7 label-fontsize dashboard" for="allotment">Allotment</label>
+                    <p-dropdown #allotment class="ui-g-12 ui-fluid dashboard" [options]="allotmentOptions"
+                        (onClick)="onSelect('allotment', 'click')" (keyup.enter)="onSelect('allotment', 'enter')"
+                        (keyup.tab)="onSelect('allotment', 'enter')" [(ngModel)]="Allotment" name="Owner"
+                        (ngModelChange)="onReset('allotment')" [showClear]="true" filter="true"
+                        resetFilterOnHide="true">
+                        <ng-template let-item pTemplate="selectedItem">
+                            <span style="vertical-align:middle">{{item.label}}</span>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+            </div>
+            <div class="ui-g-12">
+                <div class="ui-g-12 ui-md-4"></div>
+                <div class="ui-g-12 ui-md-4">
                     <div class="ui-g border-lightgrey">
                         <p-radioButton class="ui-g-6" name="Flag" label="Active" value="A" [(ngModel)]="Active"
                             required>
@@ -131,10 +157,10 @@
                         </p-radioButton>
                     </div>
                 </div>
+                <div class="ui-g-12 ui-md-4"></div>
             </div>
             <div class="ui-g-12">
                 <div class="ui-g-12 ui-md-5"></div>
-                <!-- <div class="ui-g-12 ui-md-10"></div> -->
                 <div class="ui-g-3 ui-md-2 ui-fluid" style="padding-left: 30px;">
                     <button pButton type="button" label=Save (click)="onSave()"
                         [disabled]="(!Carpet || !Capacity || !Active || !GodownName)"></button>

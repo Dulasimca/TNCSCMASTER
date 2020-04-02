@@ -47,7 +47,8 @@ export class SchemeCommodityMasterComponent implements OnInit {
 
 
 
-  constructor(private authService: AuthService, private restAPIService: RestAPIService, private messageService: MessageService, private tableConstants: TableConstants) { }
+  constructor(private authService: AuthService, private restAPIService: RestAPIService, private messageService: MessageService,
+    private tableConstants: TableConstants) { }
 
   ngOnInit() {
     this.canShowMenu = (this.authService.isLoggedIn()) ? this.authService.isLoggedIn() : false;
