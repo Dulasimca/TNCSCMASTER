@@ -28,6 +28,7 @@ export class GodownMasterComponent implements OnInit {
   ownerTypeOptions: SelectItem[];
   cbOptions: SelectItem[];
   allotmentOptions: SelectItem[];
+  dsOptions: SelectItem[];
   Godown: any;
   RCode: any;
   GCode: any;
@@ -48,15 +49,18 @@ export class GodownMasterComponent implements OnInit {
   isEdited: boolean = false;
   Allotment: boolean;
   CB: boolean;
+  DocStatus: boolean;
   @ViewChild('godown', { static: false }) godownPanel: Dropdown;
   @ViewChild('operational', { static: false }) operationalTypePanel: Dropdown;
   @ViewChild('owner', { static: false }) ownerTypePanel: Dropdown;
   @ViewChild('cb', { static: false }) cbPanel: Dropdown;
   @ViewChild('allotment', { static: false }) allotmentPanel: Dropdown;
+  @ViewChild('doc', { static: false }) docPanel: Dropdown;
 
 
 
-  constructor(private authService: AuthService, private restAPIService: RestAPIService, private messageService: MessageService, private tableConstants: TableConstants) { }
+  constructor(private authService: AuthService, private restAPIService: RestAPIService, private messageService: MessageService,
+    private tableConstants: TableConstants) { }
 
   ngOnInit() {
     this.canShowMenu = (this.authService.isLoggedIn()) ? this.authService.isLoggedIn() : false;
@@ -70,6 +74,7 @@ export class GodownMasterComponent implements OnInit {
     let ownerTypeSelection = [];
     let cbSelection = [];
     let allotmentSelection = [];
+    let docSelection = [];
     switch (item) {
       case 'godown':
         if (type === 'enter') {
@@ -80,7 +85,7 @@ export class GodownMasterComponent implements OnInit {
             if (res !== undefined) {
               this.GodownData = res;
               this.GodownData.forEach(data => {
-                godownSelection.push({ 'label': data.Name, 'value': data.Code });
+                godownSelection.push({ label: data.Name, value: data.Code });
               });
               this.godownOptions = godownSelection;
             }
@@ -125,6 +130,14 @@ export class GodownMasterComponent implements OnInit {
         allotmentSelection.unshift({ label: '-select-', value: null, disabled: true });
         this.allotmentOptions = allotmentSelection;
         break;
+      case 'Doc':
+        if (type === 'enter') {
+          this.docPanel.overlayVisible = true;
+        }
+        docSelection.push({ label: 'False - 0', value: false }, { label: 'True - 1', value: true });
+        docSelection.unshift({ label: '-select-', value: null, disabled: true });
+        this.dsOptions = docSelection;
+        break;
     }
   }
 
@@ -145,10 +158,11 @@ export class GodownMasterComponent implements OnInit {
           s.SlNo = sno;
           (s.CBStatement === true) ? s.CBS = 1 : s.CBS = 0;
           (s.Allotment === true) ? s.ALT = 1 : s.ALT = 0;
-          // (s.OPERATIONTYPE === 'O ') ? s.OPERATIONTYPE = 'Operational Godown' : 'O ';
-          // (s.OPERATIONTYPE === 'B ') ? s.OPERATIONTYPE = 'Buffer Godown' : 'B ';
-          // (s.OPERATIONTYPE === 'G ') ? s.OPERATIONTYPE = 'Gunny Godown' : 'G ';
-          // (s.OPERATIONTYPE === 'C ') ? s.OPERATIONTYPE = 'Cap' : 'C ';
+          (s.DocStatus === true) ? s.DStatus = 1 : s.DStatus = 0;
+          // (s.OPERATIONTYPE === 'O ') ? s.OPERATIONTYPE = 'Operational Godown' : s.OPERATIONTYPE = 'O ';
+          // (s.OPERATIONTYPE === 'B ') ? s.OPERATIONTYPE = 'Buffer Godown' : s.OPERATIONTYPE = 'B ';
+          // (s.OPERATIONTYPE === 'G ') ? s.OPERATIONTYPE = 'Gunny Godown' : s.OPERATIONTYPE = 'G ';
+          // (s.OPERATIONTYPE === 'C ') ? s.OPERATIONTYPE = 'Cap' : s.OPERATIONTYPE = 'C ';
 
           // (s.TNCSType === 'O') ? s.TNCSType = 'OWNED' : 'O';
           // (s.TNCSType === 'H') ? s.TNCSType = 'HIRED' : 'H';
@@ -156,8 +170,7 @@ export class GodownMasterComponent implements OnInit {
           // (s.TNCSType === 'TW') ? s.TNCSType = 'TNWC' : 'TW';
         });
         this.loading = false;
-      }
-      else {
+      } else {
         this.loading = false;
         this.messageService.clear();
         this.messageService.add({
@@ -185,6 +198,7 @@ export class GodownMasterComponent implements OnInit {
     this.ownerTypeOptions = [{ label: selectedRow.TNCSType, value: selectedRow.TNCSType }];
     this.cbOptions = [{ label: selectedRow.CBStatement, value: selectedRow.CBStatement }];
     this.allotmentOptions = [{ label: selectedRow.Allotment, value: selectedRow.Allotment }];
+    this.dsOptions = [{ label: selectedRow.DocStatus, value: selectedRow.DocStatus }];
     this.GodownCode = selectedRow.TNCSCode;
     this.GodownName = selectedRow.TNCSName;
     this.Godown = selectedRow.TNCSRegn;
@@ -201,14 +215,15 @@ export class GodownMasterComponent implements OnInit {
     this.DeleteFlag = selectedRow.DeleteFlag;
     this.CB = selectedRow.CBStatement;
     this.Allotment = selectedRow.Allotment;
+    this.DocStatus = selectedRow.DocStatus;
   }
 
   onAdd() {
     this.isEdited = true;
     this.isViewed = false;
-    this.operationalTypeOptions = this.ownerTypeOptions = this.cbOptions = this.allotmentOptions = undefined;
+    this.operationalTypeOptions = this.ownerTypeOptions = this.cbOptions = this.allotmentOptions = this.dsOptions = undefined;
     this.GodownCode = this.GodownName = this.Capacity = this.Carpet = this.Shops = this.SessionFlag = this.ExportFlag = this.CB = null;
-    this.OperationalType = this.OperationalCode = this.OwnerType = this.OwnerCode = this.DeleteFlag = this.Allotment = null;
+    this.OperationalType = this.OperationalCode = this.OwnerType = this.OwnerCode = this.DeleteFlag = this.Allotment = this.DocStatus = null;
     this.Active = false;
   }
 
@@ -224,7 +239,7 @@ export class GodownMasterComponent implements OnInit {
       'ExportFlag': this.ExportFlag || '',
       'OPERATIONTYPE': this.OperationalType.value || this.OperationalType,
       'NOOFSHOPCRS': this.Shops || 0,
-      'DocStatus': (this.Active === 'A') ? true : false,
+      'DocStatus': this.DocStatus,
       'DeleteFlag': this.DeleteFlag || 'F',
       'ActiveFlag': this.Active,
       'CBStatement': this.CB,
@@ -287,9 +302,9 @@ export class GodownMasterComponent implements OnInit {
 
   onClear() {
     this.GodownMasterData = this.GodownMasterCols = this.operationalTypeOptions = this.ownerTypeOptions = undefined;
-    this.cbOptions = this.allotmentOptions = undefined;
+    this.cbOptions = this.allotmentOptions = this.dsOptions = undefined;
     this.GodownCode = this.GodownName = this.Capacity = this.Carpet = this.Shops = this.OperationalType = this.OwnerType = null;
-    this.CB = this.Allotment = this.Active = null;
+    this.CB = this.Allotment = this.Active = this.DocStatus = null;
     this.isEdited = false;
   }
 }

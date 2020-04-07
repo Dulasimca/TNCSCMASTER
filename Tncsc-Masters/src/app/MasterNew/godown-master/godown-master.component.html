@@ -103,13 +103,13 @@
                 </div>
             </div>
             <div class="ui-g-12">
-                <div class="ui-g-6 ui-md-3 padtop">
+                <div class="ui-g-6 ui-md-2 padtop">
                     <span class="ui-float-label">
                         <input name="Carpet" pInputText [(ngModel)]="Carpet" autocomplete="off" required>
                         <label for="Carpet" class="float-input">Carpet Area</label>
                     </span>
                 </div>
-                <div class="ui-g-6 ui-md-3 padtop">
+                <div class="ui-g-6 ui-md-2 padtop">
                     <span class="ui-float-label">
                         <input name="Capacity" pInputText [(ngModel)]="Capacity" autocomplete="off" required>
                         <label for="Capacity" class="float-input">Capacity</label>
@@ -122,10 +122,21 @@
                     </span>
                 </div>
                 <div class="ui-g-9 ui-md-2">
+                    <label class="ui-g-7 label-fontsize dashboard" for="doc">DocStatus</label>
+                    <p-dropdown #doc class="ui-g-12 ui-fluid dashboard" [options]="dsOptions"
+                        (onClick)="onSelect('Doc', 'click')" (keyup.enter)="onSelect('Doc', 'enter')"
+                        (keyup.tab)="onSelect('Doc', 'enter')" [(ngModel)]="DocStatus" name="doc"
+                        (ngModelChange)="onReset('doc')" [showClear]="true" filter="true" resetFilterOnHide="true">
+                        <ng-template let-item pTemplate="selectedItem">
+                            <span style="vertical-align:middle">{{item.label}}</span>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+                <div class="ui-g-9 ui-md-2">
                     <label class="ui-g-7 label-fontsize dashboard" for="cb">CB Statment</label>
                     <p-dropdown #cb class="ui-g-12 ui-fluid dashboard" [options]="cbOptions"
                         (onClick)="onSelect('cb', 'click')" (keyup.enter)="onSelect('cb', 'enter')"
-                        (keyup.tab)="onSelect('cb', 'enter')" [(ngModel)]="CB" name="Owner"
+                        (keyup.tab)="onSelect('cb', 'enter')" [(ngModel)]="CB" name="cb"
                         (ngModelChange)="onReset('cb')" [showClear]="true" filter="true" resetFilterOnHide="true">
                         <ng-template let-item pTemplate="selectedItem">
                             <span style="vertical-align:middle">{{item.label}}</span>
@@ -136,7 +147,7 @@
                     <label class="ui-g-7 label-fontsize dashboard" for="allotment">Allotment</label>
                     <p-dropdown #allotment class="ui-g-12 ui-fluid dashboard" [options]="allotmentOptions"
                         (onClick)="onSelect('allotment', 'click')" (keyup.enter)="onSelect('allotment', 'enter')"
-                        (keyup.tab)="onSelect('allotment', 'enter')" [(ngModel)]="Allotment" name="Owner"
+                        (keyup.tab)="onSelect('allotment', 'enter')" [(ngModel)]="Allotment" name="allotment"
                         (ngModelChange)="onReset('allotment')" [showClear]="true" filter="true"
                         resetFilterOnHide="true">
                         <ng-template let-item pTemplate="selectedItem">
