@@ -53,6 +53,9 @@ export class PathConstants {
   public static readonly ALLOTMENT_QUANTITY_GET = '/api/AllotmentQuantity/Get';
   public static readonly ALLOTMENT_QUANTITY_POST = '/api/AllotmentQuantity/Post';
 
+  public static readonly QUANTITY_ACCOUNT_GET = '/api/ManageQuantityAccount/Get';
+  public static readonly QUANTITY_ACCOUNT_POST = '/api/ManageQuantityAccount/Post';
+
   //StackCard
   public static readonly STACK_CARD_GET = '/api/ManageStackCardMaster/Get';
   public static readonly STACK_CARD_UPDATE_POST = '/api/ManageStackCardMaster/Post';

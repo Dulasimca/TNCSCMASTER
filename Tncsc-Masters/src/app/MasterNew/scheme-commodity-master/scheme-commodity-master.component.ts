@@ -202,6 +202,7 @@ export class SchemeCommodityMasterComponent implements OnInit {
       this.SchemeCommodityMasterData = this.FilteredArray;
     }
   }
+
   onReset(item) {
     if (item === 'schemeCommodity') {
       this.onClear();

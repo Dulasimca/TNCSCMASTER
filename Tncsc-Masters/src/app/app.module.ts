@@ -73,6 +73,7 @@ import { MRMDataComponent } from './MasterNew/mrmdata/mrmdata.component';
 import { DepositorsComponent } from './MasterNew/supplierdata/depositors.component';
 import { AllotmentIssueQuantityComponent } from './QuotaWatchRegister/allotment-issue-quantity.component';
 import { StackCardMasterComponent } from './MasterNew/stack-card-master/stack-card-master.component';
+import { QuantityMasterComponent } from './MasterNew/quantity-master/quantity-master.component';
 // import { FullCalendar } from 'primeng/fullcalendar';
 
 @NgModule({
@@ -106,7 +107,8 @@ import { StackCardMasterComponent } from './MasterNew/stack-card-master/stack-ca
     MRMDataComponent,
     DepositorsComponent,
     AllotmentIssueQuantityComponent,
-    StackCardMasterComponent
+    StackCardMasterComponent,
+    QuantityMasterComponent
   ],
   imports: [
     BrowserModule,

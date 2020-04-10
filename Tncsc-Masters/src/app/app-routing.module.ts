@@ -26,6 +26,7 @@ import { HullingAgenciesComponent } from './MasterNew/hulling-agencies/hulling-a
 import { DepositorsComponent } from './MasterNew/supplierdata/depositors.component';
 import { AllotmentIssueQuantityComponent } from './QuotaWatchRegister/allotment-issue-quantity.component';
 import { StackCardMasterComponent } from './MasterNew/stack-card-master/stack-card-master.component';
+import { QuantityMasterComponent } from './MasterNew/quantity-master/quantity-master.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -54,6 +55,7 @@ const routes: Routes = [
   { path: 'SuppliersData', component: DepositorsComponent, canActivate: [AuthGuard] },
   { path: 'StackCardUpdate', component: StackCardMasterComponent, canActivate: [AuthGuard] },
   { path: 'AllotmentAbstract', component: AllotmentIssueQuantityComponent, canActivate: [AuthGuard] },
+  { path: 'QuantityAccountMaster', component: QuantityMasterComponent },
   { path: '**', component: LoginComponent, canActivate: [AuthGuard] }
 
 ];

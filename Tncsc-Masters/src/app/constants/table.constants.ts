@@ -23,6 +23,7 @@ export class TableConstants {
     GunnyType: any;
     AllotmentIssueQuantity: any;
     StackCardMaster: any;
+    QuantityAccount: any;
 
     constructor() {
         this.GodownMaster = [
@@ -251,5 +252,13 @@ export class TableConstants {
             { field: 'Flag1', header: 'Flag1' },
             { field: 'clstackdate', header: 'clstackdate' },
         ];
+
+        this.QuantityAccount = [
+            { header: 'S.No', field: 'SlNo' },
+            { field: 'HeaderName', header: 'Header Name' },
+            { field: 'ReportType', header: 'Report Type' },
+            { field: 'IsActive', header: 'Active/InActive' },
+            { field: 'GroupId', header: 'Group Id' },
+        ]
     }
 }
