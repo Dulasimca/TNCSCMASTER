@@ -60,7 +60,7 @@ export class PathConstants {
   public static readonly STACK_CARD_GET = '/api/ManageStackCardMaster/Get';
   public static readonly STACK_CARD_UPDATE_POST = '/api/ManageStackCardMaster/Post';
   public static readonly STACK_YEAR = '/api/Accounting';
-  
+
   ///Masters
   public static readonly REGION_POST = '/api/ManageRegionMaster/Post';
 
@@ -70,6 +70,11 @@ export class PathConstants {
   public static readonly CHANGE_PASSWORD_POST = '/api/Users/Post';
   public static readonly GODOWN_PROFILE_POST = '/api/GodownProfiles/Post';
   public static readonly GODOWN_PROFILE_GET = '/api/GodownProfiles/Get';
+
+  ///UserMaster
+  public static readonly ROLE_MAPPING = '/api/RoleMapping';
+  public static readonly USER_MASTER_GET = '/api/ManageUserMaster/Get';
+  public static readonly USER_MASTER_POST = '/api/ManageUserMaster/Post';
 
   ///Settings
   public static readonly SETTINGS_GET = '/api/Settings';

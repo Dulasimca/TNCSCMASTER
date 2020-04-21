@@ -24,6 +24,7 @@ export class TableConstants {
     AllotmentIssueQuantity: any;
     StackCardMaster: any;
     QuantityAccount: any;
+    UserMaster: any;
 
     constructor() {
         this.GodownMaster = [
@@ -259,6 +260,23 @@ export class TableConstants {
             { field: 'ReportType', header: 'Report Type' },
             { field: 'IsActive', header: 'Active/InActive' },
             { field: 'GroupId', header: 'Group Id' },
-        ]
+        ];
+
+        this.UserMaster = [
+            { header: 'S.No', field: 'SlNo' },
+            { field: 'UserName', header: 'User Name' },
+            { field: 'Pwd', header: 'Password' },
+            { field: 'EMailId', header: 'EMail Id' },
+            { field: 'EmpId', header: 'Employee Id' },
+            { field: 'PhoneNumber', header: 'Phone Number' },
+            { field: 'RoleId', header: 'Role Id' },
+            { field: 'Flag', header: 'Active' },
+            { field: 'GodownCode', header: 'Godown Code' },
+            { field: 'GodownName', header: 'Godown Name' },
+            { field: 'Regioncode', header: 'Region Code' },
+            { field: 'RegionName', header: 'Region Name' },
+            { field: 'MappingId', header: 'Mapping Id' },
+            { field: 'MappingName', header: 'Mapping Name' },
+        ];
     }
 }
