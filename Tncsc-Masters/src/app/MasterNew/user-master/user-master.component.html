@@ -4,10 +4,10 @@
     <p-panel>
         <p-header>
             <div class="ui-g panel-header">
-                <div class="ui-g-5 dashboard">Godown Master</div>
+                <div class="ui-g-5 dashboard">User Master</div>
                 <div class="ui-g-12 ui-md-7 dashboard" style="padding-left: 45%">
                     <input class="search-masters" type="text" [(ngModel)]="searchText" pInputText
-                        placeholder="Search by Godown" (ngModelChange)="onSearch($event)">
+                        placeholder="Search by UserName" (ngModelChange)="onSearch($event)">
                 </div>
             </div>
         </p-header>
@@ -22,11 +22,11 @@
                 </span>
             </div>
             <div class="ui-g-3 ui-md-1" style="padding-top: 20px;">
-                <button class="ui-g-3 dashboard inline-margin" pButton type="button" label=View (click)="onView()"
+                <button class="ui-g-3 dashboard inline-margin" pButton type="button" label=Add (click)="onPrev()"
                     [disabled]="(!UserName)"></button>
             </div>
             <div class="ui-g-3 ui-md-1" style="padding-top: 20px;">
-                <button class="ui-g-3 dashboard inline-margin" pButton type="button" label=Add (click)="onAdd()"
+                <button class="ui-g-3 dashboard inline-margin" pButton type="button" label=View (click)="onView()"
                     [disabled]="(!UserName)"></button>
             </div>
             <div class="ui-g-12 ui-md-4"></div>
@@ -55,7 +55,7 @@
 </div>
 
 <p-dialog header="User Master Entry" [contentStyle]="{'overflow':'scroll'}" [modal]="true" [maximizable]="true"
-    [(visible)]="isEdited" [responsive]="true" [style]="{width: '1111px', height: '1600px !important'}">
+    [(visible)]="isEdited" [responsive]="true" [style]="{width: '1111px', height: '1700px !important'}">
     <div class="ui-g-12 ui-fluid border-teal">
         <form #f="ngForm" name="userMaster">
             <div class="ui-g-12 ui-fluid">
@@ -105,8 +105,8 @@
 
                 <div class="ui-g-6 ui-md-3 padtop">
                     <span class="ui-float-label">
-                        <input name="RCode" pInputText [(ngModel)]="RCode" autocomplete="off" [disabled]="enableRegion"
-                            required>
+                        <input name="RCode" pInputText [(ngModel)]="RCode" autocomplete="off"
+                            style="text-transform: uppercase;" [disabled]="enableRegion" required>
                         <label for="RCode" class="float-input">Region Code</label>
                     </span>
                 </div>
@@ -123,10 +123,9 @@
                 <div class="ui-g-12 ui-md-4"></div>
                 <div class="ui-g-12 ui-md-4">
                     <div class="ui-g border-lightgrey">
-                        <p-radioButton class="ui-g-6" name="Flag" label="Active" value="A" [(ngModel)]="Active"
-                            required>
+                        <p-radioButton class="ui-g-6" name="Flag" label="Active" value=1 [(ngModel)]="Active" required>
                         </p-radioButton>
-                        <p-radioButton class="ui-g-6" name="Flag" label="InActive" value="I" [(ngModel)]="Active"
+                        <p-radioButton class="ui-g-6" name="Flag" label="InActive" value=0 [(ngModel)]="Active"
                             required>
                         </p-radioButton>
                     </div>

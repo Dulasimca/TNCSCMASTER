@@ -62,7 +62,6 @@ import { SchemeMasterComponent } from './MasterNew/scheme-master/scheme-master.c
 import { SchemeCommodityMasterComponent } from './MasterNew/scheme-commodity-master/scheme-commodity-master.component';
 import { PackingMasterComponent } from './MasterNew/packing-master/packing-master.component';
 import { HeaderComponent } from './header/header.component';
-import { GodownProfileComponent } from './godown-profile/godown-profile.component';
 import { HomeComponent } from './home/home.component';
 import { IssuerMasterComponent } from './MasterNew/IssuerMaster/Issuer-master.component';
 import { GodownMasterComponent } from './MasterNew/godown-master/godown-master.component';
@@ -99,7 +98,6 @@ import { UserMasterComponent } from './MasterNew/user-master/user-master.compone
     SchemeMasterComponent,
     SchemeCommodityMasterComponent,
     PackingMasterComponent,
-    GodownProfileComponent,
     IssuerMasterComponent,
     GodownMasterComponent,
     FCIDataComponent,

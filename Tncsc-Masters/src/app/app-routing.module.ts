@@ -15,7 +15,6 @@ import { RailYardMasterComponent } from './MasterNew/rail-yard-master/rail-yard-
 import { SchemeMasterComponent } from './MasterNew/scheme-master/scheme-master.component';
 import { SchemeCommodityMasterComponent } from './MasterNew/scheme-commodity-master/scheme-commodity-master.component';
 import { PackingMasterComponent } from './MasterNew/packing-master/packing-master.component';
-import { GodownProfileComponent } from './godown-profile/godown-profile.component';
 import { HomeComponent } from './home/home.component';
 import { IssuerMasterComponent } from './MasterNew/IssuerMaster/Issuer-master.component';
 import { GodownMasterComponent } from './MasterNew/godown-master/godown-master.component';
@@ -45,7 +44,6 @@ const routes: Routes = [
   { path: 'SchemeMaster', component: SchemeMasterComponent, canActivate: [AuthGuard] },
   { path: 'SchemeCommodityMaster', component: SchemeCommodityMasterComponent, canActivate: [AuthGuard] },
   { path: 'PackingMaster', component: PackingMasterComponent, canActivate: [AuthGuard] },
-  { path: 'GodownMaster', component: GodownProfileComponent, canActivate: [AuthGuard] },
   { path: 'IssuerMaster', component: IssuerMasterComponent, canActivate: [AuthGuard] },
   { path: 'RegionMaster', component: RegionMasterComponent, canActivate: [AuthGuard] },
   { path: 'GunnyType', component: GunnyTypeMasterComponent, canActivate: [AuthGuard] },

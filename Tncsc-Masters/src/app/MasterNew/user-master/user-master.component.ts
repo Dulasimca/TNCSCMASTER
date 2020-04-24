@@ -23,6 +23,7 @@ export class UserMasterComponent implements OnInit {
   Phone: any;
   RoleMappingOptions: SelectItem[];
   RoleMapping: any;
+  RoleMappingData: any;
   enableRegion: boolean = false;
   enableGodown: boolean = false;
   RCode: any;
@@ -61,24 +62,27 @@ export class UserMasterComponent implements OnInit {
         if (this.RoleMappingOptions === undefined) {
           this.restAPIService.get(PathConstants.ROLE_MAPPING).subscribe(res => {
             if (res !== undefined) {
-              this.RoleMapping = res;
-              this.RoleMapping.forEach(data => {
-                roleSelection.push({ label: data.MappingName, value: data.MappingId });
+              this.RoleMappingData = res;
+              this.RoleMappingData.forEach(data => {
+                roleSelection.push({ label: data.MappingName, value: data.MappingId, RoleId: data.RoleId });
               });
+              roleSelection.unshift({ label: '-select-', value: null, disabled: true });
               this.RoleMappingOptions = roleSelection;
-              if (this.RoleMapping.RoleId === 1 && this.RoleMapping.RoleId === 8 && this.RoleMapping.RoleId === 9
-                && this.RoleMapping.RoleId === 10 && this.RoleMapping.RoleId === 11) {
-                this.enableRegion = false;
-                this.enableGodown = false;
-              } else if (this.RoleMapping.RoleId === 2 && this.RoleMapping.RoleId === 4 && this.RoleMapping.RoleId === 5) {
-                this.enableRegion = true;
-                this.enableGodown = false;
-              } else if (this.RoleMapping.RoleId === 3 && this.RoleMapping.RoleId === 6 && this.RoleMapping.RoleId === 7) {
-                this.enableRegion = true;
-                this.enableGodown = true;
-              }
             }
           });
+        }
+        if (this.RoleMapping !== undefined) {
+          if (this.RoleMapping.RoleId === 1 || this.RoleMapping.RoleId === 8 || this.RoleMapping.RoleId === 9
+            || this.RoleMapping.RoleId === 10 || this.RoleMapping.RoleId === 11) {
+            this.enableRegion = true;
+            this.enableGodown = true;
+          } else if (this.RoleMapping.RoleId === 2 || this.RoleMapping.RoleId === 4 || this.RoleMapping.RoleId === 5) {
+            this.enableRegion = false;
+            this.enableGodown = true;
+          } else if (this.RoleMapping.RoleId === 3 || this.RoleMapping.RoleId === 6 || this.RoleMapping.RoleId === 7) {
+            this.enableRegion = false;
+            this.enableGodown = false;
+          }
         }
         break;
     }
@@ -118,21 +122,20 @@ export class UserMasterComponent implements OnInit {
         });
       }
     });
-    this.onClear();
   }
 
   onRow(event, selectedRow) {
     this.isEdited = true;
     this.isViewed = false;
     this.RoleMappingOptions = [{ label: selectedRow.MappingName, value: selectedRow.MappingId }];
-    this.RoleMapping = selectedRow.MappingId;
+    this.RoleMapping = selectedRow.MappingName;
     this.UserName = selectedRow.UserName;
     this.Password = selectedRow.Pwd;
-    this.Email = selectedRow.TNCSCapacity;
-    this.Emp = selectedRow.TNCSCarpet;
-    this.Phone = selectedRow.NOOFSHOPCRS;
-    this.RCode = selectedRow.OPERATIONTYPE;
-    this.GCode = selectedRow.OperationalType;
+    this.Email = selectedRow.EMailId;
+    this.Emp = selectedRow.EmpId;
+    this.Phone = selectedRow.PhoneNumber;
+    this.RCode = selectedRow.Regioncode;
+    this.GCode = selectedRow.GodownCode;
     this.Active = selectedRow.Flag;
   }
 
@@ -140,25 +143,50 @@ export class UserMasterComponent implements OnInit {
     this.isEdited = true;
     this.isViewed = false;
     this.RoleMappingOptions = this.RoleMapping = undefined;
-    this.UserName = this.Password = this.Email = this.Emp = this.Phone = this.RCode = this.GCode = null;
+    this.Password = this.Email = this.Emp = this.Phone = this.RCode = this.GCode = null;
     this.Active = false;
+  }
+
+  onPrev() {
+    this.loading = true;
+    const params = {
+      'UserName': this.UserName,
+    };
+    this.restAPIService.getByParameters(PathConstants.USER_MASTER_GET, params).subscribe(res => {
+      if (res.length === 0) {
+        this.isEdited = true;
+        this.isViewed = false;
+        this.RoleMappingOptions = this.RoleMapping = undefined;
+        this.Password = this.Email = this.Emp = this.Phone = this.RCode = this.GCode = null;
+        this.Active = false;
+        this.loading = false;
+      } else {
+        this.loading = false;
+        this.messageService.clear();
+        this.messageService.add({
+          key: 't-err', severity: StatusMessage.SEVERITY_WARNING,
+          summary: StatusMessage.SUMMARY_WARNING, detail: 'User Name Already Exists!'
+        });
+      }
+    });
   }
 
   onSave() {
     const params = {
       'UserName': this.UserName,
       'Pwd': this.Password,
-      'EMailId': this.Email || '',
-      'EmpId': this.Emp || '',
+      'EMailId': this.Email || 0,
+      'EmpId': this.Emp || 0,
       'PhoneNumber': this.Phone || '',
-      'RoleId': this.RoleMapping,
+      'RoleId': this.RoleMapping.value,
       'Flag': this.Active,
-      'GodownCode': this.GCode || '',
-      'Regioncode': this.RCode || '',
+      'GodownCode': this.GCode || 0,
+      'Regioncode': this.RCode.toUpperCase() || 0,
     };
     this.restAPIService.post(PathConstants.USER_MASTER_POST, params).subscribe(res => {
       if (res) {
         this.onView();
+        this.isEdited = false;
         this.messageService.clear();
         this.messageService.add({
           key: 't-err', severity: StatusMessage.SEVERITY_SUCCESS,
@@ -199,14 +227,14 @@ export class UserMasterComponent implements OnInit {
   onReset(item) {
     if (item === 'user') {
       this.UserMasterData = this.UserMasterCols = undefined;
-    } else if (item === 'role') {
-      this.enableRegion = this.enableGodown = this.GCode = this.RCode = undefined;
+      // } else if (item === 'role') {
+      // this.enableRegion = this.enableGodown = this.GCode = this.RCode = undefined;
     }
   }
 
   onClear() {
     this.UserName = this.Password = this.Email = this.Emp = this.Phone = this.RCode = this.GCode = null;
-    this.UserMasterData = this.UserMasterCols = this.RoleMappingOptions = this.RoleMapping = undefined;
+    this.UserMasterData = this.UserMasterCols = this.RoleMappingOptions = this.RoleMapping = null;
     this.isEdited = this.Active = false;
   }
 }
