@@ -27,6 +27,7 @@ import { AllotmentIssueQuantityComponent } from './QuotaWatchRegister/allotment-
 import { StackCardMasterComponent } from './MasterNew/stack-card-master/stack-card-master.component';
 import { QuantityMasterComponent } from './MasterNew/quantity-master/quantity-master.component';
 import { UserMasterComponent } from './MasterNew/user-master/user-master.component';
+import { MenuMasterComponent } from './MasterNew/menu-master/menu-master.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -54,8 +55,9 @@ const routes: Routes = [
   { path: 'SuppliersData', component: DepositorsComponent, canActivate: [AuthGuard] },
   { path: 'StackCardUpdate', component: StackCardMasterComponent, canActivate: [AuthGuard] },
   { path: 'AllotmentAbstract', component: AllotmentIssueQuantityComponent, canActivate: [AuthGuard] },
-  { path: 'QuantityAccountMaster', component: QuantityMasterComponent },
-  { path: 'UserMaster', component: UserMasterComponent },
+  { path: 'QuantityAccountMaster', component: QuantityMasterComponent, canActivate: [AuthGuard] },
+  { path: 'UserMaster', component: UserMasterComponent, canActivate: [AuthGuard] },
+  { path: 'MenuMaster', component: MenuMasterComponent, canActivate: [AuthGuard] },
   { path: '**', component: LoginComponent, canActivate: [AuthGuard] }
 
 ];

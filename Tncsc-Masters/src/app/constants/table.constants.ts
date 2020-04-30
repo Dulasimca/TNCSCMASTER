@@ -25,6 +25,7 @@ export class TableConstants {
     StackCardMaster: any;
     QuantityAccount: any;
     UserMaster: any;
+    MenuMaster: any;
 
     constructor() {
         this.GodownMaster = [
@@ -278,6 +279,17 @@ export class TableConstants {
             { field: 'RegionName', header: 'Region Name' },
             { field: 'MappingId', header: 'Mapping Id' },
             { field: 'MappingName', header: 'Mapping Name' },
+        ];
+
+        this.MenuMaster = [
+            { header: 'S.No', field: 'SlNo' },
+            { field: 'MenuId', header: 'Menu ID' },
+            { field: 'ID', header: 'ID' },
+            { field: 'Name', header: 'Menu Name' },
+            { field: 'URL', header: 'URL' },
+            { field: 'ParentId', header: 'ParentId' },
+            { field: 'IsActive', header: 'Active' },
+            { field: 'RoleId', header: 'Role Id' },
         ];
     }
 }

@@ -74,6 +74,7 @@ import { AllotmentIssueQuantityComponent } from './QuotaWatchRegister/allotment-
 import { StackCardMasterComponent } from './MasterNew/stack-card-master/stack-card-master.component';
 import { QuantityMasterComponent } from './MasterNew/quantity-master/quantity-master.component';
 import { UserMasterComponent } from './MasterNew/user-master/user-master.component';
+import { MenuMasterComponent } from './MasterNew/menu-master/menu-master.component';
 // import { FullCalendar } from 'primeng/fullcalendar';
 
 @NgModule({
@@ -108,7 +109,8 @@ import { UserMasterComponent } from './MasterNew/user-master/user-master.compone
     AllotmentIssueQuantityComponent,
     StackCardMasterComponent,
     QuantityMasterComponent,
-    UserMasterComponent
+    UserMasterComponent,
+    MenuMasterComponent
   ],
   imports: [
     BrowserModule,

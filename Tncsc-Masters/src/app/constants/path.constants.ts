@@ -76,6 +76,10 @@ export class PathConstants {
   public static readonly USER_MASTER_GET = '/api/ManageUserMaster/Get';
   public static readonly USER_MASTER_POST = '/api/ManageUserMaster/Post';
 
+  ///MenuMaster
+  public static readonly MENU_MASTER_GET = '/api/ManageMenuMaster/Get';
+  public static readonly MENU_MASTER_POST = '/api/ManageMenuMaster/Post';
+
   ///Settings
   public static readonly SETTINGS_GET = '/api/Settings';
 
