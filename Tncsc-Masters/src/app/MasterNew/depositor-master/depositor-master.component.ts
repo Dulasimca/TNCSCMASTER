@@ -17,6 +17,7 @@ import { RoleBasedService } from 'src/app/shared/role-based.service';
 export class DepositorMasterComponent implements OnInit {
   DepositorMasterData: any;
   DepositorMasterCols: any;
+  DepositorMasterTypeTenderer: any;
   DepositorData: any;
   FilteredArray: any;
   DepositorCode: any;
@@ -40,12 +41,16 @@ export class DepositorMasterComponent implements OnInit {
   isViewed: boolean = false;
   isEdited: boolean = false;
   excelEnable: boolean = false;
+  Tenderer: "TY028";
+  LedgerId: any;
+  GST: any;
   @ViewChild('depositor', { static: false }) depositorPanel: Dropdown;
   @ViewChild('godown', { static: false }) godownPanel: Dropdown;
   @ViewChild('region', { static: false }) regionPanel: Dropdown;
 
 
-  constructor(private authService: AuthService, private roleBasedService: RoleBasedService, private restAPIService: RestAPIService, private messageService: MessageService, private tableConstants: TableConstants) { }
+  constructor(private authService: AuthService, private roleBasedService: RoleBasedService, private restAPIService: RestAPIService,
+    private messageService: MessageService, private tableConstants: TableConstants) { }
 
   ngOnInit() {
     this.canShowMenu = (this.authService.isLoggedIn()) ? this.authService.isLoggedIn() : false;
@@ -120,7 +125,7 @@ export class DepositorMasterComponent implements OnInit {
     };
     this.restAPIService.getByParameters(PathConstants.DEPOSITOR_MASTER_TYPE_GET, params).subscribe(res => {
       if (res !== undefined && res !== null && res.length !== 0) {
-        this.DepositorMasterCols = this.tableConstants.DepositorMasterType;
+        (this.Depositor === 'TY028') ? this.DepositorMasterCols = this.tableConstants.DepositorMasterTypeTenderer : this.DepositorMasterCols = this.tableConstants.DepositorMasterType;
         this.DepositorMasterData = res;
         this.FilteredArray = res;
         this.loading = false;
@@ -154,11 +159,15 @@ export class DepositorMasterComponent implements OnInit {
     this.DepositorName = selectedRow.DepositorName;
     this.Active = selectedRow.ActiveFlag;
     this.DeleteFlag = selectedRow.DeleteFlag;
+    if (this.Depositor === 'TY028') {
+      this.LedgerId = selectedRow.LedgerID;
+      this.GST = selectedRow.Gst;
+    }
   }
 
   onAdd() {
     this.isEdited = true;
-    this.DepositorCode = this.DepositorName = this.DeleteFlag = undefined;
+    this.DepositorCode = this.DepositorName = this.DeleteFlag = this.LedgerId = this.GST = undefined;
     this.Active = false;
   }
 
@@ -172,6 +181,8 @@ export class DepositorMasterComponent implements OnInit {
       'DepositorType': this.Depositor,
       'DeleteFlag': this.DeleteFlag || 'F',
       'ActiveFlag': this.Active,
+      'GstNo': this.GST.toUpperCase() || '',
+      'LedgerId': this.LedgerId || ''
     };
     this.restAPIService.post(PathConstants.DEPODITOR_MASTER_TYPE_POST, params).subscribe(res => {
       if (res) {
@@ -223,7 +234,7 @@ export class DepositorMasterComponent implements OnInit {
 
   onClear() {
     this.DepositorMasterData = this.DepositorMasterCols = undefined;
-    this.DepositorCode = this.DepositorName = this.Active = null;
+    this.DepositorCode = this.DepositorName = this.Active = this.LedgerId = this.GST = null;
     this.isEdited = false;
   }
 }

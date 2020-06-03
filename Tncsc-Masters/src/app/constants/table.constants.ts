@@ -1,6 +1,7 @@
 export class TableConstants {
     //Master Document
     DepositorMasterType: any;
+    DepositorMasterTypeTenderer: any;
     TypeMaster: any;
     TransactionMaster: any;
     RegionMasterCols: any;
@@ -57,6 +58,16 @@ export class TableConstants {
             { header: 'Depositor Code', field: 'DepositorCode' },
             { header: 'Depositor Name', field: 'DepositorName' },
             { header: 'Depositor Type', field: 'DepositorType' },
+            { header: 'Active Flag', field: 'ActiveFlag' }
+        ];
+
+        this.DepositorMasterTypeTenderer = [
+            { header: 'S.No', field: 'SlNo', width: '40px' },
+            { header: 'Depositor Code', field: 'DepositorCode' },
+            { header: 'Depositor Name', field: 'DepositorName' },
+            { header: 'Depositor Type', field: 'DepositorType' },
+            { header: 'GST Number', field: 'Gst' },
+            { header: 'Party ID', field: 'LedgerID' },
             { header: 'Active Flag', field: 'ActiveFlag' }
         ];
 
