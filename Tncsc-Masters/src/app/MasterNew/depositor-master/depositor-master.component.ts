@@ -181,7 +181,7 @@ export class DepositorMasterComponent implements OnInit {
       'DepositorType': this.Depositor,
       'DeleteFlag': this.DeleteFlag || 'F',
       'ActiveFlag': this.Active,
-      'GstNo': this.GST.toUpperCase() || '',
+      'GstNo': this.GST || '',
       'LedgerId': this.LedgerId || ''
     };
     this.restAPIService.post(PathConstants.DEPODITOR_MASTER_TYPE_POST, params).subscribe(res => {

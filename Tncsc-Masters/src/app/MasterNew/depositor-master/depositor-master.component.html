@@ -121,7 +121,7 @@
           </div>
           <div class="ui-g-6 ui-md-4">
             <span class="ui-float-label">
-              <input name="GST" pInputText [(ngModel)]="GST" autocomplete="off" required>
+              <input name="GST" pInputText [(ngModel)]="GST" (ngModelChange)="GST = $event.toUpperCase()" autocomplete="off" required>
               <label for="GST" class="float-input">GST No</label>
             </span>
           </div>
