@@ -27,6 +27,7 @@ export class TableConstants {
     QuantityAccount: any;
     UserMaster: any;
     MenuMaster: any;
+    AllotmentCommodityCols: any;
 
     constructor() {
         this.GodownMaster = [
@@ -301,6 +302,14 @@ export class TableConstants {
             { field: 'ParentId', header: 'ParentId' },
             { field: 'IsActive', header: 'Active' },
             { field: 'RoleId', header: 'Role Id' },
+        ];
+
+        this.AllotmentCommodityCols = [
+            { header: 'S.No', field: 'SlNo' },
+            { field: 'Acommcode', header: 'Allotment Code' },
+            { field: 'Acommname', header: 'Allotment Name' },
+            { field: 'Acomm', header: 'Allotment Commodity' },
+            { field: 'Asch', header: 'Allotment Scheme' }
         ];
     }
 }

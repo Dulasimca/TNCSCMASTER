@@ -39,6 +39,7 @@ export class HomeComponent implements OnInit {
   depositorCount: any;
   commodityCount: any;
   schemeCommodityCount: any;
+  allotmentQuantityCount: any;
   options: any;
   display: boolean = false;
   notificationsHeight: any;
@@ -82,16 +83,19 @@ export class HomeComponent implements OnInit {
         this.weighmentCount = (res[16] !== undefined && res[16] !== '') ? res[16] : 0;
         this.packingCount = (res[17] !== undefined && res[17] !== '') ? res[17] : 0;
         this.gunnyCount = (res[18] !== undefined && res[18] !== '') ? res[18] : 0;
-        this.cerealCount = (res[19] !== undefined && res[19] !== '') ? res[19] : 0;
-        this.nonCerealCount = (res[20] !== undefined && res[20] !== '') ? res[20] : 0;
+        this.allotmentQuantityCount = (res[19] !== undefined && res[19] !== '') ? res[19] : 0;
+        this.cerealCount = (res[20] !== undefined && res[20] !== '') ? res[20] : 0;
+        this.nonCerealCount = (res[21] !== undefined && res[21] !== '') ? res[21] : 221;
       } else {
         this.messageService.clear();
-        this.messageService.add({ key: 't-err', severity: StatusMessage.SEVERITY_WARNING, summary: StatusMessage.SUMMARY_WARNING, detail: StatusMessage.DashboardNoRecord });
+        this.messageService.add({ key: 't-err', severity: StatusMessage.SEVERITY_WARNING,
+         summary: StatusMessage.SUMMARY_WARNING, detail: StatusMessage.DashboardNoRecord });
       }
     }, (err: HttpErrorResponse) => {
       if (err.status === 0 || err.status === 400) {
         this.messageService.clear();
-        this.messageService.add({ key: 't-err', severity: StatusMessage.SEVERITY_ERROR, summary: StatusMessage.SUMMARY_ERROR, detail: StatusMessage.ErrorMessage });
+        this.messageService.add({ key: 't-err', severity: StatusMessage.SEVERITY_ERROR, summary: StatusMessage.SUMMARY_ERROR,
+         detail: StatusMessage.ErrorMessage });
       }
     });
   }
@@ -160,6 +164,9 @@ export class HomeComponent implements OnInit {
         break;
       case 'stackCard':
         this.router.navigate(['StackCardUpdate']);
+        break;
+      case 'allotmentQuantity':
+        this.router.navigate(['AllotmentQuantity']);
         break;
     }
   }

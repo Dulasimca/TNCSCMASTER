@@ -75,6 +75,7 @@ import { StackCardMasterComponent } from './MasterNew/stack-card-master/stack-ca
 import { QuantityMasterComponent } from './MasterNew/quantity-master/quantity-master.component';
 import { UserMasterComponent } from './MasterNew/user-master/user-master.component';
 import { MenuMasterComponent } from './MasterNew/menu-master/menu-master.component';
+import { AllotmentQuantityComponent } from './MasterNew/allotment-quantity/allotment-quantity.component';
 // import { FullCalendar } from 'primeng/fullcalendar';
 
 @NgModule({
@@ -110,7 +111,8 @@ import { MenuMasterComponent } from './MasterNew/menu-master/menu-master.compone
     StackCardMasterComponent,
     QuantityMasterComponent,
     UserMasterComponent,
-    MenuMasterComponent
+    MenuMasterComponent,
+    AllotmentQuantityComponent
   ],
   imports: [
     BrowserModule,

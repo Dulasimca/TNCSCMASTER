@@ -28,6 +28,7 @@ import { StackCardMasterComponent } from './MasterNew/stack-card-master/stack-ca
 import { QuantityMasterComponent } from './MasterNew/quantity-master/quantity-master.component';
 import { UserMasterComponent } from './MasterNew/user-master/user-master.component';
 import { MenuMasterComponent } from './MasterNew/menu-master/menu-master.component';
+import { AllotmentQuantityComponent } from './MasterNew/allotment-quantity/allotment-quantity.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -56,6 +57,7 @@ const routes: Routes = [
   { path: 'StackCardUpdate', component: StackCardMasterComponent, canActivate: [AuthGuard] },
   { path: 'AllotmentAbstract', component: AllotmentIssueQuantityComponent, canActivate: [AuthGuard] },
   { path: 'QuantityAccountMaster', component: QuantityMasterComponent, canActivate: [AuthGuard] },
+  { path: 'AllotmentQuantity', component: AllotmentQuantityComponent, canActivate: [AuthGuard] },
   { path: 'UserMaster', component: UserMasterComponent, canActivate: [AuthGuard] },
   { path: 'MenuMaster', component: MenuMasterComponent, canActivate: [AuthGuard] },
   { path: '**', component: LoginComponent, canActivate: [AuthGuard] }

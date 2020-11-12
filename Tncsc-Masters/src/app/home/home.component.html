@@ -218,18 +218,6 @@
         <div class="ui-g-12 dashboard">
           <div class="ui-g-12 ui-md-1"></div>
           <div class="ui-g-12 ui-md-10 dashboard">
-            <div id="stackCard" class="ui-g-12 ui-md-6 ui-lg-3 card no-padding cursor-pointer"
-              (click)="onGridClicked('stackCard')">
-              <div class="ui-g ui-fluid overview">
-                <div class="ui-g-12 overview-content clearfix">
-                  <span class="ui-g-12 overview-title" style="padding-left: 20px;">STACK CARD UPDATE</span>
-                  <!-- <span class="ui-g-4 overview-detail">{{stackCardCount}}</span> -->
-                </div>
-                <div class="overview-footer">
-                  <img src="../../assets/layout/images/dashboard/views.svg" style="width: 100%">
-                </div>
-              </div>
-            </div>
             <div id="depositor" class="ui-g-12 ui-md-6 ui-lg-3 card no-padding cursor-pointer"
               (click)="onGridClicked('depositor')">
               <div class="ui-g ui-fluid overview">
@@ -266,7 +254,35 @@
                 </div>
               </div>
             </div>
+            <div id="allotmentQuantity" class="ui-g-12 ui-md-6 ui-lg-3 card no-padding cursor-pointer"
+              (click)="onGridClicked('allotmentQuantity')">
+              <div class="ui-g ui-fluid overview">
+                <div class="ui-g-10 overview-content clearfix">
+                  <span class="ui-g-6 overview-title">ALLOTMENT COMMODITY</span>
+                  <span class="ui-g-4 overview-detail">{{allotmentQuantityCount}}</span>
+                </div>
+                <div class="overview-footer">
+                  <img src="../../assets/layout/images/dashboard/views.svg" style="width: 100%">
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
+        <div class="ui-g-12 dashboard">
+          <div class="ui-g-5"></div>
+          <div id="stackCard" class="ui-g-12 ui-md-6 ui-lg-2 card no-padding cursor-pointer"
+            (click)="onGridClicked('stackCard')">
+            <div class="ui-g ui-fluid overview">
+              <div class="ui-g-12 overview-content clearfix">
+                <span class="ui-g-12 overview-title" style="padding-left: 20px;">STACK CARD UPDATE</span>
+                <!-- <span class="ui-g-4 overview-detail">{{stackCardCount}}</span> -->
+              </div>
+              <div class="overview-footer">
+                <img src="../../assets/layout/images/dashboard/views.svg" style="width: 100%">
+              </div>
+            </div>
+          </div>
+          <div class="ui-g-5"></div>
         </div>
       </div>
     </div>
