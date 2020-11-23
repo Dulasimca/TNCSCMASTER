@@ -280,17 +280,17 @@ export class TableConstants {
             { header: 'S.No', field: 'SlNo' },
             { field: 'UserName', header: 'User Name' },
             { field: 'Pwd', header: 'Password' },
+            { field: 'RoleId', header: 'Role Id' },
+            { field: 'Regioncode', header: 'Region Code' },
+            { field: 'GodownCode', header: 'Godown Code' },
+            { field: 'RegionName', header: 'Region Name' },
+            { field: 'GodownName', header: 'Godown Name' },
             { field: 'EMailId', header: 'EMail Id' },
             { field: 'EmpId', header: 'Employee Id' },
             { field: 'PhoneNumber', header: 'Phone Number' },
-            { field: 'RoleId', header: 'Role Id' },
-            { field: 'Flag', header: 'Active' },
-            { field: 'GodownCode', header: 'Godown Code' },
-            { field: 'GodownName', header: 'Godown Name' },
-            { field: 'Regioncode', header: 'Region Code' },
-            { field: 'RegionName', header: 'Region Name' },
             { field: 'MappingId', header: 'Mapping Id' },
             { field: 'MappingName', header: 'Mapping Name' },
+            { field: 'Flag', header: 'Active' },
         ];
 
         this.MenuMaster = [

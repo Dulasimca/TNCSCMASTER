@@ -168,6 +168,12 @@ export class HomeComponent implements OnInit {
       case 'allotmentQuantity':
         this.router.navigate(['AllotmentQuantity']);
         break;
+        case 'menuMaster':
+        this.router.navigate(['MenuMaster']);
+        break;
+        case 'userMaster':
+        this.router.navigate(['UserMaster']);
+        break;
     }
   }
 
