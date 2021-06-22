@@ -79,6 +79,8 @@ export class PathConstants {
   public static readonly ROLE_MAPPING = '/api/RoleMapping';
   public static readonly USER_MASTER_GET = '/api/ManageUserMaster/Get';
   public static readonly USER_MASTER_POST = '/api/ManageUserMaster/Post';
+  public static readonly USERMASTER_POST = '/api/UserMaster/Post';
+  public static readonly USERMASTER_GET = '/api/UserMaster';
 
   ///MenuMaster
   public static readonly MENU_MASTER_GET = '/api/ManageMenuMaster/Get';

@@ -7,6 +7,8 @@ import { TableConstants } from 'src/app/constants/table.constants';
 import { PathConstants } from 'src/app/constants/path.constants';
 import { StatusMessage } from 'src/app/constants/Messages';
 import { HttpErrorResponse } from '@angular/common/http';
+import { RoleBasedService } from 'src/app/shared/role-based.service';
+import { AstMemoryEfficientTransformer } from '@angular/compiler';
 
 @Component({
   selector: 'app-user-master',
@@ -21,6 +23,8 @@ export class UserMasterComponent implements OnInit {
   Email: any;
   Emp: any;
   Phone: any;
+  region:any;
+  data:any;
   RoleMappingOptions: SelectItem[];
   RoleMapping: any;
   RoleMappingData: any;
@@ -28,11 +32,16 @@ export class UserMasterComponent implements OnInit {
   enableGodown: boolean = false;
   RCode: any;
   GCode: any;
+  regions: any;
+  roleId: any;
   GodownData: any;
   FilteredArray: any;
   GodownCode: any;
   GodownName: any;
+  loggedInRCode: any;
+  
   Active: any;
+  regionOptions: SelectItem[];
   godownOptions: SelectItem[];
   canShowMenu: boolean;
   searchText: any;
@@ -42,19 +51,28 @@ export class UserMasterComponent implements OnInit {
   isEdited: boolean = false;
   @ViewChild('godown', { static: false }) godownPanel: Dropdown;
   @ViewChild('role', { static: false }) rolePanel: Dropdown;
+  @ViewChild('region', { static: false }) regionPanel: Dropdown;
+  
 
 
-
-  constructor(private authService: AuthService, private restAPIService: RestAPIService, private messageService: MessageService,
+  constructor(private authService: AuthService, private roleBasedService: RoleBasedService, private restAPIService: RestAPIService, private messageService: MessageService,
     private tableConstants: TableConstants) { }
 
   ngOnInit() {
     this.canShowMenu = (this.authService.isLoggedIn()) ? this.authService.isLoggedIn() : false;
+    this.loggedInRCode = this.authService.getUserAccessible().rCode;
+    this.roleId = JSON.parse(this.authService.getUserAccessible().roleId);
+    this.regions = this.roleBasedService.getRegions();
+    this.data = this.roleBasedService.getInstance();
   }
-
+ 
   onSelect(item, type) {
     let roleSelection = [];
+    let regionSelection = [];
+    let godownSelection = [];
     switch (item) {
+       
+      
       case 'RoleMapping':
         if (type === 'enter') {
           this.rolePanel.overlayVisible = true;
@@ -85,15 +103,43 @@ export class UserMasterComponent implements OnInit {
           }
         }
         break;
+        case 'reg':
+        this.regions = this.roleBasedService.regionsData;
+        if (type === 'enter') {
+          this.regionPanel.overlayVisible = true;
+        }
+        if (this.roleId === 1) {
+          if (this.regions !== undefined) {
+            regionSelection.push({ label: 'All', value: null });
+            this.regions.forEach(x => {
+              regionSelection.push({ label: x.RName, value: x.RCode });
+            });
+            this.regionOptions = regionSelection;
+          }
+        }
+        break;
+      case 'gd':
+        this.GodownData = this.roleBasedService.godownsList
+        if (type === 'enter') {
+          this.godownPanel.overlayVisible = true;
+        }
+         
+        if (this.roleId === 1) {
+        if (this.data !== undefined) {
+          godownSelection.push({ label: 'All', value: null });
+          this.data.forEach(x => {
+             
+              godownSelection.push({ label: x.GName, value: x.GCode });
+           });
+          this.godownOptions = godownSelection;
+        }
+        break;
     }
+    } 
   }
-
   onView() {
     this.loading = true;
-    const params = {
-      'UserName': this.UserName,
-    };
-    this.restAPIService.getByParameters(PathConstants.USER_MASTER_GET, params).subscribe(res => {
+    this.restAPIService.get(PathConstants.USERMASTER_GET).subscribe(res => {
       if (res !== undefined && res !== null && res.length !== 0) {
         this.UserMasterCols = this.tableConstants.UserMaster;
         this.UserMasterData = res;
@@ -175,15 +221,15 @@ export class UserMasterComponent implements OnInit {
     const params = {
       'UserName': this.UserName,
       'Pwd': this.Password,
-      'EMailId': this.Email || 0,
-      'EmpId': this.Emp || 0,
-      'PhoneNumber': this.Phone || '',
+      'EMailId': this.Email, 
+      'EmpId': this.Emp,
+      'PhoneNumber': this.Phone,
       'RoleId': this.RoleMapping.value,
       'Flag': this.Active,
-      'GodownCode': this.GCode || 0,
-      'Regioncode': this.RCode.toUpperCase() || 0,
+      'GodownCode': this.GCode,
+      'Regioncode': this.RCode ,
     };
-    this.restAPIService.post(PathConstants.USER_MASTER_POST, params).subscribe(res => {
+    this.restAPIService.post(PathConstants.USERMASTER_POST, params).subscribe(res => {
       if (res) {
         this.onView();
         this.isEdited = false;
@@ -196,8 +242,8 @@ export class UserMasterComponent implements OnInit {
         this.loading = false;
         this.messageService.clear();
         this.messageService.add({
-          key: 't-err', severity: StatusMessage.SEVERITY_WARNING,
-          summary: StatusMessage.SUMMARY_WARNING, detail: StatusMessage.ValidCredentialsErrorMessage
+          key: 't-err', severity: StatusMessage.SEVERITY_ERROR,
+          summary: StatusMessage.SUMMARY_ERROR, detail: StatusMessage.ErrorMessage 
         });
       }
     }, (err: HttpErrorResponse) => {

@@ -125,17 +125,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   transition: opacity .25s linear;
 }
 
-
-
-
-
-
-
-
-
-
-
-
+.form-mandatory-field {
+  color: red;
+  font-size: 14px;
+}
 
 .sidenav-header{
   font-weight:normal;
